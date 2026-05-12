@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(cp \"/Users/weart/.claude/projects/-Users-weart-Projects-weart-weart-new-site/9a43b6b4-cb68-4af6-8100-28139f02751c/tool-results/webfetch-1778578073798-ijnfqr.bin\" /tmp/design.gz)",
+      "Read(//tmp/**)",
+      "Bash(gunzip -c /tmp/design.gz)",
+      "Bash(mkdir -p /tmp/design_contents)",
+      "Bash(tar -xf /tmp/design_extracted -C /tmp/design_contents)"
+    ]
+  }
+}
