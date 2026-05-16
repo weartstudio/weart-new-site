@@ -75,6 +75,20 @@ export type WPCategory = {
   slug: string;
 };
 
+export type WPProject = {
+  databaseId: number;
+  slug: string;
+  title: string;
+  date: string;
+  year: number;
+  description: string;
+  website: string | null;
+  clientName: string | null;
+  clientRole: string | null;
+  image: WPImage | null;
+  imageSecondary: WPImage | null;
+};
+
 type RawPost = {
   databaseId: number;
   slug: string;
@@ -253,6 +267,86 @@ export async function getCategories(): Promise<WPCategory[]> {
   );
 
   return (data.categories.nodes as WPCategory[]).filter(c => c.slug !== 'uncategorized');
+}
+
+type RawAcfImage = {
+  node: {
+    sourceUrl: string;
+    altText: string;
+    mediaDetails: { width: number; height: number } | null;
+  };
+} | null;
+
+type RawProject = {
+  databaseId: number;
+  slug: string;
+  title: string;
+  date: string;
+  proejctsData: {
+    leiras: string | null;
+    weboldal: string | null;
+    merendelo: string | null;
+    merendeloCopy: string | null;
+    image1: RawAcfImage;
+    image2: RawAcfImage;
+  } | null;
+};
+
+function mapAcfImage(raw: RawAcfImage): WPImage | null {
+  if (!raw?.node?.sourceUrl) return null;
+  return {
+    url: raw.node.sourceUrl,
+    alt: raw.node.altText || '',
+    width: raw.node.mediaDetails?.width ?? 1200,
+    height: raw.node.mediaDetails?.height ?? 900,
+  };
+}
+
+// The ACF field group is exposed under the (misspelled) GraphQL name `proejctsData`.
+export async function getProjects(first = 50): Promise<WPProject[]> {
+  const data = await fetchGraphQL(
+    `query GetProjects($first: Int) {
+      projects(first: $first) {
+        nodes {
+          databaseId
+          slug
+          title
+          date
+          proejctsData {
+            leiras
+            weboldal
+            merendelo
+            merendeloCopy
+            image1 { node { sourceUrl altText mediaDetails { width height } } }
+            image2 { node { sourceUrl altText mediaDetails { width height } } }
+          }
+        }
+      }
+    }`,
+    { first }
+  );
+
+  const trimOrNull = (v: string | null | undefined): string | null => {
+    const t = (v ?? '').trim();
+    return t ? t : null;
+  };
+
+  return (data.projects.nodes as RawProject[]).map((node) => {
+    const pd = node.proejctsData;
+    return {
+      databaseId: node.databaseId,
+      slug: node.slug,
+      title: node.title,
+      date: node.date,
+      year: new Date(node.date).getFullYear(),
+      description: stripHtml(pd?.leiras ?? ''),
+      website: trimOrNull(pd?.weboldal),
+      clientName: trimOrNull(pd?.merendelo),
+      clientRole: trimOrNull(pd?.merendeloCopy),
+      image: mapAcfImage(pd?.image1 ?? null),
+      imageSecondary: mapAcfImage(pd?.image2 ?? null),
+    };
+  });
 }
 
 export async function getPostBySlug(slug: string): Promise<WPSinglePost | null> {

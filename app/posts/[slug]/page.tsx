@@ -38,14 +38,6 @@ export default async function PostPage({ params }: Props) {
 
       <header className="a-head">
         <div className="container">
-          <nav className="a-crumbs" aria-label="Útvonal">
-            <Link href="/">Főoldal</Link>
-            <span className="sep" aria-hidden="true">›</span>
-            <Link href="/posts">Tudástár</Link>
-            <span className="sep" aria-hidden="true">›</span>
-            <span className="here">{post.title}</span>
-          </nav>
-
           <div className="a-meta-top">
             <span className="pill-cat">{post.categoryName}</span>
             <span className="item">{post.formattedDate}</span>

@@ -16,11 +16,6 @@ function Hero() {
   return (
     <header className="page-head">
       <div className="container">
-        <div className="crumbs">
-          <Link href="/">Főoldal</Link>
-          <span className="sep">/</span>
-          <span>Rólunk</span>
-        </div>
         <div className="page-eyebrow">Rólunk · 2017 óta egy csapat</div>
         <h1 className="page-h1">
           Ketten vagyunk — és nálunk nem <span className="underline">sorszám</span> vagy.

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Phone, Mail, Calendar, Check, MapPin, Clock, Briefcase } from 'lucide-react';
@@ -28,11 +27,6 @@ export default function KapcsolatPage() {
 
       <header className="page-head">
         <div className="container">
-          <div className="crumbs">
-            <Link href="/">Főoldal</Link>
-            <span className="sep">/</span>
-            <span>Kapcsolat</span>
-          </div>
           <div className="sec-tag">Kapcsolat</div>
           <h1 className="page-h1">Beszéljünk az<br/><span className="underline">oldaladról.</span></h1>
           <p className="page-lead">Mondd el pár mondatban, mire van szükséged — egy munkanapon belül válaszolunk, és időpontot egyeztetünk egy díjmentes konzultációra. Nincs kötelezettség, nincs marketing duma.</p>

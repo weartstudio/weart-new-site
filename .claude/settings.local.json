@@ -34,7 +34,12 @@
       "Bash(npx eslint *)",
       "Bash(echo \"exit: $?\")",
       "Bash(awk 'NR==90 || NR==96 || NR==211 || NR==382 || NR==505 {print NR\": \"$0}' app/about/page.tsx)",
-      "Bash(awk -F: '{print $1\"  \"$2}')"
+      "Bash(awk -F: '{print $1\"  \"$2}')",
+      "Bash(grep -n Link /Users/weart/Projects/weart/weart-new-site/__TRACKED_VAR__)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\(json.dumps\\(d.get\\('scripts'\\),indent=1\\)\\)\")",
+      "Bash(echo \"eslint exit $?\")",
+      "Bash(echo \"eslint $?\")"
     ]
   }
 }
