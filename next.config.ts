@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'dev.weart.hu' },
+      { protocol: 'https', hostname: 'secure.gravatar.com' },
+      { protocol: 'https', hostname: '*.gravatar.com' },
     ],
   },
 };

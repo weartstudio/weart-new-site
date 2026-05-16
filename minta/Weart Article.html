@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mennyibe kerül egy weboldal 2026-ban? — Weart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --primary:#00C2CB;
+    --primary-2:#AEDFDC;
+    --dark:#0D172E;
+    --light:#C0EBF1;
+    --white:#F8F9FA;
+    --text:#0D172E;
+    --footer-bg:#0a0f18;
+    --footer-text:#77848d;
+    --accent:#FF6B4A;
+    --bg:#F4F6F5;
+    --card:#FFFFFF;
+    --line:rgba(13,23,46,0.08);
+    --muted:#5b6478;
+    --display:'Manrope', system-ui, -apple-system, sans-serif;
+    --sans:'Manrope', system-ui, -apple-system, sans-serif;
+    --serif:'Fraunces', Georgia, serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  img{max-width:100%;display:block}
+
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+  .container-narrow{max-width:760px;margin:0 auto;padding:0 32px}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:color-mix(in srgb, var(--bg) 78%, transparent);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:32px}
+  .logo{display:flex;align-items:center;gap:10px;font-size:18px;letter-spacing:-0.02em}
+  .logo-mark{width:36px;height:36px;border-radius:10px;background:var(--dark);display:grid;place-items:center;color:var(--primary);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .logo:hover .logo-mark{transform:rotate(-6deg) scale(1.05)}
+  .logo b{font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:-0.025em}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;color:var(--text)}
+  .nav-links a{position:relative;padding:6px 0;opacity:.78;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1}
+  .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--primary);border-radius:2px}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-size:14.5px;font-weight:500;letter-spacing:-0.005em;transition:transform .15s ease, box-shadow .2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--dark);color:#fff}
+  .btn-primary:hover{box-shadow:0 12px 28px -10px rgba(13,23,46,0.4)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--card);border-color:var(--text)}
+  .btn .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(3px)}
+
+  /* reading progress */
+  .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:transparent;pointer-events:none}
+  .progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg, var(--primary), var(--primary-2));transition:width .15s linear}
+
+  /* article header */
+  .a-head{padding:56px 0 28px;position:relative}
+  .crumbs{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:center;margin-bottom:24px;flex-wrap:wrap}
+  .crumbs a{color:var(--muted);transition:color .2s}
+  .crumbs a:hover{color:var(--text)}
+  .crumbs .sep{opacity:.4}
+  .crumbs .here{color:var(--text)}
+
+  .a-meta-top{display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+  .pill-cat{padding:6px 14px;border-radius:999px;background:var(--primary);color:var(--dark);font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+  .a-meta-top .item{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+  .a-meta-top .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+
+  .a-title{font-family:var(--display);font-weight:700;font-size:clamp(36px,5vw,64px);line-height:1.02;letter-spacing:-0.04em;max-width:980px;text-wrap:pretty}
+  .a-title em{font-style:normal;color:var(--primary);font-weight:700}
+  .a-title .underline{position:relative;display:inline-block;font-style:normal;font-weight:700}
+  .a-title .underline::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:12px;background:var(--primary-2);z-index:-1;border-radius:2px}
+  .a-deck{margin-top:20px;font-size:18px;color:var(--muted);max-width:680px;line-height:1.55;text-wrap:pretty}
+
+  .a-byline{display:flex;align-items:center;gap:20px;margin-top:32px;padding:18px 0 0;flex-wrap:wrap}
+  .a-author{display:flex;align-items:center;gap:12px}
+  .a-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg, var(--dark) 0%, #1f2a52 100%);color:var(--primary);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:18px}
+  .a-author-info{font-size:13.5px;line-height:1.2}
+  .a-author-info b{font-weight:600;display:block}
+  .a-author-info small{color:var(--muted);font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;display:block}
+  .a-share{display:flex;gap:6px;margin-left:auto}
+  .share-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);display:grid;place-items:center;transition:all .2s ease;font-family:var(--mono);font-size:11px;font-weight:600}
+  .share-btn:hover{background:var(--dark);color:#fff;border-color:var(--dark);transform:translateY(-2px)}
+
+  /* hero block */
+  .hero-image{margin:32px 0 8px;border-radius:24px;height:380px;background:linear-gradient(135deg, var(--dark) 0%, #1f2a52 100%);position:relative;overflow:hidden;border:1px solid var(--line)}
+  .hero-image .glyph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:380px;color:rgba(0,194,203,0.18);letter-spacing:-0.05em;line-height:.8}
+  .hero-image .corner-stamp{position:absolute;left:24px;top:24px;display:flex;flex-direction:column;gap:6px;color:rgba(255,255,255,0.7);font-family:var(--mono);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase}
+  .hero-image .corner-stamp b{color:var(--primary);letter-spacing:0.18em;font-weight:700}
+  .hero-image .corner-stamp .lbl{color:rgba(255,255,255,0.5)}
+  .hero-image .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);background-size:32px 32px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 60%, #000 30%, transparent 80%);mask-image:radial-gradient(ellipse 70% 60% at 50% 60%, #000 30%, transparent 80%)}
+  .hero-image .price-pop{position:absolute;right:32px;bottom:28px;background:var(--card);border-radius:16px;padding:18px 22px;color:var(--dark);box-shadow:0 22px 50px -22px rgba(0,0,0,.5)}
+  .hero-image .price-pop b{font-family:var(--display);font-size:30px;letter-spacing:-0.03em;display:block;line-height:1}
+  .hero-image .price-pop small{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+  .hero-cap{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin-top:14px}
+
+  /* article body layout */
+  .a-body-wrap{padding:32px 0 40px;display:grid;grid-template-columns:220px minmax(0,1fr) 220px;gap:48px;align-items:start}
+  .toc-side{position:sticky;top:120px}
+  .toc-label{font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .toc{display:flex;flex-direction:column;gap:8px}
+  .toc a{font-size:13px;color:var(--muted);padding:8px 0 8px 14px;border-left:2px solid var(--line);line-height:1.4;transition:all .2s ease;display:block}
+  .toc a:hover{color:var(--text);border-color:var(--text)}
+  .toc a.active{color:var(--text);border-color:var(--primary);font-weight:600}
+  .toc .num{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--muted);margin-right:6px}
+  .toc a.active .num{color:var(--primary)}
+
+  .aside-side{position:sticky;top:120px;display:flex;flex-direction:column;gap:14px}
+  .aside-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .aside-card .label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .aside-card .label::before{content:"";width:14px;height:1px;background:var(--primary)}
+  .aside-card h4{font-family:var(--display);font-size:14.5px;letter-spacing:-0.02em;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .aside-card p{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+  .aside-card a{color:var(--text);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px}
+  .aside-card a:hover{color:var(--primary)}
+
+  /* main article content */
+  .a-body{font-family:var(--sans);font-size:18px;line-height:1.7;color:var(--text);max-width:680px}
+  .a-body > *{margin-bottom:1.4em}
+  .a-body > *:last-child{margin-bottom:0}
+  .a-body h2{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.15;letter-spacing:-0.03em;margin-top:2em;scroll-margin-top:120px}
+  .a-body h2 .num{font-family:var(--mono);font-size:12px;letter-spacing:0.14em;color:var(--primary);display:block;margin-bottom:10px;font-weight:600;text-transform:uppercase}
+  .a-body h3{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.02em;margin-top:1.6em}
+  .a-body p{color:#1f2640}
+  .a-body strong{font-weight:700;color:var(--text)}
+  .a-body em{font-style:italic}
+  .a-body a{color:var(--primary);font-weight:500;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--primary) 30%, transparent);transition:text-decoration-color .2s}
+  .a-body a:hover{text-decoration-color:var(--primary)}
+  .a-body .lead-p{font-size:21px;line-height:1.55;color:var(--text);font-weight:500;letter-spacing:-0.005em}
+  .a-body .lead-p::first-letter{font-family:var(--serif);font-size:68px;float:left;line-height:.85;padding:6px 12px 0 0;color:var(--primary);font-weight:500}
+  .a-body ul, .a-body ol{padding-left:24px}
+  .a-body ul li, .a-body ol li{margin-bottom:8px;color:#1f2640}
+  .a-body ul li::marker{color:var(--primary)}
+  .a-body ol li::marker{color:var(--primary);font-weight:700;font-family:var(--mono);font-size:14px}
+
+  /* pull quote */
+  .pull{font-family:var(--serif);font-style:italic;font-size:28px;line-height:1.3;letter-spacing:-0.015em;padding:28px 0 28px 32px;border-left:4px solid var(--primary);color:var(--text);max-width:620px}
+  .pull .who{display:block;margin-top:14px;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--muted);font-weight:500;letter-spacing:0.02em}
+  .pull .who::before{content:"— ";color:var(--primary)}
+
+  /* callout */
+  .callout{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 28px;display:flex;gap:18px;align-items:flex-start}
+  .callout .ico{width:36px;height:36px;border-radius:10px;background:var(--light);color:var(--dark);display:grid;place-items:center;flex-shrink:0;font-family:var(--display);font-weight:700;font-size:16px}
+  .callout-body h4{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:-0.015em;margin-bottom:6px}
+  .callout-body p{font-size:14.5px;color:var(--muted);line-height:1.6;margin-bottom:0}
+
+  /* price comparison table */
+  .price-table{margin:8px 0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+  .price-row{display:grid;grid-template-columns:1fr 1.4fr 140px;gap:0;border-bottom:1px solid var(--line);align-items:center}
+  .price-row:last-child{border-bottom:none}
+  .price-row.head{background:var(--dark);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase}
+  .price-row.head .cell{padding:14px 20px;font-weight:600;border-color:rgba(255,255,255,0.1)}
+  .price-row .cell{padding:18px 20px;font-size:14.5px;border-right:1px solid var(--line)}
+  .price-row .cell:last-child{border-right:none;text-align:right}
+  .price-row .tier{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-0.015em}
+  .price-row .desc{color:var(--muted);font-size:13.5px;line-height:1.5}
+  .price-row .price{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.02em;color:var(--text)}
+  .price-row .price small{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:500;margin-top:2px;letter-spacing:0.06em;text-transform:uppercase}
+
+  /* footnote */
+  .source{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-top:18px;border-top:1px dashed var(--line);margin-top:14px}
+
+  /* end-of-article CTA */
+  .a-end{margin:48px 0 0;background:var(--dark);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr auto;gap:32px;align-items:center;position:relative;overflow:hidden}
+  .a-end::before{content:"";position:absolute;top:-150px;right:-100px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb,var(--primary) 35%, transparent) 0%, transparent 60%);pointer-events:none}
+  .a-end h3{font-family:var(--display);font-size:clamp(22px,2.4vw,30px);line-height:1.1;letter-spacing:-0.025em;font-weight:700;position:relative}
+  .a-end h3 em{color:var(--primary);font-style:normal}
+  .a-end p{margin-top:10px;color:rgba(255,255,255,0.7);font-size:15px;max-width:480px;position:relative}
+  .a-end .btn{position:relative;background:var(--primary);color:var(--dark)}
+
+  /* tags + share row */
+  .a-foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line);margin-top:36px}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-weight:500;font-family:var(--mono);letter-spacing:0.04em;text-transform:lowercase}
+  .tag:hover{color:var(--text);border-color:var(--text)}
+
+  /* author bio */
+  .a-author-bio{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+  .a-author-bio .photo{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg, var(--dark) 0%, #1f2a52 100%);color:var(--primary);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:28px;flex-shrink:0}
+  .a-author-bio .bio-info b{font-family:var(--display);font-size:18px;letter-spacing:-0.02em;font-weight:700;display:block}
+  .a-author-bio .bio-info .role{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--primary);margin-top:5px;margin-bottom:12px}
+  .a-author-bio .bio-info p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:0}
+
+  /* related */
+  .related{padding:64px 0 0}
+  .related-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+  .sec-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sec-tag::before{content:"";width:24px;height:1px;background:var(--primary)}
+  .sec-h{font-family:var(--display);font-size:clamp(24px,2.6vw,34px);line-height:1.1;letter-spacing:-0.03em;font-weight:700}
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s, border-color .3s;cursor:pointer}
+  .insight:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--primary) 60%, var(--line))}
+  .insight-img{aspect-ratio:16/10;position:relative;overflow:hidden}
+  .insight-img.a{background:linear-gradient(135deg, var(--light) 0%, var(--primary-2) 100%)}
+  .insight-img.b{background:linear-gradient(135deg, var(--dark) 0%, #1f2a52 100%)}
+  .insight-img.c{background:linear-gradient(135deg, var(--accent) 0%, #ff8c70 100%)}
+  .insight-img .glyph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:88px;color:rgba(13,23,46,0.15);letter-spacing:-0.05em}
+  .insight-img.b .glyph{color:rgba(255,255,255,0.18)}
+  .insight-img.c .glyph{color:rgba(255,255,255,0.28)}
+  .insight-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+  .insight-meta{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .insight-meta .tag-x{color:var(--primary)}
+  .insight-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+  .insight-title{font-family:var(--display);font-size:17px;line-height:1.25;letter-spacing:-0.025em;margin-bottom:8px;font-weight:700}
+  .insight-excerpt{font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:16px;flex:1}
+  .insight-foot{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);padding-top:14px;border-top:1px solid var(--line)}
+  .insight-foot a{color:var(--text);font-weight:500;display:inline-flex;align-items:center;gap:6px}
+
+  /* footer */
+  footer{background:var(--footer-bg);color:var(--footer-text);padding:60px 0 32px;margin-top:80px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  .foot-brand .logo{color:#fff;margin-bottom:18px}
+  .foot-brand .logo b{color:#fff}
+  .foot-brand p{font-size:14.5px;line-height:1.6;max-width:320px}
+  .foot-col h5{color:#fff;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;font-weight:600}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .foot-col a{font-size:14.5px;transition:color .2s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);font-size:13px;flex-wrap:wrap;gap:20px}
+  .foot-bottom .links{display:flex;gap:28px}
+
+  @media (max-width: 1100px){
+    .a-body-wrap{grid-template-columns:1fr;gap:32px}
+    .toc-side, .aside-side{position:static}
+    .toc-side{display:none}
+    .aside-side{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .related-grid{grid-template-columns:repeat(2,1fr)}
+    .a-end{grid-template-columns:1fr;padding:32px}
+  }
+  @media (max-width: 640px){
+    .nav-links{display:none}
+    .container,.container-narrow{padding:0 20px}
+    .related-grid{grid-template-columns:1fr}
+    .aside-side{grid-template-columns:1fr}
+    .hero-image{height:280px}
+    .hero-image .glyph{font-size:240px}
+    .price-row{grid-template-columns:1fr}
+    .price-row .cell{border-right:none;border-bottom:1px solid var(--line);text-align:left !important}
+    .price-row .cell:last-child{border-bottom:none}
+    .a-author-bio{flex-direction:column}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .a-body{font-size:17px}
+    .a-body .lead-p{font-size:19px}
+    .pull{font-size:22px;padding-left:20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="Weart Landing v2.html" class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M12 2.2c2.4 2.6 3.8 5.9 3.8 9.3v6.2H8.2v-6.2C8.2 8.1 9.6 4.8 12 2.2z"/>
+          <circle cx="12" cy="10.2" r="1.7" fill="#0D172E"/>
+          <path d="M8.2 14.5L5.6 17.6l3.1-.4z" opacity="0.85"/>
+          <path d="M15.8 14.5l2.6 3.1-3.1-.4z" opacity="0.85"/>
+          <path d="M11 19.5h2l-.4 2.3h-1.2z" opacity="0.6"/>
+        </svg>
+      </span>
+      <b>weart<span style="color:var(--primary)">.</span>hu</b>
+    </a>
+    <div class="nav-links">
+      <a href="Weart Landing v2.html#szolgaltatasok">Szolgáltatások</a>
+      <a href="Weart Rolunk.html">Rólunk</a>
+      <a href="Weart Landing v2.html#munkaink">Munkáink</a>
+      <a href="Weart Landing v2.html#araink">Áraink</a>
+      <a href="Weart Blog.html" class="active">Tudástár</a>
+      <a href="Weart Landing v2.html#kapcsolat">Kapcsolat</a>
+    </div>
+    <div class="nav-cta">
+      <a href="Weart Landing v2.html#kapcsolat" class="btn btn-ghost">Kérek ajánlatot</a>
+    </div>
+  </div>
+</nav>
+
+<header class="a-head">
+  <div class="container">
+    <div class="crumbs">
+      <a href="Weart Landing v2.html">Főoldal</a>
+      <span class="sep">/</span>
+      <a href="Weart Blog.html">Tudástár</a>
+      <span class="sep">/</span>
+      <span class="here">Mennyibe kerül egy weboldal 2026-ban?</span>
+    </div>
+
+    <div class="a-meta-top">
+      <span class="pill-cat">Stratégia</span>
+      <span class="item">2026. május 6.</span>
+      <span class="dot"></span>
+      <span class="item">7 perc olvasás</span>
+      <span class="dot"></span>
+      <span class="item">2 145 megtekintés</span>
+    </div>
+
+    <h1 class="a-title">Mennyibe kerül egy weboldal Magyarországon <span class="underline">2026-ban?</span></h1>
+    <p class="a-deck">Őszinte árkalkuláció — mit kapsz 200 ezerért, mit egy millióért, és mikor éri meg ennél is többet költeni? Konkrét példákkal, kkv-tulajdonosoknak, marketingduma nélkül.</p>
+
+    <div class="a-byline">
+      <div class="a-author">
+        <div class="a-avatar">B</div>
+        <div class="a-author-info">
+          <b>Balázs</b>
+          <small>Fejlesztő · Társalapító</small>
+        </div>
+      </div>
+      <div class="a-share">
+        <a class="share-btn" title="Megosztás Facebookon" href="#">f</a>
+        <a class="share-btn" title="Megosztás LinkedIn-en" href="#">in</a>
+        <a class="share-btn" title="Link másolása" href="#" onclick="navigator.clipboard&amp;&amp;navigator.clipboard.writeText(location.href);this.textContent='✓';return false;">↗</a>
+      </div>
+    </div>
+
+    <div class="hero-image" aria-hidden="true">
+      <div class="grid-bg"></div>
+      <div class="glyph">Ft</div>
+      <div class="corner-stamp">
+        <b>Esettanulmány · 2026</b>
+        <span class="lbl">Forrás: 38 valós ajánlat</span>
+      </div>
+      <div class="price-pop">
+        <b>380e — 1.45M</b>
+        <small>Tipikus tartomány · kkv</small>
+      </div>
+    </div>
+    <div class="container-narrow" style="padding:0">
+      <div class="hero-cap" style="max-width:680px;margin-left:auto;margin-right:auto">↳ A számok 38, 2025–2026-ban általunk leadott, valós ajánlatból származnak. Nettó árak.</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="a-body-wrap">
+    <!-- TOC -->
+    <aside class="toc-side">
+      <div class="toc-label">Tartalomjegyzék</div>
+      <nav class="toc" id="toc">
+        <a href="#elozetes" data-target="elozetes"><span class="num">01</span>Mielőtt belevágsz</a>
+        <a href="#mit-kapsz" data-target="mit-kapsz"><span class="num">02</span>Mit kapsz az árért?</a>
+        <a href="#sablon" data-target="sablon"><span class="num">03</span>200 — 400 ezer (sablon)</a>
+        <a href="#egyedi" data-target="egyedi"><span class="num">04</span>500 — 900 ezer (egyedi)</a>
+        <a href="#webshop" data-target="webshop"><span class="num">05</span>1M felett (webshop)</a>
+        <a href="#rejtett" data-target="rejtett"><span class="num">06</span>A rejtett költségek</a>
+        <a href="#osszefoglalas" data-target="osszefoglalas"><span class="num">07</span>Összefoglalás</a>
+      </nav>
+    </aside>
+
+    <!-- Article -->
+    <article class="a-body" id="article">
+      <p class="lead-p">Ha kkv-tulajdonosként árajánlatot kérsz egy weboldalra, nagyon vegyes számokat fogsz kapni. Van, aki <strong>120 ezer forintért</strong> elvállalja, és van, aki <strong>3 millió alatt</strong> hozzá sem kezd. Ebben a cikkben elmondom, miért — és pontosan mit várhatsz el egy adott árszintért 2026-ban.</p>
+
+      <h2 id="elozetes"><span class="num">01 / Mielőtt belevágsz</span>Mielőtt belevágsz az árajánlat-kérésbe</h2>
+      <p>A legtöbb félreértés abból fakad, hogy a "weboldal" szó alatt mindenki mást ért. Egy egyoldalas bemutatkozó és egy 80 termékes webshop ugyanúgy "weboldal" — de a kettő között <em>tízszeres különbség</em> is lehet.</p>
+      <p>Mielőtt árat kérsz, érdemes válaszolnod erre a négy kérdésre:</p>
+      <ol>
+        <li>Hány aloldal kell? (Egy, három, vagy tíz?)</li>
+        <li>Lesz-e valamilyen működés mögötte? (Időpontfoglalás, webshop, regisztráció.)</li>
+        <li>Van-e már arculatod, logód, szövegeid, képeid?</li>
+        <li>Ki fogja karbantartani átadás után — te, vagy mi?</li>
+      </ol>
+
+      <div class="callout">
+        <div class="ico">!</div>
+        <div class="callout-body">
+          <h4>Tipp: ne kérj árat csak telefonon.</h4>
+          <p>A telefonos árazás majdnem mindig félrevezet. Egy 20 perces írásos brief alapján viszont reális árat tudunk adni — ezt mi is így csináljuk.</p>
+        </div>
+      </div>
+
+      <h2 id="mit-kapsz"><span class="num">02 / Az árszintek</span>Mit kapsz az adott árért?</h2>
+      <p>Az alábbi táblázat 38 valós ajánlatkérés alapján készült, melyeket 2025 januárja és 2026 áprilisa között adtunk le. A számok nettó árak.</p>
+
+      <div class="price-table">
+        <div class="price-row head">
+          <div class="cell">Csomag</div>
+          <div class="cell">Mit takar</div>
+          <div class="cell">Ár (nettó)</div>
+        </div>
+        <div class="price-row">
+          <div class="cell tier">Sablon-alapú</div>
+          <div class="cell desc">Téma + alap testreszabás. 1–3 oldal. Saját szövegek, saját képek.</div>
+          <div class="cell price">200 — 400e<small>Forint</small></div>
+        </div>
+        <div class="price-row">
+          <div class="cell tier">Egyedi tervezés</div>
+          <div class="cell desc">Egyedi design, 5–8 aloldal. Sablon nélkül, kifejezetten rád szabva.</div>
+          <div class="cell price">500 — 900e<small>Forint</small></div>
+        </div>
+        <div class="price-row">
+          <div class="cell tier">Webshop</div>
+          <div class="cell desc">WooCommerce, magyar fizetés és csomagküldő, számlázás integrálva.</div>
+          <div class="cell price">1.2M — 2.5M<small>Forint</small></div>
+        </div>
+        <div class="price-row">
+          <div class="cell tier">Komplex rendszer</div>
+          <div class="cell desc">Foglalási rendszer, ügyfélfiók, egyedi automatizációk, integrációk.</div>
+          <div class="cell price">2.5M-tól<small>Forint</small></div>
+        </div>
+      </div>
+
+      <h2 id="sablon"><span class="num">03 / Sablon</span>200 — 400 ezer: sablon-alapú megoldás</h2>
+      <p>Ez a legolcsóbb belépő. A fejlesztő vesz egy kész témát (tipikusan 50–100 dollárért a ThemeForest-en), kicseréli benne a logót, a színeket, és feltölti a te szövegeid. <strong>Mire jó?</strong> Ha még nem tudod, mit csinálsz, és csak egy "valami legyen az interneten" oldalt akarsz.</p>
+      <p>Mire <em>nem</em> jó: ha hosszú távra tervezel, ha gyorsan akarsz tölteni, vagy ha egyedi funkció kell.</p>
+
+      <div class="pull">
+        Ha most indítasz, és nem tudod, mire lesz szükséged 6 hónap múlva — a sablon olcsóbb, és gyorsabban tanulsz belőle. Csak ne hidd, hogy ez a végállomás.
+        <span class="who">Balázs · fejlesztő</span>
+      </div>
+
+      <h2 id="egyedi"><span class="num">04 / Egyedi</span>500 — 900 ezer: egyedi tervezés és fejlesztés</h2>
+      <p>Itt már nincs téma. A designer (vagy ugyanaz a fejlesztő, mint nálunk) <a href="#">Figmában</a> megtervezi, hogyan nézzen ki az oldalad, mi hova kerül, milyen színek és betűtípusok lesznek. Aztán a fejlesztő ezt egy saját, célzottan rád írt WordPress kódbázisban valósítja meg.</p>
+      <p>Ez a kategória <strong>a kkv-k legtöbbjének</strong> ide tartozik. Mit kapsz konkrétan ezen az árszinten:</p>
+      <ul>
+        <li>5–8 aloldal (Főoldal, Rólunk, Szolgáltatások, Munkáink, Blog, Kapcsolat)</li>
+        <li>Saját, könnyen kezelhető admin felület — minden szöveget, képet magad módosíthatsz</li>
+        <li>Lighthouse 95+ pontszám mobilon</li>
+        <li>Alapszintű SEO (struktúra, sitemap, schema, gyors betöltés)</li>
+        <li>1 órás betanítás videóval</li>
+        <li>60 nap garancia</li>
+      </ul>
+
+      <h2 id="webshop"><span class="num">05 / Webshop</span>1 millió felett: webshop és komplex rendszerek</h2>
+      <p>Egy webshop nem csak "egy weboldal, amin lehet vásárolni". Mögötte van fizetési modul (Barion, SimplePay), csomagküldő integráció (GLS, Foxpost), számlázó kapcsolat (Számlázz.hu, Billingo), készletkezelés, NAV-kompatibilitás, ÁSZF, GDPR. Ezek mind <strong>időigényes integrációk</strong>, és mindegyik tud elromlani.</p>
+      <p>Egy 30–50 termékes induló webshop reális árazása ma 1,2 — 1,8 millió Ft között van. Ennél olcsóbbat ne fogadj el — vagy hiányozni fognak fontos részek, vagy a fejlesztő alulárazza magát, és 2 hónap után eltűnik.</p>
+
+      <h2 id="rejtett"><span class="num">06 / Költségek</span>A rejtett és visszatérő költségek</h2>
+      <p>A weboldal <em>elkészítése</em> egyszeri tétel. Utána viszont vannak visszatérő költségek, amikről sok fejlesztő nem beszél előre:</p>
+      <ul>
+        <li><strong>Domain:</strong> 4–6 ezer Ft / év (.hu)</li>
+        <li><strong>Tárhely:</strong> 25–60 ezer Ft / év (kkv-méretű oldalra)</li>
+        <li><strong>Karbantartás:</strong> 0 — 50 ezer Ft / hó (ha vállalod magadnak, vagy kiadod)</li>
+        <li><strong>Fizetési modul:</strong> Barion 2025-től kb. 6 ezer Ft + 1.5% / tranzakció</li>
+        <li><strong>SSL tanúsítvány:</strong> ingyenes (Let's Encrypt) — a tárhely mellé jár</li>
+      </ul>
+
+      <div class="callout">
+        <div class="ico">€</div>
+        <div class="callout-body">
+          <h4>Reális éves összköltség kkv-knak.</h4>
+          <p>Egy átlagos kkv weboldal éves "életköltsége" 2026-ban kb. <strong>80 — 250 ezer Ft</strong>. Ennyit kalkulálj az induló befektetés mellé.</p>
+        </div>
+      </div>
+
+      <h2 id="osszefoglalas"><span class="num">07 / TL;DR</span>Összefoglalás egy mondatban</h2>
+      <p>Ha kkv-ként ma weboldalt rendelsz, és <strong>hosszú távra tervezel</strong>, akkor 600–900 ezer Ft a reális ár egy professzionális, egyedi tervezésű, jól kereshető oldalra. Ha webshop kell, számolj <strong>1,5 — 2 millió Ft-tal</strong>. Ennél kevesebb gyakran többe kerül, mint amennyibe szóltál — mert egy év múlva újra kell csinálni.</p>
+
+      <div class="source">Forrás: 38 db valódi árajánlat (2025. jan — 2026. ápr.) · Weart Kft. belső kalkuláció · Az árak nettó értékek, ÁFA nélkül.</div>
+
+      <!-- in-article CTA -->
+      <div class="a-end">
+        <div>
+          <h3>Konkrét árajánlatot kérsz <em>a saját oldaladra?</em></h3>
+          <p>Egy 20 perces telefonbeszélgetés után, egy munkanapon belül küldünk neked egy testre szabott, fix árajánlatot — csomagolás nélkül.</p>
+        </div>
+        <a href="Weart Landing v2.html#kapcsolat" class="btn btn-primary">Kérek árajánlatot <span class="arrow">→</span></a>
+      </div>
+
+      <!-- tags -->
+      <div class="a-foot">
+        <div class="tag-row">
+          <a class="tag" href="Weart Blog.html">#stratégia</a>
+          <a class="tag" href="Weart Blog.html">#árazás</a>
+          <a class="tag" href="Weart Blog.html">#kkv</a>
+          <a class="tag" href="Weart Blog.html">#wordpress</a>
+          <a class="tag" href="Weart Blog.html">#2026</a>
+        </div>
+        <div class="a-share">
+          <a class="share-btn" href="#">f</a>
+          <a class="share-btn" href="#">in</a>
+          <a class="share-btn" href="#">↗</a>
+        </div>
+      </div>
+
+      <!-- author bio -->
+      <div class="a-author-bio">
+        <div class="photo">B</div>
+        <div class="bio-info">
+          <b>Balázs</b>
+          <div class="role">Fejlesztő · Társalapító</div>
+          <p>9 éve foglalkozik weboldalakkal. WordPress, WooCommerce és modern frontend a szakterülete. Hisz benne, hogy a gyors weboldal nem luxus, hanem alap. A Weart Kft.-nél eddig 120+ kkv-oldalt fejlesztett.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Aside (sticky right column) -->
+    <aside class="aside-side">
+      <div class="aside-card">
+        <div class="label">Hírlevél</div>
+        <h4>Havi 1 cikk, semmi spam</h4>
+        <p>Magyar kkv-tulajdonosoknak — pontokba szedve, érthetően. Bármikor leiratkozhatsz.</p>
+        <a href="Weart Blog.html#hirlevel">Feliratkozom →</a>
+      </div>
+      <div class="aside-card">
+        <div class="label">Ajánlat</div>
+        <h4>2026 Q3-ra még 2 hely van</h4>
+        <p>Ha az új oldaladnak ősszel kellene mennie, érdemes most beszélnünk.</p>
+        <a href="Weart Landing v2.html#kapcsolat">Egyeztetést kérek →</a>
+      </div>
+      <div class="aside-card">
+        <div class="label">Utánaolvasnál?</div>
+        <h4>3 dolog, amit havonta ellenőrizz</h4>
+        <p>Egyszerű ellenőrzőlista mindenkinek, akinek van weboldala.</p>
+        <a href="Weart Article.html">Tovább a cikkre →</a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- related -->
+<section class="container">
+  <div class="related">
+    <div class="related-head">
+      <div>
+        <div class="sec-tag">Folytasd az olvasást</div>
+        <h2 class="sec-h">Hasonló cikkek</h2>
+      </div>
+      <a href="Weart Blog.html" class="btn btn-ghost">Összes cikk →</a>
+    </div>
+    <div class="related-grid">
+      <article class="insight">
+        <div class="insight-img b"><div class="glyph">02</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag-x">SEO</span><span class="dot"></span><span>9 perc olvasás</span></div>
+          <h3 class="insight-title">Hogyan kerülj a Google első oldalára helyi vállalkozóként?</h3>
+          <p class="insight-excerpt">7 konkrét lépés, amit ma elkezdhetsz — Google Cégem, helyi keresőszavak, vélemények.</p>
+          <div class="insight-foot"><span>2026. április 28.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight">
+        <div class="insight-img c"><div class="glyph">03</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag-x">Karbantartás</span><span class="dot"></span><span>5 perc olvasás</span></div>
+          <h3 class="insight-title">3 dolog, amit minden vállalkozónak ellenőriznie kell havonta a weboldalán.</h3>
+          <p class="insight-excerpt">Egyszerű ellenőrzőlista — frissítések, biztonsági mentés, betöltési idő. 10 perc alatt megvan.</p>
+          <div class="insight-foot"><span>2026. április 19.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight">
+        <div class="insight-img a"><div class="glyph">04</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag-x">Webshop</span><span class="dot"></span><span>11 perc olvasás</span></div>
+          <h3 class="insight-title">Webshop indítás Magyarországon — minden, amit nem mondanak el előre.</h3>
+          <p class="insight-excerpt">Fizetési modulok, csomagküldők, számlázás, ÁSZF. Egy komplett checklist 2026-os árakkal.</p>
+          <div class="insight-foot"><span>2026. április 11.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="Weart Landing v2.html" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M12 2.2c2.4 2.6 3.8 5.9 3.8 9.3v6.2H8.2v-6.2C8.2 8.1 9.6 4.8 12 2.2z"/>
+              <circle cx="12" cy="10.2" r="1.7" fill="#0D172E"/>
+              <path d="M8.2 14.5L5.6 17.6l3.1-.4z" opacity="0.85"/>
+              <path d="M15.8 14.5l2.6 3.1-3.1-.4z" opacity="0.85"/>
+              <path d="M11 19.5h2l-.4 2.3h-1.2z" opacity="0.6"/>
+            </svg>
+          </span>
+          <b>weart.hu</b>
+        </a>
+        <p>Weboldalak, webshopok, karbantartás — magyar kkv-knak. Budapesten dolgozunk, az ország bármely pontjáról szívesen fogadunk megkereséseket.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Szolgáltatások</h5>
+        <ul>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Új weboldal készítés</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Webshop indítás</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Régi oldal felújítása</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">SEO &amp; Google Ads</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>A csapat</h5>
+        <ul>
+          <li><a href="Weart Rolunk.html">Rólunk</a></li>
+          <li><a href="Weart Landing v2.html#munkaink">Munkáink</a></li>
+          <li><a href="Weart Blog.html">Tudástár</a></li>
+          <li><a href="Weart Landing v2.html#araink">Áraink</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Kapcsolat</h5>
+        <ul>
+          <li><a href="tel:+36301958114">+36 30 / 195 8114</a></li>
+          <li><a href="mailto:info@weart.hu">info@weart.hu</a></li>
+          <li>Király u. 26.<br />1061 Budapest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2017–2026 Weart Kft. · Adószám: 12345678-2-42</div>
+      <div class="links">
+        <a href="#">Adatvédelem</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Süti tájékoztató</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // reading progress
+  const bar = document.getElementById('progressBar');
+  const article = document.getElementById('article');
+  function updateProgress(){
+    const r = article.getBoundingClientRect();
+    const total = r.height - window.innerHeight + 200;
+    const scrolled = Math.max(0, -r.top + 100);
+    const pct = Math.max(0, Math.min(100, (scrolled / total) * 100));
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // active TOC item
+  const tocLinks = document.querySelectorAll('#toc a');
+  const headings = Array.from(tocLinks).map(a => document.getElementById(a.dataset.target)).filter(Boolean);
+  function updateToc(){
+    let active = headings[0];
+    for (const h of headings){
+      if (h.getBoundingClientRect().top < 160) active = h;
+    }
+    tocLinks.forEach(a => a.classList.toggle('active', a.dataset.target === (active && active.id)));
+  }
+  window.addEventListener('scroll', updateToc, {passive:true});
+  updateToc();
+</script>
+
+</body>
+</html>

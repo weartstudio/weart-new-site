@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Weart — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#00C2CB;
+    --primary-2:#AEDFDC;
+    --dark:#0D172E;
+    --light:#C0EBF1;
+    --white:#F8F9FA;
+    --text:#0D172E;
+    --footer-bg:#0a0f18;
+    --footer-text:#77848d;
+    --accent:#FF6B4A;
+    --bg:#F4F6F5;
+    --card:#FFFFFF;
+    --line:rgba(13,23,46,0.08);
+    --muted:#5b6478;
+    --display:'Manrope', system-ui, -apple-system, sans-serif;
+    --sans:'Manrope', system-ui, -apple-system, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* Header */
+  .ds-head{padding:80px 0 60px;border-bottom:1px solid var(--line);background:linear-gradient(180deg, var(--card) 0%, var(--bg) 100%)}
+  .ds-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .ds-eyebrow::before{content:"";width:24px;height:1px;background:var(--primary)}
+  .ds-title{font-family:var(--display);font-weight:700;font-size:clamp(36px,4.6vw,60px);line-height:1.05;letter-spacing:-0.035em;margin-bottom:18px;max-width:880px}
+  .ds-title em{font-style:normal;color:var(--primary);font-weight:700;position:relative;display:inline-block}
+  .ds-title em::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:10px;background:var(--primary-2);z-index:-1;border-radius:2px}
+  .ds-lead{font-size:18px;color:var(--muted);max-width:680px;line-height:1.6}
+  .ds-meta{display:flex;gap:32px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .ds-meta div b{font-family:var(--display);font-size:22px;letter-spacing:-0.02em;display:block}
+  .ds-meta div small{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:block;margin-top:6px}
+
+  /* TOC */
+  .toc{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+  .toc a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;text-decoration:none;transition:transform .2s, border-color .2s}
+  .toc a:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--primary) 60%, var(--line))}
+  .toc a b{font-family:var(--display);font-size:15px;letter-spacing:-0.02em}
+  .toc a small{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+
+  /* Section */
+  .sec{padding:80px 0;border-bottom:1px solid var(--line)}
+  .sec-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sec-tag::before{content:"";width:24px;height:1px;background:var(--primary)}
+  .sec-h{font-family:var(--display);font-size:clamp(28px,3.2vw,40px);line-height:1.1;letter-spacing:-0.035em;font-weight:700;margin-bottom:14px}
+  .sec-h em{font-style:normal;color:var(--primary);font-weight:700}
+  .sec-sub{font-size:16px;color:var(--muted);max-width:680px;line-height:1.6;margin-bottom:48px}
+
+  /* Color palette */
+  .palette{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .swatch{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s}
+  .swatch:hover{transform:translateY(-3px)}
+  .swatch-color{aspect-ratio:1.4;display:flex;align-items:flex-end;padding:18px;color:#fff;position:relative}
+  .swatch-color.on-light{color:var(--dark)}
+  .swatch-name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.02em}
+  .swatch-meta{padding:14px 18px 18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+  .swatch-meta b{font-family:var(--mono);font-size:12px;color:var(--text)}
+  .swatch-meta small{font-size:12.5px;color:var(--muted);line-height:1.45}
+  .swatch-var{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:0.04em}
+
+  /* Type scale */
+  .type-row{display:grid;grid-template-columns:160px 1fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .type-row:last-child{border-bottom:none}
+  .type-meta{display:flex;flex-direction:column;gap:4px}
+  .type-meta b{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--text)}
+  .type-meta small{font-size:12px;color:var(--muted);font-family:var(--mono)}
+  .type-sample-h1{font-family:var(--display);font-weight:700;font-size:60px;line-height:1.05;letter-spacing:-0.035em}
+  .type-sample-h1 em{font-style:normal;color:var(--primary);font-weight:700;position:relative;display:inline-block}
+  .type-sample-h1 em::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:10px;background:var(--primary-2);z-index:-1;border-radius:2px}
+  .type-sample-h2{font-family:var(--display);font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-0.035em}
+  .type-sample-h2 em{font-style:normal;color:var(--primary);font-weight:700}
+  .type-sample-h3{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.2;letter-spacing:-0.03em}
+  .type-sample-h4{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25;letter-spacing:-0.02em}
+  .type-sample-lead{font-size:17px;color:var(--muted);line-height:1.6;max-width:540px}
+  .type-sample-body{font-size:15px;line-height:1.55;max-width:540px}
+  .type-sample-small{font-size:13px;color:var(--muted);line-height:1.5}
+  .type-sample-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary)}
+  .type-sample-tag::before{content:"— "}
+  .type-sample-mono{font-family:var(--mono);font-size:13px;color:var(--text)}
+
+  /* Spacing */
+  .spacing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .sp-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+  .sp-vis{height:80px;background:var(--bg);border-radius:10px;display:flex;align-items:flex-end;justify-content:flex-start;padding:10px;position:relative;overflow:hidden}
+  .sp-vis i{display:block;background:var(--primary);border-radius:3px}
+  .sp-card b{font-family:var(--mono);font-size:12px}
+  .sp-card small{font-size:12px;color:var(--muted)}
+
+  /* Buttons demo */
+  .demo-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-size:14.5px;font-weight:500;letter-spacing:-0.005em;cursor:pointer;border:none;font-family:inherit;text-decoration:none}
+  .btn-primary{background:var(--dark);color:#fff}
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--text)}
+  .btn-on-dark{background:var(--primary);color:var(--dark)}
+
+  /* Eyebrow / pills demo */
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:12.5px;font-weight:500;letter-spacing:0.02em;color:var(--text)}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent)}
+  .pill{height:28px;padding:0 14px;display:inline-grid;place-items:center;border-radius:999px;background:var(--dark);color:#fff;font-size:12px}
+  .pill.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+  .badge-mono{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--primary);color:var(--dark);font-weight:600}
+
+  /* Cards */
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:10px;min-height:220px;transition:transform .2s, border-color .2s}
+  .card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--primary) 60%, var(--line))}
+  .card .num{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:0.1em}
+  .card h4{font-family:var(--display);font-size:20px;letter-spacing:-0.03em;font-weight:700;margin-top:6px}
+  .card p{font-size:13.5px;color:var(--muted);line-height:1.55}
+
+  .card-dark{background:linear-gradient(135deg, var(--dark) 0%, #1a2752 100%);color:#fff;border-color:transparent}
+  .card-dark .num{color:rgba(255,255,255,0.5)}
+  .card-dark p{color:rgba(255,255,255,0.65)}
+  .card-dark h4 em{color:var(--primary);font-style:normal}
+
+  .card-light{background:var(--light)}
+  .card-accent{background:var(--accent);color:#fff}
+  .card-accent .num{color:rgba(255,255,255,0.7)}
+  .card-accent p{color:rgba(255,255,255,0.85)}
+
+  /* Form / input */
+  .input{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);padding:13px 18px;border-radius:999px;font-family:inherit;font-size:14.5px;outline:none}
+  .input:focus{border-color:var(--primary)}
+
+  /* Table-like spec list */
+  .specs{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .spec-row{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:16px 22px;border-bottom:1px solid var(--line);align-items:start}
+  .spec-row:last-child{border-bottom:none}
+  .spec-row b{font-family:var(--mono);font-size:12px;letter-spacing:0.04em}
+  .spec-row span{font-size:14px;color:var(--muted);line-height:1.55}
+  .spec-row code{font-family:var(--mono);font-size:12.5px;background:var(--bg);padding:2px 7px;border-radius:5px;color:var(--text)}
+
+  /* Voice / tone columns */
+  .vt-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .vt-col{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .vt-col h4{font-family:var(--display);font-size:18px;letter-spacing:-0.025em;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .vt-col.do h4::before{content:"✓";width:24px;height:24px;border-radius:50%;background:var(--primary);color:var(--dark);display:grid;place-items:center;font-size:13px;font-weight:700}
+  .vt-col.dont h4::before{content:"✕";width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+  .vt-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .vt-col li{font-size:14px;line-height:1.55;color:var(--muted);padding-left:16px;position:relative}
+  .vt-col li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--line)}
+
+  /* Layout / page recipe */
+  .recipe{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .recipe-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px}
+  .recipe-card h4{font-family:var(--display);font-size:20px;letter-spacing:-0.025em;font-weight:700}
+  .recipe-card .order{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .recipe-card .step{display:flex;align-items:center;gap:14px;padding:12px 14px;background:var(--bg);border-radius:10px;font-size:13.5px}
+  .recipe-card .step b{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--primary);min-width:30px}
+
+  /* Mock tile preview */
+  .preview-tile{position:relative;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--line);padding:26px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+  .preview-tile.dark{background:linear-gradient(135deg, var(--dark) 0%, #1a2752 100%);color:#fff;border-color:transparent}
+  .preview-tile.dark .pt-num{color:rgba(255,255,255,0.5)}
+  .preview-tile.dark .pt-desc{color:rgba(255,255,255,0.65)}
+  .pt-num{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:0.1em}
+  .pt-h{font-family:var(--display);font-size:24px;letter-spacing:-0.03em;font-weight:700;margin:8px 0}
+  .pt-h em{font-style:normal;color:var(--primary)}
+  .pt-desc{font-size:13.5px;color:var(--muted);line-height:1.55}
+
+  /* Footnote */
+  .ds-foot{padding:60px 0 80px;color:var(--muted);font-size:13px;line-height:1.6}
+  .ds-foot a{color:var(--primary);text-decoration:none}
+
+  @media (max-width: 1024px){
+    .toc, .palette, .spacing-grid, .card-grid, .recipe, .vt-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 640px){
+    .toc, .palette, .spacing-grid, .card-grid, .recipe, .vt-grid{grid-template-columns:1fr}
+    .type-row, .spec-row{grid-template-columns:1fr;gap:8px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ds-head">
+  <div class="container">
+    <div class="ds-eyebrow">Weart · Design System v1.0</div>
+    <h1 class="ds-title">Egy rendszer, amiből az<br/>összes <em>aloldalt</em> meg tudod tervezni.</h1>
+    <p class="ds-lead">Ez a dokumentum a Weart főoldal vizuális és tartalmi DNS-ét rögzíti — színek, tipográfia, komponensek, hangnem és oldalrecept-sablonok. Használd referenciaként, amikor új aloldalt (Szolgáltatás, Munkáink, Esettanulmány, Cikk, Kapcsolat) tervezel: ha tartod magad a szabályokhoz, az új oldal automatikusan illeszkedni fog a meglévő rendszerhez.</p>
+
+    <div class="ds-meta">
+      <div><b>Manrope · JetBrains Mono</b><small>Tipográfia</small></div>
+      <div><b>4 + 3 szín</b><small>Paletta</small></div>
+      <div><b>1240 / 1360px</b><small>Tartalom szélesség</small></div>
+      <div><b>18px radius</b><small>Kártya alap</small></div>
+      <div><b>magyar, érthető</b><small>Hangnem</small></div>
+    </div>
+
+    <nav class="toc">
+      <a href="#brand"><b>01 — Brand &amp; logó</b><small>Identitás</small></a>
+      <a href="#colors"><b>02 — Színek</b><small>Paletta + használat</small></a>
+      <a href="#type"><b>03 — Tipográfia</b><small>Skála + szabályok</small></a>
+      <a href="#layout"><b>04 — Layout</b><small>Rács, távolságok</small></a>
+      <a href="#components"><b>05 — Komponensek</b><small>Gombok, kártyák</small></a>
+      <a href="#patterns"><b>06 — Minták</b><small>Eyebrow, em-aláhúzás</small></a>
+      <a href="#voice"><b>07 — Hangnem</b><small>Copywriting</small></a>
+      <a href="#recipes"><b>08 — Oldalreceptek</b><small>Sablonok aloldalakhoz</small></a>
+      <a href="#motion"><b>09 — Mozgás</b><small>Betöltés &amp; hover</small></a>
+    </nav>
+  </div>
+</header>
+
+<!-- 01 BRAND -->
+<section class="sec" id="brand">
+  <div class="container">
+    <div class="sec-tag">01 — Brand</div>
+    <h2 class="sec-h">A márka <em>egy mondatban</em>.</h2>
+    <p class="sec-sub">A Weart egy két fős csapat, ami magyar kkv-knak készít gyors, jól kereshető weboldalakat. A márka hangja: <b>egyenes, magyar, mérnöki</b>. Nem kreatív ügynökség, nem startup — egy mester. Ezt a tipográfiában (Manrope + JetBrains Mono mint „blueprint" elem), a színekben (mély navy + tiszta türkiz akcentus) és a copyban (rövid mondatok, emberi nyelv) is érezni kell.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="num">/ Logó</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:6px">
+          <span style="width:48px;height:48px;border-radius:12px;background:var(--dark);display:grid;place-items:center;color:var(--primary)">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.2c2.4 2.6 3.8 5.9 3.8 9.3v6.2H8.2v-6.2C8.2 8.1 9.6 4.8 12 2.2z"/><circle cx="12" cy="10.2" r="1.7" fill="#0D172E"/><path d="M8.2 14.5L5.6 17.6l3.1-.4z" opacity="0.85"/><path d="M15.8 14.5l2.6 3.1-3.1-.4z" opacity="0.85"/><path d="M11 19.5h2l-.4 2.3h-1.2z" opacity="0.6"/></svg>
+          </span>
+          <div style="font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-0.025em">weart<span style="color:var(--primary)">.</span>hu</div>
+        </div>
+        <p>Mark + szóvédjegy. A pont az „hu" előtt mindig <b>primary türkiz</b>. A logó-mark sötét háttéren primary színű, világoson sötétkékkel rajzolt.</p>
+      </div>
+      <div class="card card-dark">
+        <div class="num">/ Tagline</div>
+        <h4>Weboldal, ami<br/><em>tényleg vevőket hoz.</em></h4>
+        <p>A H1-formátum templátja: rövid állítás + második sorban kiemelt rész „em" jelöléssel és primary aláhúzással.</p>
+      </div>
+      <div class="card">
+        <div class="num">/ Pozícionálás</div>
+        <h4>Mester, nem ügynökség.</h4>
+        <p>A copy „te"-ző, magyar, és kerüli a marketing-szlenget („megoldás", „szinergia", „digitalizáció"). Cserébe konkrét: <span class="type-sample-mono">3–6 hét</span>, <span class="type-sample-mono">120+ oldal</span>, <span class="type-sample-mono">9 év</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COLORS -->
+<section class="sec" id="colors">
+  <div class="container">
+    <div class="sec-tag">02 — Színek</div>
+    <h2 class="sec-h">Négy fő szín. <em>Egy szabály.</em></h2>
+    <p class="sec-sub">A primary türkizt csak <b>kiemelésre</b> használjuk — em-szöveg, aláhúzás, ikon-kiemelés, CTA dark háttéren. A teljes felületet sosem festjük türkizre. A dark (navy) a tartalmi alap, az accent (narancs) csak ritka, fontos CTA-ra megy. A háttér mindig egy enyhén meleg off-white (var(--bg)).</p>
+
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#00C2CB"><span class="swatch-name">Primary</span></div>
+        <div class="swatch-meta"><b>#00C2CB</b><small>Türkiz. Kiemelés, CTA dark háttéren, ikon, em-szöveg, aláhúzás.</small><span class="swatch-var">--primary</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color on-light" style="background:#AEDFDC"><span class="swatch-name">Primary 2</span></div>
+        <div class="swatch-meta"><b>#AEDFDC</b><small>Halvány türkiz. H1 aláhúzás háttér, gradient pár.</small><span class="swatch-var">--primary-2</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0D172E"><span class="swatch-name">Dark</span></div>
+        <div class="swatch-meta"><b>#0D172E</b><small>Navy. Szöveg, gomb háttér, dark szekció (Why us).</small><span class="swatch-var">--dark / --text</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FF6B4A"><span class="swatch-name">Accent</span></div>
+        <div class="swatch-meta"><b>#FF6B4A</b><small>Narancs. Csak kiemelt CTA-ra (pricing featured, „ezt választom"). Egy oldalon max. 1 hely.</small><span class="swatch-var">--accent</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color on-light" style="background:#C0EBF1"><span class="swatch-name">Light</span></div>
+        <div class="swatch-meta"><b>#C0EBF1</b><small>Halvány türkiz tile-háttér (design tile).</small><span class="swatch-var">--light</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color on-light" style="background:#F4F6F5;border:1px solid var(--line)"><span class="swatch-name">BG</span></div>
+        <div class="swatch-meta"><b>#F4F6F5</b><small>Oldal háttér. Enyhén meleg off-white.</small><span class="swatch-var">--bg</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color on-light" style="background:#FFFFFF;border:1px solid var(--line)"><span class="swatch-name">Card</span></div>
+        <div class="swatch-meta"><b>#FFFFFF</b><small>Kártya, tile, eyebrow háttér.</small><span class="swatch-var">--card</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color on-light" style="background:#5b6478;color:#fff"><span class="swatch-name">Muted</span></div>
+        <div class="swatch-meta"><b>#5b6478</b><small>Másodlagos szöveg, leírások, meta.</small><span class="swatch-var">--muted</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:36px" class="vt-grid">
+      <div class="vt-col do">
+        <h4>Helyes színhasználat</h4>
+        <ul>
+          <li>Primary türkiz csak <b>kiemelésre</b> (em, aláhúzás, ikon, kis CTA-jelölő).</li>
+          <li>Dark a fő szöveg- és gombszín világos háttéren.</li>
+          <li>Dark háttéren a CTA primary türkizre vált.</li>
+          <li>Accent narancs egy oldalon legfeljebb 1 helyen (kiemelt csomag, „ezt választják").</li>
+          <li>A test-szöveg színe mindig dark (#0D172E), másodlagos info mindig muted.</li>
+        </ul>
+      </div>
+      <div class="vt-col dont">
+        <h4>Kerülendő</h4>
+        <ul>
+          <li>Türkiz hátterű nagy felület — csak kiemelő pöttyök, vonalak, halvány gradiens.</li>
+          <li>Több, mint 2 erősszínű blokk egymás után.</li>
+          <li>Tiszta fekete (#000) háttér — mindig var(--dark).</li>
+          <li>Új akcent színek bevezetése (lila, sárga, zöld) — a paletta zárva van.</li>
+          <li>Gradiens shadow vagy „neon glow" effekt CTA-n; csak a hero-glow-ban használunk radiálist.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TYPE -->
+<section class="sec" id="type">
+  <div class="container">
+    <div class="sec-tag">03 — Tipográfia</div>
+    <h2 class="sec-h">Manrope a fő hang.<br/><em>JetBrains Mono</em> a mérnöki rétegnek.</h2>
+    <p class="sec-sub">Manrope minden szövegre (display + sans). A monospace csak <b>eyebrow-okra, számokra, technikai apróságokra</b> (URL-ek, /02-es tile-számok, „/ TIER" típusú kis címkék) — sosem futószövegre. Letter-spacing display-en mindig negatív (-0.03 ÷ -0.04em); mono-n mindig pozitív (+0.08 ÷ +0.18em).</p>
+
+    <div class="type-row">
+      <div class="type-meta"><b>H1 / Display</b><small>60px · 700 · -0.035em</small></div>
+      <div class="type-sample-h1">Weboldal, ami<br/>tényleg <em>vevőket hoz.</em></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>H2 / Section</b><small>40px · 700 · -0.035em</small></div>
+      <div class="type-sample-h2">Tiszta árak,<br/><em>nincs rejtett költség.</em></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>H3 / Card</b><small>24px · 700 · -0.03em</small></div>
+      <div class="type-sample-h3">Egyszerű, mint a Word.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>H4 / Tile</b><small>18px · 700 · -0.02em</small></div>
+      <div class="type-sample-h4">Heti biztonsági mentés</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>Lead</b><small>17px · muted · 1.6 lh</small></div>
+      <div class="type-sample-lead">Magyar kkv-knak készítünk gyors, jól kereshető, könnyen kezelhető weboldalakat — a tervezéstől a karbantartásig.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>Body</b><small>15px · 400 · 1.55 lh</small></div>
+      <div class="type-sample-body">Az ajánlatban szereplő ár nem változik menet közben. Ha mégis új igény merül fel, előre szólunk, mennyibe kerül.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>Small</b><small>13px · muted · 1.5 lh</small></div>
+      <div class="type-sample-small">Lakatos- és vasszerkezet készítés Pest megyében. Több mint 18 éve.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>Eyebrow</b><small>Mono · 11px · +0.18em</small></div>
+      <div class="type-sample-tag">Mit csinálunk</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><b>Mono inline</b><small>JetBrains · 13px</small></div>
+      <div class="type-sample-mono">/ 02 &nbsp;·&nbsp; weart.hu/munkaink &nbsp;·&nbsp; 96/100 &nbsp;·&nbsp; 3–6 hét</div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 LAYOUT -->
+<section class="sec" id="layout">
+  <div class="container">
+    <div class="sec-tag">04 — Layout</div>
+    <h2 class="sec-h">Rács, távolság, <em>radius</em>.</h2>
+    <p class="sec-sub">A fő rács <b>1240px</b> (sima container) vagy <b>1360px</b> (kiemelt sötét blokk). Két oszlopra szedjük a hero-t és section-headet (1.05fr · 0.95fr, vagy 1fr · 1fr-end-aligned). Bento-rács 6 oszlopos, ahol a fő tile span-4, a többi span-2. A radiusoknak 3 lépcsője van — semmi más közte.</p>
+
+    <div class="specs">
+      <div class="spec-row"><b>Container</b><span><code>max-width: 1240px</code> · padding 0 32px (mobil 0 20px)</span></div>
+      <div class="spec-row"><b>Container wide</b><span><code>max-width: 1360px</code> · csak a sötét „Why us" blokkra</span></div>
+      <div class="spec-row"><b>Section padding</b><span><code>padding: 80px 0</code> függőlegesen, mobilon ugyanannyi</span></div>
+      <div class="spec-row"><b>Section header</b><span>kétoszlopos rács: cím balra, összegző mondat jobbra-lent (<code>justify-self:end</code>), <code>gap: 48px</code></span></div>
+      <div class="spec-row"><b>Bento</b><span>6 oszlop · <code>gap: 14px</code> · fő tile span-4 row-2, többi span-2</span></div>
+      <div class="spec-row"><b>Card grid</b><span>3 oszlop · <code>gap: 18-24px</code> attól függően, milyen sűrű a kártya</span></div>
+      <div class="spec-row"><b>Radius</b><span><code>10px</code> kis chip · <code>14px</code> input/szám-kártya · <code>18px</code> kártya/tile · <code>20-24px</code> nagy blokk · <code>32px</code> Big CTA · <code>999px</code> gomb &amp; pill</span></div>
+      <div class="spec-row"><b>Border</b><span><code>1px solid rgba(13,23,46,0.08)</code> — neve <code>--line</code>. Sosem 2px.</span></div>
+      <div class="spec-row"><b>Shadow</b><span>kártya hover: <code>0 12px 28px -10px rgba(13,23,46,0.25)</code> · score-chip: <code>0 20px 40px -20px rgba(13,23,46,0.25)</code></span></div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:36px 0 18px">Térköz-skála</h3>
+    <div class="spacing-grid">
+      <div class="sp-card"><div class="sp-vis"><i style="width:6px;height:6px"></i></div><b>6 / 8 px</b><small>belső chip-padding, score ring vastag.</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:14px;height:14px"></i></div><b>14 px</b><small>bento gap, alap gomb padding.</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:24px;height:24px"></i></div><b>24 px</b><small>kártyák közti gap, blokk-padding alja.</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:32px;height:32px"></i></div><b>32 px</b><small>container-padding, hero-meta gap.</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:48px;height:48px"></i></div><b>48 px</b><small>section-head gap, oszlopok közti tér.</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:60px;height:60px"></i></div><b>60 px</b><small>dark blokk belső padding (vert.).</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:80px;height:80px"></i></div><b>80 px</b><small>section vertical padding.</small></div>
+      <div class="sp-card"><div class="sp-vis"><i style="width:100%;height:100%;background:linear-gradient(135deg,var(--primary),var(--primary-2))"></i></div><b>fluid</b><small>nagy hero glow / blob terjedelem.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 COMPONENTS -->
+<section class="sec" id="components">
+  <div class="container">
+    <div class="sec-tag">05 — Komponensek</div>
+    <h2 class="sec-h">Az építőkockák, amiből <em>minden oldal</em> össze tud állni.</h2>
+    <p class="sec-sub">Új aloldalon ne találj ki új komponenst, ha ezekkel meg lehet oldani. Ha mégis kell, kövesd ugyanazokat az alapokat: 18px radius, 1px line border, hover-ben enyhe transform és primary határ.</p>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:24px 0 14px">Gombok</h3>
+    <div class="demo-row">
+      <button class="btn btn-primary">Ingyenes árajánlat <span>→</span></button>
+      <button class="btn btn-ghost">Hogyan dolgozunk?</button>
+      <button class="btn btn-accent">Ezt választom</button>
+      <span style="display:inline-block;padding:14px;background:var(--dark);border-radius:14px"><button class="btn btn-on-dark">Kérek ajánlatot →</button></span>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:24px">Magasság ≈ 46px (13/22 padding) · radius 999px · weight 500 · letter-spacing −0.005em · hover <code style="font-family:var(--mono);background:var(--card);padding:1px 6px;border-radius:5px">translateY(-1px)</code>.</p>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:24px 0 14px">Eyebrow / pill / badge</h3>
+    <div class="demo-row">
+      <span class="eyebrow"><span class="dot"></span>2026 Q3-ra még 2 hely van</span>
+      <span class="pill">Aktív</span>
+      <span class="pill ghost">Másodlagos</span>
+      <span class="badge-mono">Fő szolgáltatás</span>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:24px 0 14px">Kártyák (4 stílus)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="num">/ 02</div>
+        <h4>Régi oldal felújítása.</h4>
+        <p>Megvan az oldal, de lassú? Átnézzük, modernizáljuk — sokszor olcsóbb, mint nullról kezdeni.</p>
+      </div>
+      <div class="card card-dark">
+        <div class="num">/ 01 — Fő tile</div>
+        <h4>Villámgyors weboldal,<br/><em>egyedi fejlesztéssel.</em></h4>
+        <p>Nem sablonokra építünk. Saját, célra szabott WordPress kódot fejlesztünk.</p>
+      </div>
+      <div class="card card-light">
+        <div class="num">/ 04</div>
+        <h4>Arculat &amp; webdesign.</h4>
+        <p>Logó, színek, betűtípusok — egységes megjelenés.</p>
+      </div>
+      <div class="card card-accent" style="grid-column:span 1">
+        <div class="num">/ 06 — Akcent</div>
+        <h4>SEO &amp; Google Ads.</h4>
+        <p>Hogy ne csak szép legyen, hanem találjanak is rá.</p>
+      </div>
+      <div class="card">
+        <div class="num">/ 03</div>
+        <h4>Webshop indítás.</h4>
+        <p>WooCommerce, magyar fizetési megoldások, NAV-számlázás.</p>
+      </div>
+      <div class="card">
+        <div class="num">/ 05</div>
+        <h4>Karbantartás havidíjban.</h4>
+        <p>Frissítések, biztonsági mentés, kisebb módosítások.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:36px 0 14px">Form mező</h3>
+    <div style="max-width:380px"><input class="input" placeholder="email@cim.hu"/></div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:10px">Pill-formájú input (radius 999px), 1px line border, primary fókusz-szín. Sosem szögletes input.</p>
+  </div>
+</section>
+
+<!-- 06 PATTERNS -->
+<section class="sec" id="patterns">
+  <div class="container">
+    <div class="sec-tag">06 — Visszatérő minták</div>
+    <h2 class="sec-h">Három apró trükk, amitől <em>weart-osnak látszik</em> egy oldal.</h2>
+    <p class="sec-sub">Ezek a részletek viszik át a karaktert. Ha új aloldalt csinálsz, mindegyikből szerepeljen legalább egy a fő nézeten.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="num">/ Minta 01</div>
+        <h4 style="font-size:28px">Em-aláhúzás a címben</h4>
+        <p>Minden H1/H2 második része <code style="font-family:var(--mono);background:var(--bg);padding:1px 6px;border-radius:5px">&lt;em&gt;</code>-be kerül, és primary-2 türkiz csíkkal van „aláfestve". Ez visszatér a Big CTA, hero, section-head címekben is.</p>
+        <div style="margin-top:14px;font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-0.025em;line-height:1.2">Tiszta árak, <span style="color:var(--primary);position:relative;display:inline-block">nincs rejtett.<span style="position:absolute;left:0;right:0;bottom:2px;height:8px;background:var(--primary-2);z-index:-1;border-radius:2px"></span></span></div>
+      </div>
+      <div class="card">
+        <div class="num">/ Minta 02</div>
+        <h4 style="font-size:28px">Mono prefix + vonal</h4>
+        <p>Minden szekció eyebrow-ja monospace, +0.18em letter-spacing, és előtte 24px primary vonalka. Ez visszatér a tile-ok <code style="font-family:var(--mono);background:var(--bg);padding:1px 6px;border-radius:5px">/ 02</code> sorszámaként is.</p>
+        <div class="type-sample-tag" style="margin-top:14px">Mit csinálunk</div>
+      </div>
+      <div class="card">
+        <div class="num">/ Minta 03</div>
+        <h4 style="font-size:28px">Hover: emelkedés + primary keret</h4>
+        <p>Minden interaktív blokk (kártya, tile, gomb, score) hoverben <code style="font-family:var(--mono);background:var(--bg);padding:1px 6px;border-radius:5px">translateY(-3 ÷ -4px)</code>, és a keret primary 60%-ra vált. Ez konzisztens visszajelzés mindenhol.</p>
+        <div class="card" style="margin-top:14px;min-height:auto;padding:14px;border-color:color-mix(in srgb,var(--primary) 60%, var(--line));transform:translateY(-3px)"><div class="num">/ Hover demo</div><h4>Aktív állapot</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 VOICE -->
+<section class="sec" id="voice">
+  <div class="container">
+    <div class="sec-tag">07 — Hangnem</div>
+    <h2 class="sec-h">Magyarul, <em>ahogy a vendég is mondaná</em>.</h2>
+    <p class="sec-sub">A copy hangja: rövid, te-ző, konkrét, kerüli a marketing-szót. Sosem titokzatoskodik („forradalmi megoldás"), sosem szakmázik („modern stack"). Egy kkv-tulajdonos magyarul olvassa, és értse, mit kap.</p>
+
+    <div class="vt-grid">
+      <div class="vt-col do">
+        <h4>Igen — így beszélünk</h4>
+        <ul>
+          <li>„Nincs marketing duma, csak tiszta munka."</li>
+          <li>„Te csak szólsz — mi megcsináljuk."</li>
+          <li>„Ha mégis új igény merül fel, előre szólunk, mennyibe kerül."</li>
+          <li>Konkrét számok: „3–6 hét", „120+ oldal", „60 nap garancia".</li>
+          <li>Magyar szavak: „karbantartás", „felújítás", „árajánlat", „betanítás".</li>
+        </ul>
+      </div>
+      <div class="vt-col dont">
+        <h4>Nem — így nem</h4>
+        <ul>
+          <li>„Forradalmi digitális megoldásaink…"</li>
+          <li>„Skálázható ökoszisztéma a kiválóság jegyében."</li>
+          <li>Felesleges idegen szavak (onboarding, deliverable, deadline).</li>
+          <li>Általános állítás konkrétum nélkül: „magas minőség".</li>
+          <li>Felkiáltójeles, „!!!" típusú lelkes hang.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:36px 0 14px">Microcopy alapok</h3>
+    <div class="specs">
+      <div class="spec-row"><b>CTA elsődleges</b><span>„Ingyenes árajánlat", „Kérek ajánlatot", „Beszéljünk az oldaladról"</span></div>
+      <div class="spec-row"><b>CTA másodlagos</b><span>„Hogyan dolgozunk?", „Munkáink", „Részletek"</span></div>
+      <div class="spec-row"><b>Eyebrow példák</b><span>„Mit csinálunk", „Miért a Weart", „Tudástár", „Áraink", „Rólunk"</span></div>
+      <div class="spec-row"><b>Üres állapot / 404</b><span>„Itt nincs semmi — de szívesen segítünk megtalálni, amit keresel."</span></div>
+      <div class="spec-row"><b>Form sikeres</b><span>„Megkaptuk. Egy munkanapon belül válaszolunk."</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 RECIPES -->
+<section class="sec" id="recipes">
+  <div class="container">
+    <div class="sec-tag">08 — Oldalreceptek</div>
+    <h2 class="sec-h">Sablonok a leggyakoribb <em>aloldalakhoz.</em></h2>
+    <p class="sec-sub">Ezek a receptek mondják meg, milyen sorrendben kell összerakni egy aloldalt. Nem kötelező mindet használni, de ne találj ki új sorrendet — a látogató ezen a ritmuson „van otthon" a Weart oldalon.</p>
+
+    <div class="recipe">
+      <div class="recipe-card">
+        <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--primary);letter-spacing:0.1em">RECEPT 01 — SZOLGÁLTATÁS ALOLDAL</div>
+        <h4>Pl. „Webshop indítás"</h4>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.55">Egy konkrét szolgáltatás kifejtése. Cél: konkrét ajánlatkérés.</p>
+        <div class="order">
+          <div class="step"><b>01</b><span>Hero — eyebrow („Szolgáltatás"), H1 „em" aláhúzással, lead, 2 CTA, 4 metrika.</span></div>
+          <div class="step"><b>02</b><span>„Mit kapsz" — bento 4-6 mini-tile számozva (/01-/06).</span></div>
+          <div class="step"><b>03</b><span>Folyamat — 3-4 lépés sötét „Why us" blokkban, primary sorszámmal.</span></div>
+          <div class="step"><b>04</b><span>Esettanulmány-mini — 1 ügyfél idézet + screenshot mock.</span></div>
+          <div class="step"><b>05</b><span>Ár-blokk + GYIK (4-6 kérdés).</span></div>
+          <div class="step"><b>06</b><span>Big CTA türkiz gradiens + Fanni kapcsolatkártya.</span></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--primary);letter-spacing:0.1em">RECEPT 02 — MUNKÁINK / PORTFÓLIÓ LISTA</div>
+        <h4>Munkáink főoldal</h4>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.55">Az összes esettanulmány indexe.</p>
+        <div class="order">
+          <div class="step"><b>01</b><span>Hero rövid — eyebrow + H1 + 1 sor lead. Nincs hero-visual.</span></div>
+          <div class="step"><b>02</b><span>Filter chip-sor (pill ghost): „Mind", „Webshop", „Bemutatkozó", „Felújítás".</span></div>
+          <div class="step"><b>03</b><span>Munka-grid 3 oszlop, „insight" kártya stílus, glyph-mel a thumbnail-en.</span></div>
+          <div class="step"><b>04</b><span>Trust-szalag (logók marquee) — átemelve a főoldalról.</span></div>
+          <div class="step"><b>05</b><span>Big CTA + Fanni kapcsolatkártya.</span></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--primary);letter-spacing:0.1em">RECEPT 03 — ESETTANULMÁNY (1 munka)</div>
+        <h4>Pl. „Kovács Lakatos Kft."</h4>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.55">Egy konkrét projekt mély bemutatása.</p>
+        <div class="order">
+          <div class="step"><b>01</b><span>Hero — bal: eyebrow „Esettanulmány", H1 ügyfél neve em-mel, lead 1 mondat. Jobb: nagy screenshot a browser-keretben.</span></div>
+          <div class="step"><b>02</b><span>Tényrács — 4 score-kártya: átfutás, oldalszám, sebesség, eredmény.</span></div>
+          <div class="step"><b>03</b><span>„A kihívás" + „A megoldás" — 2 oszlop, sötét tile + világos tile.</span></div>
+          <div class="step"><b>04</b><span>Idézet — testimonial blokk a sötét „Why us" stílusban.</span></div>
+          <div class="step"><b>05</b><span>Eredmény-számok — 3 metrika, mono felirat alatta.</span></div>
+          <div class="step"><b>06</b><span>Következő munka link + Big CTA.</span></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--primary);letter-spacing:0.1em">RECEPT 04 — TUDÁSTÁR / CIKK</div>
+        <h4>Pl. „Mennyibe kerül egy weboldal…"</h4>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.55">Egy konkrét blogcikk.</p>
+        <div class="order">
+          <div class="step"><b>01</b><span>Hero rövid — eyebrow „Tudástár · Stratégia", dátum + olvasási idő mono. H1 maxi, em utolsó szóra.</span></div>
+          <div class="step"><b>02</b><span>Borítókép a 3 insight-stílus egyikéből (a / b / c gradient).</span></div>
+          <div class="step"><b>03</b><span>Cikktörzs 680px max-width, body 16px, 1.7 lh, H3 24px em-mel.</span></div>
+          <div class="step"><b>04</b><span>„Kiemelt idézet" blokk — primary bal-bordurral, 18px display dőlt.</span></div>
+          <div class="step"><b>05</b><span>Szerző-kártya alul (Balázs vagy Fanni avatar).</span></div>
+          <div class="step"><b>06</b><span>Kapcsolódó cikkek 3 db + Big CTA.</span></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--primary);letter-spacing:0.1em">RECEPT 05 — KAPCSOLAT</div>
+        <h4>Külön kapcsolat oldal</h4>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.55">Ha a Big CTA mellett külön oldal is kell.</p>
+        <div class="order">
+          <div class="step"><b>01</b><span>Hero — eyebrow „Kapcsolat", H1 „Beszéljünk az oldaladról.", lead.</span></div>
+          <div class="step"><b>02</b><span>Kétoszlopos blokk: bal Fanni-kártya nagyban, jobb form (név, email, telefon, üzenet).</span></div>
+          <div class="step"><b>03</b><span>Mini-térkép vagy cím-kártya (Király u. 26.) sötét tile-on.</span></div>
+          <div class="step"><b>04</b><span>3 GYIK — főleg „mi történik a hívás után?" típusú.</span></div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--primary);letter-spacing:0.1em">RECEPT 06 — RÓLUNK</div>
+        <h4>A csapat oldala</h4>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.55">Részletesebb csapat-oldal.</p>
+        <div class="order">
+          <div class="step"><b>01</b><span>Hero — eyebrow „Rólunk", H1 „Ketten vagyunk — és ez pont elég." Lead.</span></div>
+          <div class="step"><b>02</b><span>Manifesztó — 3 állítás dark blokkban, primary sorszámmal (átemelve a Why us-ról).</span></div>
+          <div class="step"><b>03</b><span>Két nagyobb csapat-kártya — Balázs + Fanni, hosszabb bio + tag-ek.</span></div>
+          <div class="step"><b>04</b><span>Munkamódszer — 4-5 lépéses folyamat (Egyeztetés → Wireframe → Design → Fejlesztés → Átadás), bento 5-tile.</span></div>
+          <div class="step"><b>05</b><span>Trust-szalag + Big CTA.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:48px 0 14px">Globális szabályok minden aloldalra</h3>
+    <div class="specs">
+      <div class="spec-row"><b>Header</b><span>Mindig az eredeti sticky nav (1240 container, blur háttér, 18px logó-mark, 6 link, ghost CTA jobbra).</span></div>
+      <div class="spec-row"><b>Footer</b><span>Mindig az eredeti dark footer (4 oszlop, hírlevél balra, jogi linkek alul).</span></div>
+      <div class="spec-row"><b>Záró blokk</b><span>Az utolsó valódi szekció a <b>Big CTA</b> (türkiz gradiens + Fanni kártya). Ez minden aloldalon megjelenik.</span></div>
+      <div class="spec-row"><b>Section ritmus</b><span>Felváltva: világos (bg) → világos (bg) → sötét (dark) → világos. Ne legyen 2 sötét egymás után.</span></div>
+      <div class="spec-row"><b>Hero scope</b><span>Aloldalon a hero kisebb mint a főoldalon — 360–420px magas, opcionálisan visual nélkül. A floating score-kártyákat csak a főoldal hero-ra hagyjuk.</span></div>
+      <div class="spec-row"><b>Eyebrow oldalanként</b><span>Az eyebrow szövege azonosítja az oldalat („Tudástár · Stratégia", „Esettanulmány", „Kapcsolat"). Mindig elsőként a sec-tag.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 MOTION -->
+<section class="sec" id="motion">
+  <div class="container">
+    <div class="sec-tag">09 — Mozgás</div>
+    <h2 class="sec-h">Finom betöltés, <em>finom hover.</em></h2>
+    <p class="sec-sub">A mozgás a Weart karakterének része. <b>Sosem hivalkodó, sosem dekoratív</b> — mindig egy apró visszajelzés, amitől a felület élőnek érződik. Egy aloldalon ne legyen több 3-4 különböző mozgás-típusnál; a lényeg a következetesség, nem a mennyiség. <b>Minden animáció kötelező része a rendszernek</b> — ha új komponenst készítesz, ezeket is hozzá kell tervezni.</p>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:8px 0 14px">Időzítés &amp; görbék</h3>
+    <div class="specs">
+      <div class="spec-row"><b>Hover micro</b><span><code>150–200ms</code> · <code>ease</code> — gomb, link, ikon. Apró elmozdulás, semmi több.</span></div>
+      <div class="spec-row"><b>Hover lift (kártya)</b><span><code>250–300ms</code> · <code>ease</code> — kártya/tile emelkedés + keret-szín váltás.</span></div>
+      <div class="spec-row"><b>Reveal (scroll-be)</b><span><code>800ms</code> · <code>ease</code> · <code>translateY(20px) → 0</code> + opacity. IntersectionObserver, threshold 0.1, csak egyszer fut le.</span></div>
+      <div class="spec-row"><b>Loop / lebegés</b><span><code>6–8s</code> · <code>ease-in-out infinite</code> — score-kártyák, browser-mock, hero-glow.</span></div>
+      <div class="spec-row"><b>Marquee / trust scroll</b><span><code>30–32s</code> · <code>linear infinite</code> — hover-on pause.</span></div>
+      <div class="spec-row"><b>Ease premium</b><span><code>cubic-bezier(.2,.8,.2,1)</code> — logó-mark forgás, browser-mock kiemelés. Csak amikor „karakteres" mozgás kell.</span></div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:36px 0 14px">Betöltési animációk (oldalra érkezés &amp; scroll)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="num">/ 01 — Reveal on scroll</div>
+        <h4>Szekciók beúsznak</h4>
+        <p>Minden <code style="font-family:var(--mono);background:var(--bg);padding:1px 6px;border-radius:5px">.reveal</code> osztályú blokk 20px-szel lentről úszik be, opacity 0→1, 800ms. IntersectionObserver-rel triggerelve, csak egyszer. Section-head, kártyarács, FAQ, footer mind ezt használja.</p>
+      </div>
+      <div class="card">
+        <div class="num">/ 02 — Hero browser-mock</div>
+        <h4>Tartalom rétegesen épül</h4>
+        <p>A hero browser-mock-ban a pill-ek (.1s), H1 (.45s), bekezdés (.7s), CTA-sor (.9s), majd 3 stripe (1.1, 1.25, 1.4s) sorban úsznak be lentről. URL „begépelődik" (steps), kurzor villog, CTA-pulse 3.5s után indul.</p>
+      </div>
+      <div class="card">
+        <div class="num">/ 03 — Score-kártyák</div>
+        <h4>Számok 0-tól felfelé</h4>
+        <p>A 4 lebegő score-kártya (Sebesség, SEO…) 0-tól számol fel a végső értékig (interval 18ms, +2). A ring conic-gradient is animáltan tölt fel. Triggert a scroll ad (threshold 0.4).</p>
+      </div>
+      <div class="card">
+        <div class="num">/ 04 — Toast notification</div>
+        <h4>„Új ajánlatkérés" mock</h4>
+        <p>5s-os ciklusban beúszik jobbról a hero-mock-on egy toast (ikon + szöveg), 8% beérkezés, 80% tartás, 100% kiúszás. Apró life-jel, hogy a mock „él".</p>
+      </div>
+      <div class="card card-dark">
+        <div class="num">/ 05 — Hero glow</div>
+        <h4>Háttér-pulzus</h4>
+        <p>A hero radial-glow 6s-os ease-in-out ciklusban opacity .6 → 1, scale 1 → 1.05. A háttérrács 18s alatt 32px-et csúszik (linear). Mindkettő háttérben fut, sosem előtérben.</p>
+      </div>
+      <div class="card">
+        <div class="num">/ 06 — Testimonial fade</div>
+        <h4>Idézet-váltás</h4>
+        <p>6.5s-onként vált a testimonial. Kilépés/belépés: opacity + 8px translateY, 600ms. A dot-indicator szélessége 22→32px-re ugrik aktívra (250ms).</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:36px 0 14px">Hover viselkedés (aloldalon kötelező mintázat)</h3>
+    <div class="specs">
+      <div class="spec-row"><b>Gomb</b><span><code>translateY(-1px)</code>, primary gombnál +<code>box-shadow 0 12px 28px -10px rgba(13,23,46,0.4)</code>. Nyíl <code>→</code> 3px-et jobbra csúszik.</span></div>
+      <div class="spec-row"><b>Kártya / tile / insight</b><span><code>translateY(-3 ÷ -4px)</code> + keret <code>color-mix(primary 60%, line)</code>-re vált. 300ms ease.</span></div>
+      <div class="spec-row"><b>Logó-mark (hover a logón)</b><span><code>rotate(-6deg) scale(1.05)</code>, 350ms <code>cubic-bezier(.2,.8,.2,1)</code>. Csak a navi logón.</span></div>
+      <div class="spec-row"><b>Trust-szalag logó</b><span>opacity .65 → 1, <code>translateY(-2px)</code>, és a négyzetes mark háttere primary-ra vált — színes kiemelés.</span></div>
+      <div class="spec-row"><b>FAQ accordion</b><span>+ ikon 25ms alatt 90°-ot fordul, és primary körre vált. <code>max-height</code> 350ms ease.</span></div>
+      <div class="spec-row"><b>Tile-link nyíl</b><span>A „Részletek →" nyila <code>translateX(4px)</code>-et lép a tile-on belüli hoverre (a tile-link-en önmagán is működjön).</span></div>
+      <div class="spec-row"><b>Marquee / trust track</b><span>Hover-on <code>animation-play-state: paused</code> — a látogató meg tudja állítani olvasáshoz.</span></div>
+      <div class="spec-row"><b>Browser-mock</b><span>Hover-on <code>rotate(-1deg) translateY(-6px) scale(1.02)</code>, 600ms premium ease, és a float-loop megáll.</span></div>
+    </div>
+
+    <h3 style="font-family:var(--display);font-size:20px;letter-spacing:-0.025em;margin:36px 0 14px">Szabályok</h3>
+    <div class="vt-grid">
+      <div class="vt-col do">
+        <h4>Igen — finom mozgás</h4>
+        <ul>
+          <li>Minden interaktív elem ad <b>vizuális visszajelzést</b> hoverre — még ha 1px is.</li>
+          <li>Tartsd az <code style="font-family:var(--mono)">ease</code> görbét és a 200–300ms tartományt; csak karakteres mozgáshoz <code style="font-family:var(--mono)">cubic-bezier(.2,.8,.2,1)</code>.</li>
+          <li>Reveal csak <b>egyszer</b> fusson le scroll-ra — ne ismételd minden viewport-belépésre.</li>
+          <li>Loop-animációk mindig <b>háttérben</b> (hero glow, marquee) — a fő tartalom statikus.</li>
+          <li>Új komponens = új hover-állapot. Sosem felejts el hoverstate-et tervezni.</li>
+        </ul>
+      </div>
+      <div class="vt-col dont">
+        <h4>Nem — mit kerüljünk</h4>
+        <ul>
+          <li>Bounce, spring, „gumi" görbék — túl játékos a Weart hangjához.</li>
+          <li>Parallax-scroll, full-screen átúszó hero — túl ügynökségi.</li>
+          <li>Több mint 8px-es elmozdulás hover-en.</li>
+          <li>Loop-olódó figyelemfelhívó CTA-k (a hero CTA-pulse az egyetlen kivétel, mert mockon belül van).</li>
+          <li>Animáció <code style="font-family:var(--mono)">prefers-reduced-motion</code> tisztelete nélkül — minden szekciónak figyelnie kell rá.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOT -->
+<div class="ds-foot">
+  <div class="container">
+    Weart Design System · v1.0 · Frissítve: 2026. május 6. <br/>
+    A főoldal alapján készítve — ha új mintát vagy szabályt látsz, amit érdemes ide felvenni, mondd meg, és frissítjük a dokumentumot.
+  </div>
+</div>
+
+</body>
+</html>

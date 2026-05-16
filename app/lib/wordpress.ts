@@ -48,8 +48,26 @@ export type WPPost = {
   featuredImage: WPImage | null;
 };
 
+export type TocItem = {
+  id: string;
+  text: string;
+  num: string;
+};
+
+export type WPAuthor = {
+  name: string;
+  initial: string;
+  role: string;
+  bio: string;
+  avatarUrl: string | null;
+};
+
 export type WPSinglePost = WPPost & {
   content: string;
+  readingMinutes: number;
+  toc: TocItem[];
+  tagNames: string[];
+  author: WPAuthor | null;
 };
 
 export type WPCategory = {
@@ -64,6 +82,7 @@ type RawPost = {
   excerpt: string;
   date: string;
   categories: { nodes: { name: string; slug: string }[] };
+  tags?: { nodes: { name: string; slug: string }[] };
   featuredImage: {
     node: {
       sourceUrl: string;
@@ -72,6 +91,108 @@ type RawPost = {
     };
   } | null;
 };
+
+function slugify(text: string): string {
+  const map: Record<string, string> = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ö': 'o', 'ő': 'o', 'ú': 'u', 'ü': 'u', 'ű': 'u' };
+  return text
+    .toLowerCase()
+    .replace(/[áéíóöőúüű]/g, (c) => map[c] ?? c)
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .slice(0, 80);
+}
+
+function processArticleContent(html: string): { content: string; toc: TocItem[] } {
+  const toc: TocItem[] = [];
+  const used = new Set<string>();
+  let idx = 0;
+
+  const hasH2 = /<h2[\s>]/i.test(html);
+  const tag = hasH2 ? 'h2' : 'h3';
+  const pattern = new RegExp(`<${tag}(\\s[^>]*)?>([\\s\\S]*?)</${tag}>`, 'gi');
+
+  const processed = html.replace(pattern, (_, attrs: string | undefined, inner: string) => {
+    const text = stripHtml(inner);
+    if (!text) return `<h2${attrs ?? ''}>${inner}</h2>`;
+    let id = slugify(text);
+    if (!id) id = `section-${idx + 1}`;
+    let unique = id;
+    let n = 2;
+    while (used.has(unique)) unique = `${id}-${n++}`;
+    used.add(unique);
+
+    idx += 1;
+    const num = String(idx).padStart(2, '0');
+    toc.push({ id: unique, text, num });
+
+    const existingAttrs = attrs ?? '';
+    const hasId = /\sid\s*=/i.test(existingAttrs);
+    const cleanedAttrs = hasId ? existingAttrs.replace(/\sid\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/i, '') : existingAttrs;
+    return `<h2${cleanedAttrs} id="${unique}"><span class="num">${num} / ${text}</span>${inner}</h2>`;
+  });
+
+  return { content: processed, toc };
+}
+
+function estimateReadingMinutes(html: string): number {
+  const text = stripHtml(html);
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+type RawAuthor = {
+  name: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  description: string | null;
+  avatar: { url: string | null } | null;
+} | null;
+
+async function resolveAvatar(url: string | null | undefined): Promise<string | null> {
+  if (!url) return null;
+  const probeUrl = url.replace(/([?&])d=[^&]*/i, '$1d=404');
+  const finalUrl = url.replace(/([?&])d=[^&]*/i, '$1d=mp');
+  try {
+    const res = await fetch(probeUrl, { method: 'HEAD' });
+    return res.ok ? finalUrl : null;
+  } catch {
+    return null;
+  }
+}
+
+async function mapAuthor(raw: RawAuthor): Promise<WPAuthor | null> {
+  if (!raw) return null;
+  const name = (raw.name ?? '').trim();
+  if (!name) return null;
+
+  const first = (raw.firstName ?? '').trim();
+  const last = (raw.lastName ?? '').trim();
+  const initial = first ? first.charAt(0).toUpperCase()
+    : (last ? last.charAt(0).toUpperCase()
+    : name.charAt(0).toUpperCase());
+
+  const description = (raw.description ?? '').trim();
+  let role = '';
+  let bio = description;
+  if (description) {
+    const m = description.match(/^([^.!?]+[.!?])\s*([\s\S]*)$/);
+    if (m && m[1].length <= 80) {
+      role = m[1].replace(/[.!?]\s*$/, '').trim();
+      bio = m[2].trim();
+    }
+  }
+
+  const avatarUrl = await resolveAvatar(raw.avatar?.url);
+
+  return {
+    name,
+    initial,
+    role,
+    bio,
+    avatarUrl,
+  };
+}
 
 function mapFeaturedImage(raw: RawPost['featuredImage']): WPImage | null {
   if (!raw?.node?.sourceUrl) return null;
@@ -145,11 +266,21 @@ export async function getPostBySlug(slug: string): Promise<WPSinglePost | null> 
         content
         date
         categories { nodes { name slug } }
+        tags { nodes { name slug } }
         featuredImage {
           node {
             sourceUrl
             altText
             mediaDetails { width height }
+          }
+        }
+        author {
+          node {
+            name
+            firstName
+            lastName
+            description
+            avatar(size: 200) { url }
           }
         }
       }
@@ -159,14 +290,22 @@ export async function getPostBySlug(slug: string): Promise<WPSinglePost | null> 
 
   if (!data.post) return null;
 
-  const node = data.post as RawPost & { content: string };
+  const node = data.post as RawPost & {
+    content: string;
+    author?: { node: RawAuthor } | null;
+  };
+  const { content, toc } = processArticleContent(node.content);
 
   return {
     databaseId: node.databaseId,
     slug: node.slug,
     title: node.title,
     excerpt: stripHtml(node.excerpt),
-    content: node.content,
+    content,
+    toc,
+    readingMinutes: estimateReadingMinutes(node.content),
+    tagNames: node.tags?.nodes.map((t) => t.name) ?? [],
+    author: await mapAuthor(node.author?.node ?? null),
     date: node.date,
     formattedDate: formatHunDate(node.date),
     imgClass: 'a',

@@ -6,7 +6,27 @@
       "Read(//tmp/**)",
       "Bash(gunzip -c /tmp/design.gz)",
       "Bash(mkdir -p /tmp/design_contents)",
-      "Bash(tar -xf /tmp/design_extracted -C /tmp/design_contents)"
+      "Bash(tar -xf /tmp/design_extracted -C /tmp/design_contents)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/munkaink)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/kapcsolat)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/blog)",
+      "Bash(git mv *)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/weart/Projects/weart/weart-new-site/public/fanni-small.jpg)",
+      "Bash(npm install *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(curl *)",
+      "Bash(grep -oE '<a[^>]*data-target=\"[^\"]+\"[^>]*>.{0,80}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d['data']['post']['content'][:1500]\\)\")",
+      "Bash(python3 -c \"import sys,json,re; d=json.load\\(sys.stdin\\); c=d['data']['post']['content']; print\\('h2:',len\\(re.findall\\(r'<h2',c\\)\\)\\); print\\('h3:',len\\(re.findall\\(r'<h3',c\\)\\)\\); print\\('h3 titles:'\\); [print\\(' -',re.sub\\(r'<[^>]+>','',m\\)\\) for m in re.findall\\(r'<h3[^>]*>\\(.*?\\)</h3>',c\\)]\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

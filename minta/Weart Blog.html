@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tudástár — Weart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --primary:#00C2CB;
+    --primary-2:#AEDFDC;
+    --dark:#0D172E;
+    --light:#C0EBF1;
+    --white:#F8F9FA;
+    --text:#0D172E;
+    --footer-bg:#0a0f18;
+    --footer-text:#77848d;
+    --accent:#FF6B4A;
+    --bg:#F4F6F5;
+    --card:#FFFFFF;
+    --line:rgba(13,23,46,0.08);
+    --muted:#5b6478;
+    --display:'Manrope', system-ui, -apple-system, sans-serif;
+    --sans:'Manrope', system-ui, -apple-system, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  img{max-width:100%;display:block}
+
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* nav (matches landing) */
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:color-mix(in srgb, var(--bg) 78%, transparent);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:32px}
+  .logo{display:flex;align-items:center;gap:10px;font-size:18px;letter-spacing:-0.02em}
+  .logo-mark{width:36px;height:36px;border-radius:10px;background:var(--dark);display:grid;place-items:center;color:var(--primary);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .logo:hover .logo-mark{transform:rotate(-6deg) scale(1.05)}
+  .logo b{font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:-0.025em}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;color:var(--text)}
+  .nav-links a{position:relative;padding:6px 0;opacity:.78;transition:opacity .2s}
+  .nav-links a:hover,.nav-links a.active{opacity:1}
+  .nav-links a.active{color:var(--text)}
+  .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--primary);border-radius:2px}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-size:14.5px;font-weight:500;letter-spacing:-0.005em;transition:transform .15s ease, background .2s, color .2s, box-shadow .2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--dark);color:#fff}
+  .btn-primary:hover{box-shadow:0 12px 28px -10px rgba(13,23,46,0.4)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--card);border-color:var(--text)}
+  .btn .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(3px)}
+
+  /* page header */
+  .page-head{padding:64px 0 32px;position:relative}
+  .crumbs{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:center;margin-bottom:22px}
+  .crumbs a{color:var(--muted);transition:color .2s}
+  .crumbs a:hover{color:var(--text)}
+  .crumbs .sep{opacity:.4}
+  .page-h1{font-family:var(--display);font-weight:700;font-size:clamp(36px,4.6vw,60px);line-height:1.05;letter-spacing:-0.035em;max-width:880px}
+  .page-h1 em{font-style:normal;color:var(--primary)}
+  .page-h1 .underline{position:relative;display:inline-block;font-style:normal;font-weight:700}
+  .page-h1 .underline::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:10px;background:var(--primary-2);z-index:-1;border-radius:2px}
+  .page-lead{margin-top:20px;font-size:17px;color:var(--muted);max-width:640px;line-height:1.55}
+
+  /* filter bar */
+  .filter-bar{margin-top:36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;padding-top:24px;border-top:1px solid var(--line)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{padding:8px 16px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:500;background:var(--card);color:var(--text);cursor:pointer;transition:all .2s ease;font-family:inherit}
+  .chip:hover{border-color:var(--text)}
+  .chip.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;min-width:260px}
+  .search input{border:none;outline:none;background:transparent;font:inherit;flex:1;color:var(--text)}
+  .search input::placeholder{color:var(--muted)}
+  .search svg{color:var(--muted);flex-shrink:0}
+
+  /* featured */
+  .sec{padding:48px 0}
+  .sec-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sec-tag::before{content:"";width:24px;height:1px;background:var(--primary)}
+  .sec-h{font-family:var(--display);font-size:clamp(24px,2.6vw,32px);line-height:1.1;letter-spacing:-0.03em;font-weight:700;margin-bottom:24px}
+
+  .featured{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+  .featured-img{aspect-ratio:5/4;background:linear-gradient(135deg, var(--dark) 0%, #1f2a52 100%);position:relative;overflow:hidden}
+  .featured-img .big-glyph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:220px;color:rgba(0,194,203,0.22);letter-spacing:-0.05em}
+  .featured-img .corner-tag{position:absolute;top:24px;left:24px;background:var(--primary);color:var(--dark);padding:6px 14px;border-radius:999px;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+  .featured-body{padding:44px 44px 40px;display:flex;flex-direction:column;justify-content:center}
+  .featured-meta{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .featured-meta .tag{color:var(--primary)}
+  .featured-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+  .featured-title{font-family:var(--display);font-size:clamp(24px,2.4vw,34px);font-weight:700;letter-spacing:-0.03em;line-height:1.15;margin-bottom:16px}
+  .featured-excerpt{font-size:15.5px;color:var(--muted);line-height:1.6;margin-bottom:28px;max-width:520px}
+  .featured-author{display:flex;align-items:center;gap:12px;padding-top:24px;border-top:1px solid var(--line)}
+  .author-dot{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;font-family:var(--display);font-weight:700;color:var(--dark)}
+  .author-meta{font-size:13px}
+  .author-meta b{font-weight:600}
+  .author-meta small{color:var(--muted);display:block;margin-top:2px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase}
+
+  /* grid */
+  .insights{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s, border-color .3s;cursor:pointer}
+  .insight:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--primary) 60%, var(--line))}
+  .insight-img{aspect-ratio:16/10;position:relative;overflow:hidden}
+  .insight-img.a{background:linear-gradient(135deg, var(--light) 0%, var(--primary-2) 100%)}
+  .insight-img.b{background:linear-gradient(135deg, var(--dark) 0%, #1f2a52 100%)}
+  .insight-img.c{background:linear-gradient(135deg, var(--accent) 0%, #ff8c70 100%)}
+  .insight-img.d{background:linear-gradient(135deg, #f6f1e3 0%, #e7d9b8 100%)}
+  .insight-img.e{background:linear-gradient(135deg, #2a4a6a 0%, #4a7ba8 100%)}
+  .insight-img.f{background:linear-gradient(135deg, var(--primary) 0%, #4dd5dc 100%)}
+  .insight-img.g{background:linear-gradient(135deg, #1a2a52 0%, #4a3a8c 100%)}
+  .insight-img.h{background:linear-gradient(135deg, #f0d9c8 0%, #e8a07a 100%)}
+  .insight-img.i{background:linear-gradient(135deg, #e8eef2 0%, #c0d4e0 100%)}
+  .insight-img .glyph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:88px;color:rgba(13,23,46,0.15);letter-spacing:-0.05em}
+  .insight-img.b .glyph,.insight-img.e .glyph,.insight-img.g .glyph{color:rgba(255,255,255,0.18)}
+  .insight-img.c .glyph,.insight-img.h .glyph{color:rgba(255,255,255,0.28)}
+  .insight-img.f .glyph{color:rgba(13,23,46,0.22)}
+  .insight-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+  .insight-meta{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .insight-meta .tag{color:var(--primary)}
+  .insight-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+  .insight-title{font-family:var(--display);font-size:17px;line-height:1.25;letter-spacing:-0.025em;margin-bottom:8px;font-weight:700}
+  .insight-excerpt{font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:16px;flex:1}
+  .insight-foot{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);padding-top:14px;border-top:1px solid var(--line)}
+  .insight-foot a{color:var(--text);font-weight:500;display:inline-flex;align-items:center;gap:6px}
+
+  /* pagination */
+  .pagination{margin-top:48px;display:flex;justify-content:center;align-items:center;gap:8px}
+  .page-btn{width:40px;height:40px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font-family:inherit;font-size:14px;cursor:pointer;transition:all .2s}
+  .page-btn:hover{border-color:var(--text)}
+  .page-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .page-btn.disabled{opacity:.4;cursor:not-allowed}
+
+  /* newsletter strip */
+  .news{margin:80px 0 0;padding:48px;border-radius:24px;background:linear-gradient(135deg, var(--primary) 0%, #4dd5dc 60%, var(--primary-2) 100%);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;color:var(--dark);position:relative;overflow:hidden}
+  .news::before{content:"\2731";position:absolute;top:30px;right:50px;font-size:120px;color:var(--dark);opacity:.08;line-height:1}
+  .news h3{font-family:var(--display);font-size:clamp(22px,2.4vw,30px);line-height:1.1;letter-spacing:-0.03em;font-weight:700}
+  .news h3 em{font-style:normal}
+  .news p{margin-top:12px;font-size:15px;color:rgba(13,23,46,0.78);max-width:420px}
+  .news-form{display:flex;gap:8px;background:rgba(13,23,46,0.08);padding:6px;border-radius:999px;border:1px solid rgba(13,23,46,0.12)}
+  .news-form input{flex:1;background:transparent;border:none;outline:none;padding:12px 18px;font:inherit;color:var(--dark);font-size:14.5px}
+  .news-form input::placeholder{color:rgba(13,23,46,0.5)}
+  .news-form button{background:var(--dark);color:#fff;padding:12px 22px;border-radius:999px;font-weight:500;font-size:14px;cursor:pointer;border:none;font-family:inherit}
+
+  /* footer */
+  footer{background:var(--footer-bg);color:var(--footer-text);padding:60px 0 32px;margin-top:80px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  .foot-brand .logo{color:#fff;margin-bottom:18px}
+  .foot-brand .logo b{color:#fff}
+  .foot-brand p{font-size:14.5px;line-height:1.6;max-width:320px}
+  .foot-col h5{color:#fff;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;font-weight:600}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .foot-col a{font-size:14.5px;transition:color .2s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);font-size:13px;flex-wrap:wrap;gap:20px}
+  .foot-bottom .links{display:flex;gap:28px}
+
+  @media (max-width: 1024px){
+    .featured{grid-template-columns:1fr}
+    .insights{grid-template-columns:repeat(2,1fr)}
+    .news{grid-template-columns:1fr;padding:36px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 640px){
+    .nav-links{display:none}
+    .container{padding:0 20px}
+    .insights{grid-template-columns:1fr}
+    .filter-bar{flex-direction:column;align-items:stretch}
+    .search{min-width:0}
+    .featured-body{padding:28px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="Weart Landing v2.html" class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M12 2.2c2.4 2.6 3.8 5.9 3.8 9.3v6.2H8.2v-6.2C8.2 8.1 9.6 4.8 12 2.2z"/>
+          <circle cx="12" cy="10.2" r="1.7" fill="#0D172E"/>
+          <path d="M8.2 14.5L5.6 17.6l3.1-.4z" opacity="0.85"/>
+          <path d="M15.8 14.5l2.6 3.1-3.1-.4z" opacity="0.85"/>
+          <path d="M11 19.5h2l-.4 2.3h-1.2z" opacity="0.6"/>
+        </svg>
+      </span>
+      <b>weart<span style="color:var(--primary)">.</span>hu</b>
+    </a>
+    <div class="nav-links">
+      <a href="Weart Landing v2.html#szolgaltatasok">Szolgáltatások</a>
+      <a href="Weart Rolunk.html">Rólunk</a>
+      <a href="Weart Landing v2.html#munkaink">Munkáink</a>
+      <a href="Weart Landing v2.html#araink">Áraink</a>
+      <a href="Weart Blog.html" class="active">Tudástár</a>
+      <a href="Weart Landing v2.html#kapcsolat">Kapcsolat</a>
+    </div>
+    <div class="nav-cta">
+      <a href="Weart Landing v2.html#kapcsolat" class="btn btn-ghost">Kérek ajánlatot</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <div class="crumbs">
+      <a href="Weart Landing v2.html">Főoldal</a>
+      <span class="sep">/</span>
+      <span>Tudástár</span>
+    </div>
+    <h1 class="page-h1">Cikkek, ami segít, hogy <span class="underline">jobban dönts.</span></h1>
+    <p class="page-lead">Magyar nyelven, kkv-tulajdonosoknak — érthetően arról, hogyan működik egy weboldal, mit érdemes elvárni egy fejlesztőtől, és hogyan hozhatsz ki belőle több vevőt.</p>
+
+    <div class="filter-bar">
+      <div class="chips">
+        <button class="chip active" data-cat="all">Összes</button>
+        <button class="chip" data-cat="Stratégia">Stratégia</button>
+        <button class="chip" data-cat="SEO">SEO</button>
+        <button class="chip" data-cat="Karbantartás">Karbantartás</button>
+        <button class="chip" data-cat="Webshop">Webshop</button>
+        <button class="chip" data-cat="Design">Design</button>
+        <button class="chip" data-cat="Sebesség">Sebesség</button>
+      </div>
+      <label class="search">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3"/></svg>
+        <input type="text" id="searchInput" placeholder="Keresés a cikkek között…" />
+      </label>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="container">
+    <div class="sec-tag">Kiemelt cikk</div>
+    <article class="featured">
+      <div class="featured-img">
+        <span class="corner-tag">Kiemelt</span>
+        <div class="big-glyph">01</div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-meta">
+          <span class="tag">Stratégia</span>
+          <span class="dot"></span>
+          <span>7 perc olvasás</span>
+          <span class="dot"></span>
+          <span>2026. május 6.</span>
+        </div>
+        <h2 class="featured-title">Mennyibe kerül egy weboldal Magyarországon 2026-ban?</h2>
+        <p class="featured-excerpt">Őszinte árkalkuláció: mit kapsz 200 ezerért, mit egy millióért, és mikor éri meg ennél is többet költeni? Konkrét példákkal, kkv-tulajdonosoknak.</p>
+        <div class="featured-author">
+          <div class="author-dot">B</div>
+          <div class="author-meta">
+            <b>Balázs</b>
+            <small>Fejlesztő · Társalapító</small>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <h2 class="sec-h">Összes cikk</h2>
+    <div class="insights" id="postGrid">
+      <article class="insight" data-cat="SEO" data-text="hogyan kerülj a google első oldalára helyi vállalkozóként google cégem keresőszavak vélemények">
+        <div class="insight-img b"><div class="glyph">02</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">SEO</span><span class="dot"></span><span>9 perc olvasás</span></div>
+          <h3 class="insight-title">Hogyan kerülj a Google első oldalára helyi vállalkozóként?</h3>
+          <p class="insight-excerpt">7 konkrét lépés, amit ma elkezdhetsz — Google Cégem, helyi keresőszavak, vélemények.</p>
+          <div class="insight-foot"><span>2026. április 28.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Karbantartás" data-text="3 dolog amit minden vállalkozónak ellenőriznie kell havonta weboldalán frissítések biztonsági mentés betöltési idő">
+        <div class="insight-img c"><div class="glyph">03</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Karbantartás</span><span class="dot"></span><span>5 perc olvasás</span></div>
+          <h3 class="insight-title">3 dolog, amit minden vállalkozónak ellenőriznie kell havonta a weboldalán.</h3>
+          <p class="insight-excerpt">Egyszerű ellenőrzőlista — frissítések, biztonsági mentés, betöltési idő. 10 perc alatt megvan.</p>
+          <div class="insight-foot"><span>2026. április 19.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Webshop" data-text="webshop indítás magyarországon barion simplepay foxpost gls számlázás woocommerce">
+        <div class="insight-img a"><div class="glyph">04</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Webshop</span><span class="dot"></span><span>11 perc olvasás</span></div>
+          <h3 class="insight-title">Webshop indítás Magyarországon — minden, amit nem mondanak el előre.</h3>
+          <p class="insight-excerpt">Fizetési modulok, csomagküldők, számlázás, ÁSZF. Egy komplett checklist 2026-os árakkal.</p>
+          <div class="insight-foot"><span>2026. április 11.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Sebesség" data-text="miért lassú a weboldalad 5 leggyakoribb hiba lighthouse google pagespeed">
+        <div class="insight-img f"><div class="glyph">05</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Sebesség</span><span class="dot"></span><span>6 perc olvasás</span></div>
+          <h3 class="insight-title">Miért lassú a weboldalad? Az 5 leggyakoribb hiba.</h3>
+          <p class="insight-excerpt">Túl nagy képek, felesleges bővítmények, és még 3 dolog, amit egy délután alatt javíthatsz.</p>
+          <div class="insight-foot"><span>2026. március 30.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Design" data-text="webdesign trendek 2026 minimalizmus tipográfia gradiens színpaletta">
+        <div class="insight-img d"><div class="glyph">06</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Design</span><span class="dot"></span><span>8 perc olvasás</span></div>
+          <h3 class="insight-title">Webdesign trendek 2026-ban — és melyik nem éri meg követni.</h3>
+          <p class="insight-excerpt">Mi az, ami tényleg konvertál, és mi csak a designer szakmai egójának szól? Őszinte értékelés.</p>
+          <div class="insight-foot"><span>2026. március 22.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Stratégia" data-text="szöveg copywriting weboldal kkv tulajdonosoknak ki a vevőd amit megkérdez">
+        <div class="insight-img e"><div class="glyph">07</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Stratégia</span><span class="dot"></span><span>10 perc olvasás</span></div>
+          <h3 class="insight-title">Mit írj a főoldalra, ha kkv-tulajdonos vagy?</h3>
+          <p class="insight-excerpt">A 4 kérdés, amire a látogatód 3 másodperc alatt választ akar — és hogyan adj rá választ.</p>
+          <div class="insight-foot"><span>2026. március 14.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="SEO" data-text="google cégem helyi seo vállalkozóknak térkép vélemények">
+        <div class="insight-img g"><div class="glyph">08</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">SEO</span><span class="dot"></span><span>6 perc olvasás</span></div>
+          <h3 class="insight-title">Google Cégem 2026 — a teljes útmutató helyi vállalkozóknak.</h3>
+          <p class="insight-excerpt">Hogyan állítsd be, mit írj, és milyen képeket tölts fel, hogy tényleg keressenek meg.</p>
+          <div class="insight-foot"><span>2026. március 04.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Karbantartás" data-text="biztonsági mentés wordpress mentés helyreállítás akkor mi van baj">
+        <div class="insight-img h"><div class="glyph">09</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Karbantartás</span><span class="dot"></span><span>7 perc olvasás</span></div>
+          <h3 class="insight-title">Megvan a biztonsági mentésed? Így ellenőrizd 5 perc alatt.</h3>
+          <p class="insight-excerpt">A baj nem akkor jön, ha menteni szeretnél — hanem amikor visszaállítani. Nézd meg, hogy működik-e.</p>
+          <div class="insight-foot"><span>2026. február 24.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+      <article class="insight" data-cat="Stratégia" data-text="weboldal vagy facebook oldal kkv kisvállalkozó 2026 melyik kell">
+        <div class="insight-img i"><div class="glyph">10</div></div>
+        <div class="insight-body">
+          <div class="insight-meta"><span class="tag">Stratégia</span><span class="dot"></span><span>8 perc olvasás</span></div>
+          <h3 class="insight-title">Weboldal vagy Facebook-oldal? — kisvállalkozóknak, 2026.</h3>
+          <p class="insight-excerpt">Mikor elég a Facebook, mikor van szükséged saját oldalra, és mikor mind a kettőre.</p>
+          <div class="insight-foot"><span>2026. február 12.</span><a href="#">Tovább →</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn disabled" aria-label="Előző oldal">←</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn" aria-label="Következő oldal">→</button>
+    </div>
+
+    <div class="news">
+      <div>
+        <h3>Iratkozz fel a hírlevelünkre.</h3>
+        <p>Havonta egyszer, 2-3 cikk, semmi spam. Magyar kkv-tulajdonosoknak — érthetően és pontokba szedve.</p>
+      </div>
+      <form class="news-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='Köszi! ✓'">
+        <input type="email" placeholder="email@cim.hu" required />
+        <button type="submit">Feliratkozom</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="Weart Landing v2.html" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M12 2.2c2.4 2.6 3.8 5.9 3.8 9.3v6.2H8.2v-6.2C8.2 8.1 9.6 4.8 12 2.2z"/>
+              <circle cx="12" cy="10.2" r="1.7" fill="#0D172E"/>
+              <path d="M8.2 14.5L5.6 17.6l3.1-.4z" opacity="0.85"/>
+              <path d="M15.8 14.5l2.6 3.1-3.1-.4z" opacity="0.85"/>
+              <path d="M11 19.5h2l-.4 2.3h-1.2z" opacity="0.6"/>
+            </svg>
+          </span>
+          <b>weart.hu</b>
+        </a>
+        <p>Weboldalak, webshopok, karbantartás — magyar kkv-knak. Budapesten dolgozunk, az ország bármely pontjáról szívesen fogadunk megkereséseket.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Szolgáltatások</h5>
+        <ul>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Új weboldal készítés</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Webshop indítás</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Régi oldal felújítása</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">SEO &amp; Google Ads</a></li>
+          <li><a href="Weart Landing v2.html#szolgaltatasok">Karbantartás</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>A csapat</h5>
+        <ul>
+          <li><a href="Weart Rolunk.html">Rólunk</a></li>
+          <li><a href="Weart Landing v2.html#munkaink">Munkáink</a></li>
+          <li><a href="Weart Blog.html">Tudástár</a></li>
+          <li><a href="Weart Landing v2.html#araink">Áraink</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Kapcsolat</h5>
+        <ul>
+          <li><a href="tel:+36301958114">+36 30 / 195 8114</a></li>
+          <li><a href="mailto:info@weart.hu">info@weart.hu</a></li>
+          <li>Király u. 26.<br />1061 Budapest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2017–2026 Weart Kft. · Adószám: 12345678-2-42</div>
+      <div class="links">
+        <a href="#">Adatvédelem</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Süti tájékoztató</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // category filter
+  const chips = document.querySelectorAll('.chip');
+  const posts = document.querySelectorAll('#postGrid .insight');
+  const search = document.getElementById('searchInput');
+  let activeCat = 'all';
+
+  function applyFilter(){
+    const q = (search.value || '').toLowerCase().trim();
+    posts.forEach(p => {
+      const cat = p.dataset.cat;
+      const txt = (p.dataset.text || '') + ' ' + p.textContent.toLowerCase();
+      const catOk = activeCat === 'all' || cat === activeCat;
+      const qOk = !q || txt.toLowerCase().includes(q);
+      p.style.display = (catOk && qOk) ? '' : 'none';
+    });
+  }
+
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    activeCat = c.dataset.cat;
+    applyFilter();
+  }));
+  search.addEventListener('input', applyFilter);
+</script>
+
+</body>
+</html>
