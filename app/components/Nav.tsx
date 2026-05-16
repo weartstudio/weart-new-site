@@ -24,7 +24,7 @@ export default function Nav() {
         </Link>
         <div className="nav-links">
           <Link href="/#szolgaltatasok">Szolgáltatások</Link>
-          <Link href="/#about">Rólunk</Link>
+          <Link href="/about" className={path === '/about' ? 'active' : ''}>Rólunk</Link>
           <Link href="/portfolio" className={path === '/portfolio' ? 'active' : ''}>Munkáink</Link>
           <Link href="/posts" className={path.startsWith('/posts') ? 'active' : ''}>Blog</Link>
           <Link href="/contact" className={path === '/contact' ? 'active' : ''}>Kapcsolat</Link>

@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="foot-col">
             <h5>A csapat</h5>
             <ul>
-              <li><Link href="/#about">Rólunk</Link></li>
+              <li><Link href="/about">Rólunk</Link></li>
               <li><Link href="/portfolio">Munkáink</Link></li>
               <li><Link href="/posts">Blog</Link></li>
               <li><Link href="/portfolio">Vélemények</Link></li>
