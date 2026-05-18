@@ -65,52 +65,26 @@ function Hero() {
           <div className="browser browser-main">
             <div className="browser-bar">
               <span className="dot"></span><span className="dot"></span><span className="dot"></span>
-              <span className="url"><span className="url-typing">weart.hu/portfolio/kovacs-kft</span></span>
-              <span className="url-loader" aria-hidden="true"></span>
+              <span className="url">weart.hu/portfolio/kovacs-kft</span>
             </div>
             <div className="browser-body">
-              <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
-                <div className="mock-pill ghost mock-anim-pill">Rólunk</div>
-                <div className="mock-pill ghost mock-anim-pill">Szolgáltatás</div>
-                <div className="mock-pill ghost mock-anim-pill">Kapcsolat</div>
+              <div className="mock-nav">
+                <div className="mock-pill ghost">Rólunk</div>
+                <div className="mock-pill ghost">Szolgáltatás</div>
+                <div className="mock-pill ghost">Kapcsolat</div>
               </div>
-              <div className="mock-h mock-h-anim">Megbízható szakember,<br /><em>otthon és nálad is.</em></div>
-              <p className="mock-p mock-p-anim">Lakatos- és vasszerkezet készítés Pest megyében. Több mint 18 éve.</p>
-              <div className="mock-row mock-row-anim">
-                <div className="mock-pill mock-cta-pulse">Kérek árajánlatot</div>
+              <div className="mock-h">Megbízható szakember,<br /><em>otthon és nálad is.</em></div>
+              <p className="mock-p">Lakatos- és vasszerkezet készítés Pest megyében. Több mint 18 éve.</p>
+              <div className="mock-row">
+                <div className="mock-pill">Kérek árajánlatot</div>
                 <div className="mock-pill ghost">Munkáink</div>
               </div>
-              <div className="mock-stripe mock-stripe-anim"></div>
-              <div className="mock-stripe short mock-stripe-anim"></div>
-              <div className="mock-stripe shorter mock-stripe-anim"></div>
-              <div className="mock-cursor" aria-hidden="true">
-                <svg viewBox="0 0 16 18" width="18" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l13 7-6 1.5L5 16z" fill="#fff" stroke="#0D172E" strokeWidth="1.2" strokeLinejoin="round"/></svg>
-              </div>
-              <div className="mock-toast" aria-hidden="true">
-                <div className="mock-toast-ico">✓</div>
-                <div>
-                  <div className="mock-toast-h">Új ajánlatkérés</div>
-                  <div className="mock-toast-p">Kovács István · most</div>
-                </div>
-              </div>
+              <div className="mock-stripe"></div>
+              <div className="mock-stripe short"></div>
+              <div className="mock-stripe shorter"></div>
             </div>
           </div>
-          <ScoreCard cls="score-1" value={100} label="Sebesség" />
-          <ScoreCard cls="score-2" value={100} label="Jó gyakorlat" />
-          <ScoreCard cls="score-3" value={98} label="SEO" />
-          <ScoreCard cls="score-4" value={100} label="Akadálymentesség" />
-        </div>
-      </div>
-
-      <div className="container">
-        <div className="trust">
-          <div className="trust-label">Akiknek már dolgoztunk</div>
-          <div className="trust-marquee">
-            <div className="trust-track">
-              <ClientLogos />
-              <ClientLogos />
-            </div>
-          </div>
+          <ScoreCard cls="score-solo" value={100} label="Lighthouse" />
         </div>
       </div>
     </section>
@@ -240,34 +214,47 @@ function Team() {
           </div>
           <p className="sec-sub">Egy fejlesztő, egy projektmenedzser. Aki megtervezi az oldaladat, az is fogja kódolni; aki felveszi a telefont, az tudja, hol tart a projekt.</p>
         </div>
-        <div className="team-grid reveal">
-          <div className="team-card">
-            <div className="team-photo balazs">B</div>
-            <div className="team-info">
-              <div className="team-name">Balázs</div>
-              <div className="team-role">Fejlesztő · Társalapító</div>
-              <p className="team-bio">9 éve foglalkozik weboldalakkal. WordPress, WooCommerce és modern frontend a szakterülete. Hisz benne, hogy a gyors weboldal nem luxus, hanem alap.</p>
-              <div className="team-tags">
-                <span className="team-tag">WordPress</span>
-                <span className="team-tag">WooCommerce</span>
-                <span className="team-tag">Sebesség</span>
-                <span className="team-tag">SEO</span>
+        <div className="team-panel reveal">
+          <div className="team-people">
+            <article className="team-card">
+              <span className="team-idx">01</span>
+              <div className="team-photo balazs">B</div>
+              <div className="team-info">
+                <div className="team-name">Balázs</div>
+                <div className="team-role">Fejlesztő · Társalapító</div>
+                <p className="team-bio">9 éve foglalkozik weboldalakkal. WordPress, WooCommerce és modern frontend a szakterülete. Hisz benne, hogy a gyors weboldal nem luxus, hanem alap.</p>
+                <div className="team-tags">
+                  <span className="team-tag">WordPress</span>
+                  <span className="team-tag">WooCommerce</span>
+                  <span className="team-tag">Sebesség</span>
+                  <span className="team-tag">SEO</span>
+                </div>
               </div>
-            </div>
+            </article>
+            <article className="team-card">
+              <span className="team-idx">02</span>
+              <div className="team-photo fanni">
+                <Image src="/fanni-small.jpg" alt="Ágoston Fanni" width={92} height={92} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div className="team-info">
+                <div className="team-name">Ágoston Fanni</div>
+                <div className="team-role">Projektmenedzser · Társalapító</div>
+                <p className="team-bio">Ő a kapocs közted és a fejlesztés között. Tartja a határidőket, magyarázza érthetően a műszaki dolgokat, és gondoskodik róla, hogy ne maradjon nyitott kérdés.</p>
+                <div className="team-tags">
+                  <span className="team-tag">Ügyfélkapcsolat</span>
+                  <span className="team-tag">Tervezés</span>
+                  <span className="team-tag">Copywriting</span>
+                  <span className="team-tag">Onboarding</span>
+                </div>
+              </div>
+            </article>
           </div>
-          <div className="team-card">
-            <div className="team-photo fanni">
-              <Image src="/fanni-small.jpg" alt="Fanni" width={84} height={84} style={{ borderRadius: '50%', objectFit: 'cover' }} />
-            </div>
-            <div className="team-info">
-              <div className="team-name">Ágoston Fanni</div>
-              <div className="team-role">Projektmenedzser · Társalapító</div>
-              <p className="team-bio">Ő a kapocs közted és a fejlesztés között. Tartja a határidőket, magyarázza érthetően a műszaki dolgokat, és gondoskodik róla, hogy ne maradjon nyitott kérdés.</p>
-              <div className="team-tags">
-                <span className="team-tag">Ügyfélkapcsolat</span>
-                <span className="team-tag">Tervezés</span>
-                <span className="team-tag">Copywriting</span>
-                <span className="team-tag">Onboarding</span>
+          <div className="trust trust-team">
+            <div className="trust-label">Akiknek már dolgoztunk</div>
+            <div className="trust-marquee">
+              <div className="trust-track">
+                <ClientLogos />
+                <ClientLogos />
               </div>
             </div>
           </div>

@@ -2,22 +2,14 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { Phone, Mail, Calendar, Check, MapPin, Clock, Briefcase } from 'lucide-react';
+import { Phone, Mail, Calendar, Check } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
+import Testimonials from '../components/Testimonials';
 
-const faqItems = [
-  { q: 'Mi történik az ajánlatkérés után?', a: 'Fanni egy munkanapon belül e-mailben válaszol, és felajánl 2-3 időpontot egy 30 perces hívásra. A híváson végigmegyünk azon, mire van szükséged. 2-3 nappal később kapsz egy fix árajánlatot tételesen — nincs „kb. ennyibe kerül", konkrét számot adunk.' },
-  { q: 'Tényleg ingyenes a konzultáció? Nincs sales?', a: 'Igen, és nem. A 30 perc tényleg ingyenes és kötelezettségmentes. Sem a hívás után, sem azt követően nem kapsz „követő" e-maileket — egy ajánlatot küldünk, és ha érdekel, te jelentkezel vissza.' },
-  { q: 'Mennyi idő mire elkészül egy oldal?', a: 'Egyszerűbb bemutatkozó oldal 3-4 hét, komplexebb cégoldal vagy webshop 5-8 hét, ha minden tartalom időben rendelkezésre áll. A pontos határidőt mindig az ajánlatban garantáljuk, és kötbérezzük is.' },
-  { q: 'Milyen tartalmakra lesz szükségem?', a: 'Általában: logó (vagy csak ötlet — mi is csinálunk), pár fotó a cégről/munkáidról, és a szövegekhez egy kezdő vázlat. Ha nincs még semmi, ne aggódj — a konzultáción végigvesszük, és segítünk összeszedni.' },
-  { q: 'Vidékről is dolgoztok ügyfelekkel?', a: 'Természetesen. Az ország bármely pontjáról szívesen fogadunk megkereséseket, az egész folyamat online is megy: konzultáció Meet-en, anyagok e-mailben, közös wireframe a böngészőben. Eddig 14 megyéből volt ügyfelünk.' },
-  { q: 'Mi van, ha közben meggondolom magam?', a: 'Az ajánlat ingyenes és nem köt semmihez. Ha az ajánlat után nemet mondasz, az teljesen rendben van — nem zaklatunk vele utólag. A szerződés aláírása után 14 napig még díjmentesen visszaléphetsz.' },
-];
 
 export default function KapcsolatPage() {
-  const [openFaq, setOpenFaq] = useState(0);
   const [activeTopic, setActiveTopic] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -27,13 +19,13 @@ export default function KapcsolatPage() {
 
       <header className="page-head">
         <div className="container">
-          <div className="sec-tag">Kapcsolat</div>
+          <div className="page-eyebrow">Kapcsolat</div>
           <h1 className="page-h1">Beszéljünk az<br/><span className="underline">oldaladról.</span></h1>
           <p className="page-lead">Mondd el pár mondatban, mire van szükséged — egy munkanapon belül válaszolunk, és időpontot egyeztetünk egy díjmentes konzultációra. Nincs kötelezettség, nincs marketing duma.</p>
 
           <div className="head-meta">
             <div className="meta-item">
-              <div className="num"><span className="pulse"></span>1 munkanap</div>
+              <div className="num">1 munkanap</div>
               <div className="lbl">Válaszadási idő</div>
             </div>
             <div className="meta-item">
@@ -222,77 +214,9 @@ export default function KapcsolatPage() {
                 <div className="step-time">3–6 hét átfutás</div>
               </div>
             </div>
+          <div style={{ gridColumn: '1 / -1' }}>
+            <Testimonials naked />
           </div>
-        </div>
-      </section>
-
-      {/* Address + FAQ */}
-      <section className="sec">
-        <div className="container">
-          <div className="sec-tag">Iroda &amp; gyakori kérdések</div>
-          <h2 className="sec-h">Megtalálsz minket <em>Budapesten</em> — vagy bárhonnan online.</h2>
-
-          <div className="info-grid">
-            <div className="address-card reveal">
-              <div className="map" aria-hidden="true">
-                <div className="map-grid"></div>
-                <div className="map-roads">
-                  <div className="map-road" style={{ left: 0, right: 0, top: '42%', height: 6 }}></div>
-                  <div className="map-road" style={{ left: '38%', top: 0, bottom: 0, width: 5 }}></div>
-                  <div className="map-road" style={{ left: 0, right: 0, top: '72%', height: 3, background: 'rgba(255,255,255,0.7)' }}></div>
-                  <div className="map-road" style={{ left: '18%', top: 0, bottom: 0, width: 2, background: 'rgba(255,255,255,0.6)' }}></div>
-                  <div className="map-road" style={{ left: '72%', top: 0, bottom: 0, width: 3, background: 'rgba(255,255,255,0.7)' }}></div>
-                </div>
-                <div className="map-park" style={{ left: '60%', top: '8%', width: '32%', height: '28%' }}></div>
-                <div className="map-park" style={{ left: '6%', top: '78%', width: '24%', height: '18%' }}></div>
-                <div className="map-pin">
-                  <div className="ring"></div>
-                  <div className="pin"></div>
-                </div>
-              </div>
-
-              <div className="address-meta">
-                <div className="addr-row">
-                  <span className="addr-ico">
-                    <MapPin size={18} />
-                  </span>
-                  <div className="addr-text">
-                    <small>Iroda</small>
-                    <b>Király u. 26.</b>
-                    <span>1061 Budapest, Magyarország</span>
-                  </div>
-                </div>
-                <div className="addr-row">
-                  <span className="addr-ico">
-                    <Clock size={18} />
-                  </span>
-                  <div className="addr-text">
-                    <small>Nyitvatartás</small>
-                    <b>H–P · 9:00 – 17:00</b>
-                    <span>Hétvégén csak előre egyeztetett időpontban</span>
-                  </div>
-                </div>
-                <div className="addr-row">
-                  <span className="addr-ico">
-                    <Briefcase size={18} />
-                  </span>
-                  <div className="addr-text">
-                    <small>Cégadatok</small>
-                    <b>Weart Kft.</b>
-                    <span>Adószám: 12345678-2-42 · Cgj.: 01-09-123456</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="faq reveal">
-              {faqItems.map((it, idx) => (
-                <div key={idx} className={`faq-item${openFaq === idx ? ' open' : ''}`} onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}>
-                  <div className="faq-q">{it.q}<span className="pls" /></div>
-                  <div className="faq-a">{it.a}</div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
