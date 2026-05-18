@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Phone, Mail } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import TechStack from '../components/TechStack';
+import FoundersTabs from '../components/FoundersTabs';
 import RevealWrapper from '../components/RevealWrapper';
 
 export const metadata: Metadata = {
@@ -108,7 +110,7 @@ function Story() {
 
 function Founders() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }}>
+    <section className="sec founders-spread" style={{ paddingTop: 0 }}>
       <div className="container">
         <div className="sec-head reveal">
           <div>
@@ -125,125 +127,25 @@ function Founders() {
           </p>
         </div>
 
-        <div className="founders reveal">
-          <div className="founder">
-            <div className="founder-head">
-              <div className="team-photo balazs">B</div>
-              <div>
-                <div className="team-name">Egyed Balázs</div>
-                <div className="team-role">Fejlesztő · Alapító</div>
-              </div>
-            </div>
-            <div className="founder-bio">
-              <p>
-                Programtervező informatikus (ELTE, Informatikai Kar), aki közel
-                egy évtizede a WordPress és WooCommerce köré építi a karrierjét.
-                Nem sablonból dolgozik: pontosan azt a funkciót fejleszti le
-                kódból, amire a vállalkozásodnak szüksége van — minimális
-                bővítménnyel, gyorsan, biztonságosan.
-              </p>
-              <p>
-                Az ausztrál <b>Envato</b> piactéren a sablonjait világszerte
-                700+ oldalon használják, 50+ országban. Ingyenes WordPress
-                pluginokat ad ki, részt vesz a magyar fordításokban, és
-                fejlesztői eszközöket oszt meg nyíltan — mert a szakmai
-                közösség neki is sokat adott.
-              </p>
-            </div>
-            <div className="founder-points">
-              <div className="founder-point">
-                <span className="fp-ico">⚙</span>
-                <span>
-                  <b>Egyedi WordPress &amp; WooCommerce</b> — saját kód, nem
-                  vásárolt téma feltuningolva.
-                </span>
-              </div>
-              <div className="founder-point">
-                <span className="fp-ico">⚡</span>
-                <span>
-                  <b>Sebesség és SEO</b> — Lighthouse 95+ mobilon is, hogy a
-                  Google és a látogató is szeresse.
-                </span>
-              </div>
-              <div className="founder-point">
-                <span className="fp-ico">↗</span>
-                <span>
-                  <b>Időtálló alap</b> — évekkel később is bővíthető, nem kell
-                  nullról kezdeni.
-                </span>
-              </div>
-            </div>
-            <div className="team-tags">
-              <span className="team-tag">WordPress</span>
-              <span className="team-tag">WooCommerce</span>
-              <span className="team-tag">React</span>
-              <span className="team-tag">Sebesség</span>
-              <span className="team-tag">SEO</span>
-            </div>
-          </div>
+        <FoundersTabs />
 
-          <div className="founder">
-            <div className="founder-head">
-              <div className="team-photo fanni">
-                <Image
-                  src="/fanni-small.jpg"
-                  alt="Ágoston Fanni"
-                  width={84}
-                  height={84}
-                  style={{ borderRadius: '50%', objectFit: 'cover' }}
-                />
-              </div>
-              <div>
-                <div className="team-name">Ágoston Fanni</div>
-                <div className="team-role">Projektmenedzser · Társalapító</div>
-              </div>
-            </div>
-            <div className="founder-bio">
-              <p>
-                Ő a kapocs közted és a fejlesztés között. Hozzá fut be minden
-                megkeresés: visszahív, végigveszi veled, mire van szükséged, és
-                egy munkanapon belül konkrét, fix árajánlatot küld — nincs
-                sales-folyamat, nincs öt e-mailes „követés”.
-              </p>
-              <p>
-                A projekt alatt ő tartja a határidőket, fordítja érthető
-                magyarra a műszaki döntéseket, és gondoskodik róla, hogy ne
-                maradjon nyitott kérdés. <b>Te csak szólsz</b> — a többit
-                intézi.
-              </p>
-            </div>
-            <div className="founder-points">
-              <div className="founder-point">
-                <span className="fp-ico">☎</span>
-                <span>
-                  <b>Egy munkanapon belül válasz</b> — és egy valódi emberi
-                  hang, nem automata.
-                </span>
-              </div>
-              <div className="founder-point">
-                <span className="fp-ico">◷</span>
-                <span>
-                  <b>Tartott határidők</b> — tudod, mikor mi készül el, meglepetés
-                  nélkül.
-                </span>
-              </div>
-              <div className="founder-point">
-                <span className="fp-ico">✎</span>
-                <span>
-                  <b>Érthető fordítás</b> — a műszaki dolgokat magyarul, nem
-                  fejlesztőül kapod.
-                </span>
-              </div>
-            </div>
-            <div className="team-tags">
-              <span className="team-tag">Ügyfélkapcsolat</span>
-              <span className="team-tag">Projektvezetés</span>
-              <span className="team-tag">Tervezés</span>
-              <span className="team-tag">Copywriting</span>
-              <span className="team-tag">Onboarding</span>
-            </div>
-          </div>
-        </div>
+        <figure className="duo-quote reveal">
+          <span className="dq-mark" aria-hidden="true">”</span>
+          <blockquote className="dq-text">
+            „Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol{' '}
+            <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb
+            projekt nekik.”
+          </blockquote>
+          <figcaption className="dq-foot">
+            <span className="dq-who">
+              <b>Dr. Halász Eszter</b>
+              <span>Klinikaigazgató · AurumMed</span>
+            </span>
+            <span className="dq-stat">
+              <b>2</b> fő, akivel végig beszélt — nem 6
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
@@ -453,40 +355,6 @@ function MarqueeStrip() {
   );
 }
 
-function Quote() {
-  return (
-    <section className="sec" style={{ paddingTop: 0 }}>
-      <div className="container">
-        <div className="cluster reveal">
-          <div className="testimonial-inline">
-            <div className="ti-side">
-              <div className="ti-mono">Vélemény · AurumMed</div>
-              <div className="ti-author">
-                <div className="ti-avatar b">D</div>
-                <div>
-                  <div className="ti-name">Dr. Halász Eszter</div>
-                  <div className="ti-role">Klinikaigazgató · AurumMed</div>
-                </div>
-              </div>
-            </div>
-            <div className="ti-quote">
-              „Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol{' '}
-              <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb
-              projekt nekik.”
-            </div>
-            <div className="ti-stat">
-              <div className="ti-stat-big">
-                2<small>fő</small>
-              </div>
-              <div className="ti-stat-lbl">akivel végig beszéltem, nem 6</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function BigCTA() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
@@ -559,10 +427,10 @@ export default function AboutPage() {
       <Hero />
       <Story />
       <Founders />
+      <TechStack />
       <Values />
       <MarqueeStrip />
       <Credibility />
-      <Quote />
       <BigCTA />
       <Footer />
       <RevealWrapper />

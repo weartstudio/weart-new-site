@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Phone, Mail } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import ClientLogos from '../components/ClientLogos';
 import RevealWrapper from '../components/RevealWrapper';
 import { getProjects, type WPProject } from '../lib/wordpress';
 import type { Metadata } from 'next';
@@ -129,6 +130,16 @@ export default async function MunkainkPage() {
           <div className="page-head-row">
             <p className="page-lead">Néhány kiválasztott projekt az elmúlt évekből — weboldalak, webshopok és egyedi fejlesztések. Mindegyik mögött egy konkrét igény és egy elégedett ügyfél.</p>
           </div>
+
+          <div className="trust trust-head">
+            <div className="trust-label">Akiknek már dolgoztunk</div>
+            <div className="trust-marquee">
+              <div className="trust-track">
+                <ClientLogos />
+                <ClientLogos />
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -156,7 +167,8 @@ export default async function MunkainkPage() {
 
           <section className="big-cta reveal" id="cta">
             <div>
-              <h2>Tied lehet a <em>következő</em><br />referencia.</h2>
+              <div className="meta">2026 Q3-ra még 2 hely van</div>
+              <h2 style={{ marginTop: 18 }}>Tied lehet a <em>következő</em><br />referencia.</h2>
               <p>Ha érdekel, írj egy mondatot: mi a vállalkozásod, mi hiányzik a mostani oldaladból. Egy munkanapon belül válaszolunk konkrét számmal.</p>
               <div className="ctas">
                 <Link href="/contact" className="btn btn-primary">Ingyenes árajánlat <span className="arrow">→</span></Link>

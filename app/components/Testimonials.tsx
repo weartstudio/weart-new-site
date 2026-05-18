@@ -21,7 +21,7 @@ const items = [
   }
 ];
 
-export default function Testimonials() {
+export default function Testimonials({ naked }: { naked?: boolean } = {}) {
   const [i, setI] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setI(v => (v + 1) % items.length), 6500);
@@ -29,7 +29,10 @@ export default function Testimonials() {
   }, []);
   const t = items[i];
   return (
-    <div className="testimonial testimonial-rotator" style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.08)', color: '#fff' }}>
+    <div
+      className={`testimonial testimonial-rotator${naked ? ' testimonial-naked' : ''}`}
+      style={naked ? { color: '#fff' } : { background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.08)', color: '#fff' }}
+    >
       <div className="quote-mark" aria-hidden="true">&ldquo;</div>
       <div className="testimonial-slide" key={i} style={{ animation: 'tFade .6s ease both', display: 'contents' }}>
         <div className="quote" style={{ color: '#fff' }}>{t.quote}</div>

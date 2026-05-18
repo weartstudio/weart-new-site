@@ -39,7 +39,11 @@
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
       "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\(json.dumps\\(d.get\\('scripts'\\),indent=1\\)\\)\")",
       "Bash(echo \"eslint exit $?\")",
-      "Bash(echo \"eslint $?\")"
+      "Bash(echo \"eslint $?\")",
+      "Bash(lsof -nP -iTCP -sTCP:LISTEN)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(grep -iE \"\\\\.\\(jpg|jpeg|png|webp|avif|svg\\)$|fanni|balazs|team\")",
+      "Bash(echo \"EXIT:$?\")"
     ]
   }
 }
