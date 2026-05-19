@@ -43,7 +43,8 @@
       "Bash(lsof -nP -iTCP -sTCP:LISTEN)",
       "mcp__Claude_Preview__preview_start",
       "Bash(grep -iE \"\\\\.\\(jpg|jpeg|png|webp|avif|svg\\)$|fanni|balazs|team\")",
-      "Bash(echo \"EXIT:$?\")"
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(node -p \"require\\('next/package.json'\\).version\")"
     ]
   }
 }

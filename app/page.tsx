@@ -7,7 +7,12 @@ import RevealWrapper from './components/RevealWrapper';
 import ScoreCard from './components/ScoreCard';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import { getPosts, type WPPost } from './lib/wordpress';
+import { getPosts, getProjects, type WPPost, type WPProject } from './lib/wordpress';
+
+// A hero böngésző-makett véletlen valós projektet mutat oldalbetöltésenként,
+// ezért a kezdőlapot kérésenként rendereljük (lásd Next 16 docs:
+// guides/caching-without-cache-components → route segment config `dynamic`).
+export const dynamic = 'force-dynamic';
 
 const clientLogos = [
   { name: 'Kovács Lakatos', tag: 'kisipar', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 30 L18 6 L30 30"/><path d="M11 22 L25 22"/><circle cx="18" cy="14" r="2" fill="currentColor"/></svg> },
@@ -36,7 +41,11 @@ function ClientLogos() {
   );
 }
 
-function Hero() {
+function Hero({ project }: { project: WPProject | null }) {
+  const shot = project?.image ?? project?.imageSecondary ?? null;
+  const domain = project?.website
+    ? project.website.replace(/^https?:\/\//, '').replace(/\/.*$/, '')
+    : 'weart.hu/portfolio';
   return (
     <section className="hero">
       <div className="container hero-grid">
@@ -65,26 +74,33 @@ function Hero() {
           <div className="browser browser-main">
             <div className="browser-bar">
               <span className="dot"></span><span className="dot"></span><span className="dot"></span>
-              <span className="url">weart.hu/portfolio/kovacs-kft</span>
+              <span className="url">{domain}</span>
             </div>
-            <div className="browser-body">
-              <div className="mock-nav">
-                <div className="mock-pill ghost">Rólunk</div>
-                <div className="mock-pill ghost">Szolgáltatás</div>
-                <div className="mock-pill ghost">Kapcsolat</div>
-              </div>
-              <div className="mock-h">Megbízható szakember,<br /><em>otthon és nálad is.</em></div>
-              <p className="mock-p">Lakatos- és vasszerkezet készítés Pest megyében. Több mint 18 éve.</p>
-              <div className="mock-row">
-                <div className="mock-pill">Kérek árajánlatot</div>
-                <div className="mock-pill ghost">Munkáink</div>
-              </div>
-              <div className="mock-stripe"></div>
-              <div className="mock-stripe short"></div>
-              <div className="mock-stripe shorter"></div>
+            <div className="browser-body shot-body">
+              {shot ? (
+                <Image
+                  className="shot-img"
+                  src={shot.url}
+                  alt={shot.alt || project!.title}
+                  fill
+                  sizes="(max-width: 1024px) 400px, 520px"
+                  priority
+                />
+              ) : (
+                <span className="shot-fallback" aria-hidden="true" />
+              )}
+              {project?.clientName && (
+                <div className="shot-chip">
+                  <b>{project.clientName}</b>
+                  {project.clientRole && <small>{project.clientRole}</small>}
+                </div>
+              )}
             </div>
           </div>
-          <ScoreCard cls="score-solo" value={100} label="Lighthouse" />
+          <ScoreCard cls="score-1" value={100} label="Ügyfél-elégedettség" />
+          <ScoreCard cls="score-2" value={100} label="Határidőre átadva" />
+          <ScoreCard cls="score-3" value={98} label="Ajánlana minket" />
+          <ScoreCard cls="score-4" value={100} label="Mobilbarát" />
         </div>
       </div>
     </section>
@@ -411,13 +427,18 @@ function BigCTA() {
 }
 
 export default async function Home() {
-  const allPosts = await getPosts();
+  const [allPosts, projects] = await Promise.all([getPosts(), getProjects()]);
   const latestPosts = allPosts.slice(0, 3);
+  const withImage = projects.filter((p) => p.image || p.imageSecondary);
+  const heroProject =
+    withImage.length > 0
+      ? withImage[Math.floor(Math.random() * withImage.length)]
+      : null;
 
   return (
     <>
       <Nav />
-      <Hero />
+      <Hero project={heroProject} />
       <Services />
       <Team />
       <WhyUs />
