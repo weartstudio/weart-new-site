@@ -292,7 +292,13 @@ function WhyUs() {
               </div>
             </div>
           </div>
-          <Testimonials />
+          <Testimonials
+            variant="dark"
+            quote={<>Sokakkal egyeztettem az új honlap miatt, de itt éreztem először, hogy <em>tényleg értik, mit csinálok.</em> Két hónap után már egyértelműen több ajánlatkérés érkezik.</>}
+            name="Kovács István"
+            role="Tulajdonos · Kovács Lakatos Kft."
+            stat={<><b>9 év</b> ugyanaz a két ember</>}
+          />
         </div>
       </div>
     </section>

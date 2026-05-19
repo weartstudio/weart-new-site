@@ -6,6 +6,7 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import TechStack from '../components/TechStack';
 import FoundersTabs from '../components/FoundersTabs';
+import Testimonials from '../components/Testimonials';
 import RevealWrapper from '../components/RevealWrapper';
 
 export const metadata: Metadata = {
@@ -129,23 +130,13 @@ function Founders() {
 
         <FoundersTabs />
 
-        <figure className="duo-quote reveal">
-          <span className="dq-mark" aria-hidden="true">”</span>
-          <blockquote className="dq-text">
-            „Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol{' '}
-            <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb
-            projekt nekik.”
-          </blockquote>
-          <figcaption className="dq-foot">
-            <span className="dq-who">
-              <b>Dr. Halász Eszter</b>
-              <span>Klinikaigazgató · AurumMed</span>
-            </span>
-            <span className="dq-stat">
-              <b>2</b> fő, akivel végig beszélt — nem 6
-            </span>
-          </figcaption>
-        </figure>
+        <Testimonials
+          variant="light"
+          quote={<>„Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb projekt nekik.”</>}
+          name="Dr. Halász Eszter"
+          role="Klinikaigazgató · AurumMed"
+          stat={<><b>2</b> fő, akivel végig beszélt — nem 6</>}
+        />
       </div>
     </section>
   );

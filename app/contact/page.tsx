@@ -215,7 +215,13 @@ export default function KapcsolatPage() {
               </div>
             </div>
           <div style={{ gridColumn: '1 / -1' }}>
-            <Testimonials naked />
+            <Testimonials
+              variant="dark"
+              quote={<>A webshopunk az indulás óta <em>háromszor annyi rendelést hoz,</em> mint a régi. A betanítás után a feleségem is magabiztosan kezeli a termékeket.</>}
+              name="Szabó Tamás"
+              role="Alapító · Bortrezor.hu"
+              stat={<><b>3×</b> annyi rendelés</>}
+            />
           </div>
           </div>
         </div>
