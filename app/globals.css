@@ -511,6 +511,8 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
 .submit:hover { transform: translateY(-1px); box-shadow: 0 12px 28px -10px rgba(13,23,46,0.4); }
 .submit .arrow { transition: transform .2s; }
 .submit:hover .arrow { transform: translateX(3px); }
+.submit:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+.form-error { margin-top: 16px; font-size: 13.5px; line-height: 1.5; color: var(--accent); background: rgba(255,107,74,0.08); border: 1px solid rgba(255,107,74,0.25); border-radius: 12px; padding: 12px 16px; }
 
 /* "Mi történik ezután" */
 .next-card { background: linear-gradient(135deg, var(--dark) 0%, #1a2752 100%); color: #fff; border-radius: 24px; padding: 48px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; position: relative; overflow: hidden; }

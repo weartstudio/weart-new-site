@@ -1,0 +1,181 @@
+{
+  "0": {
+    "title": "weART — Kapcsolat / Ajánlatkérés",
+    "description": "A weart.hu kapcsolat oldal ajánlatkérő űrlapja.",
+    "labelPlacement": "top_label",
+    "descriptionPlacement": "below",
+    "subLabelPlacement": "below",
+    "button": {
+      "type": "text",
+      "text": "Küldöm az ajánlatkérést",
+      "imageUrl": ""
+    },
+    "version": "2.8",
+    "id": 5,
+    "useCurrentUserAsAuthor": true,
+    "enableHoneypot": false,
+    "enableAnimation": false,
+    "requireLogin": false,
+    "fields": [
+      {
+        "type": "radio",
+        "id": 1,
+        "label": "Mivel tudunk segíteni?",
+        "adminLabel": "Téma",
+        "isRequired": true,
+        "size": "large",
+        "enableChoiceValue": false,
+        "choices": [
+          { "text": "Új weboldal", "value": "Új weboldal", "isSelected": false },
+          { "text": "Webshop indítás", "value": "Webshop indítás", "isSelected": false },
+          { "text": "Régi oldal felújítása", "value": "Régi oldal felújítása", "isSelected": false },
+          { "text": "SEO & Google Ads", "value": "SEO & Google Ads", "isSelected": false },
+          { "text": "Karbantartás", "value": "Karbantartás", "isSelected": false },
+          { "text": "Egyéb / nem tudom még", "value": "Egyéb / nem tudom még", "isSelected": false }
+        ],
+        "inputs": null,
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "text",
+        "id": 2,
+        "label": "Neved",
+        "adminLabel": "Név",
+        "isRequired": true,
+        "size": "large",
+        "placeholder": "Kovács István",
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "text",
+        "id": 3,
+        "label": "Cégnév",
+        "adminLabel": "Cégnév",
+        "isRequired": false,
+        "size": "large",
+        "placeholder": "Kovács Lakatos Kft.",
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "email",
+        "id": 4,
+        "label": "E-mail cím",
+        "adminLabel": "E-mail",
+        "isRequired": true,
+        "size": "large",
+        "placeholder": "istvan@cegnev.hu",
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "phone",
+        "id": 5,
+        "label": "Telefonszám",
+        "adminLabel": "Telefon",
+        "isRequired": false,
+        "size": "large",
+        "phoneFormat": "international",
+        "placeholder": "+36 30 123 4567",
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "radio",
+        "id": 6,
+        "label": "Tervezett keret",
+        "adminLabel": "Keret",
+        "isRequired": false,
+        "size": "large",
+        "enableChoiceValue": false,
+        "choices": [
+          { "text": "500e Ft alatt", "value": "500e Ft alatt", "isSelected": false },
+          { "text": "500e – 1,5M", "value": "500e – 1,5M", "isSelected": false },
+          { "text": "1,5M – 3M", "value": "1,5M – 3M", "isSelected": false },
+          { "text": "3M felett / nem tudom", "value": "3M felett / nem tudom", "isSelected": false }
+        ],
+        "inputs": null,
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "textarea",
+        "id": 7,
+        "label": "Pár sor arról, mire gondolsz",
+        "adminLabel": "Üzenet",
+        "isRequired": true,
+        "size": "large",
+        "placeholder": "Pl.: Lakatos cég vagyunk Pest megyében, szükségünk lenne egy egyszerű bemutatkozó oldalra árajánlatkérővel és galériával.",
+        "formId": 5,
+        "pageNumber": 1
+      },
+      {
+        "type": "consent",
+        "id": 8,
+        "label": "Adatkezelési tájékoztató",
+        "adminLabel": "Hozzájárulás",
+        "isRequired": true,
+        "size": "large",
+        "checkboxLabel": "Elolvastam és elfogadom az adatkezelési tájékoztatót. Az adataimat kizárólag a megkeresésem megválaszolására használjátok.",
+        "description": "",
+        "inputs": [
+          { "id": "8.1", "label": "Consent", "name": "" },
+          { "id": "8.2", "label": "Text", "name": "" },
+          { "id": "8.3", "label": "Description", "name": "" }
+        ],
+        "formId": 5,
+        "pageNumber": 1
+      }
+    ],
+    "notifications": {
+      "wa1notifyadmin01": {
+        "id": "wa1notifyadmin01",
+        "isActive": true,
+        "to": "info@weart.hu",
+        "name": "Admin értesítés — új ajánlatkérés",
+        "event": "form_submission",
+        "toType": "email",
+        "subject": "Új ajánlatkérés — {Mivel tudunk segíteni?:1} ({Neved:2})",
+        "message": "Új ajánlatkérés érkezett a weart.hu kapcsolat oldalról.\n\nTéma: {Mivel tudunk segíteni?:1}\nNév: {Neved:2}\nCégnév: {Cégnév:3}\nE-mail: {E-mail cím:4}\nTelefon: {Telefonszám:5}\nTervezett keret: {Tervezett keret:6}\n\nÜzenet:\n{Pár sor arról, mire gondolsz:7}\n\n---\nAdatkezelési hozzájárulás elfogadva: {Adatkezelési tájékoztató:8.1}\nBeküldve: {date_dmy} | IP: {ip} | Forrás: {embed_url}",
+        "from": "{admin_email}",
+        "fromName": "weART weboldal",
+        "replyTo": "{E-mail cím:4}",
+        "bcc": "",
+        "disableAutoformat": false,
+        "enableAttachments": false
+      },
+      "wa1notifyuser02": {
+        "id": "wa1notifyuser02",
+        "isActive": true,
+        "to": "{E-mail cím:4}",
+        "name": "Automatikus visszaigazolás a feladónak",
+        "event": "form_submission",
+        "toType": "field",
+        "toField": "4",
+        "subject": "Megkaptuk a megkeresésed — weART",
+        "message": "Szia {Neved:2}!\n\nKöszönjük a megkeresésed — megérkezett hozzánk. Egy munkanapon belül válaszol Fanni a megadott e-mail címre, és egyeztetünk egy időpontot egy díjmentes konzultációra.\n\nHa sürgős, hívj nyugodtan: +36 30 / 195 8114 (H–P 9:00–17:00).\n\nÜdv,\na weART csapata\nhttps://weart.hu",
+        "from": "{admin_email}",
+        "fromName": "weART",
+        "replyTo": "info@weart.hu",
+        "bcc": "",
+        "disableAutoformat": false,
+        "enableAttachments": false
+      }
+    },
+    "confirmations": {
+      "wa1confirm0001": {
+        "id": "wa1confirm0001",
+        "name": "Alapértelmezett visszajelzés",
+        "isDefault": true,
+        "type": "message",
+        "message": "<strong>Megkaptuk. Köszi!</strong> Egy munkanapon belül válaszol Fanni a megadott e-mail címre. Ha sürgős, hívd nyugodtan: <strong>+36 30 / 195 8114</strong>.",
+        "url": "",
+        "pageId": 0,
+        "queryString": ""
+      }
+    }
+  },
+  "version": "2.8"
+}

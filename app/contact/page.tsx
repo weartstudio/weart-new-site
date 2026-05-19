@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { Phone, Mail, Calendar, Check } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
@@ -12,6 +12,49 @@ import Testimonials from '../components/Testimonials';
 export default function KapcsolatPage() {
   const [activeTopic, setActiveTopic] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError('');
+
+    if (!activeTopic) {
+      setError('Válaszd ki, miben tudunk segíteni.');
+      return;
+    }
+
+    const fd = new FormData(e.currentTarget);
+    const payload = {
+      topic: activeTopic,
+      name: String(fd.get('name') ?? ''),
+      company: String(fd.get('company') ?? ''),
+      email: String(fd.get('email') ?? ''),
+      phone: String(fd.get('phone') ?? ''),
+      budget: String(fd.get('budget') ?? ''),
+      message: String(fd.get('message') ?? ''),
+      consent: fd.get('consent') ? '1' : '',
+    };
+
+    setLoading(true);
+    try {
+      const res = await fetch('/api/kapcsolat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok) {
+        setError(data?.message ?? 'Hiba történt a küldés során. Hívj minket: +36 30 / 195 8114.');
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError('Nem sikerült elküldeni. Ellenőrizd a netkapcsolatot, vagy hívj: +36 30 / 195 8114.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -88,7 +131,7 @@ export default function KapcsolatPage() {
                   </div>
                   <span className="ch-arrow">→</span>
                 </a>
-                <a className="channel" href="https://cal.com" target="_blank" rel="noopener noreferrer">
+                <a className="channel" href="https://cal.eu/weart" target="_blank" rel="noopener noreferrer">
                   <span className="ch-ico">
                     <Calendar size={18} />
                   </span>
@@ -112,7 +155,7 @@ export default function KapcsolatPage() {
               </div>
 
               {!submitted ? (
-                <form onSubmit={e => { e.preventDefault(); setSubmitted(true); }} noValidate>
+                <form onSubmit={handleSubmit} noValidate>
                   <div className="form-grid">
                     <div className="field full">
                       <label>Mivel tudunk segíteni? <span className="req">*</span></label>
@@ -143,10 +186,10 @@ export default function KapcsolatPage() {
                     <div className="field full">
                       <label>Tervezett keret</label>
                       <div className="budget-row">
-                        <label><input type="radio" name="budget" value="500-" /><span>500e Ft alatt</span></label>
-                        <label><input type="radio" name="budget" value="500-1500" /><span>500e – 1,5M</span></label>
-                        <label><input type="radio" name="budget" value="1500-3000" /><span>1,5M – 3M</span></label>
-                        <label><input type="radio" name="budget" value="3000+" /><span>3M felett / nem tudom</span></label>
+                        <label><input type="radio" name="budget" value="500e Ft alatt" /><span>500e Ft alatt</span></label>
+                        <label><input type="radio" name="budget" value="500e – 1,5M" /><span>500e – 1,5M</span></label>
+                        <label><input type="radio" name="budget" value="1,5M – 3M" /><span>1,5M – 3M</span></label>
+                        <label><input type="radio" name="budget" value="3M felett / nem tudom" /><span>3M felett / nem tudom</span></label>
                       </div>
                     </div>
 
@@ -158,11 +201,14 @@ export default function KapcsolatPage() {
 
                   <div className="form-foot">
                     <label className="consent">
-                      <input type="checkbox" required />
+                      <input type="checkbox" name="consent" required />
                       <span>Elolvastam és elfogadom az <a href="#">adatkezelési tájékoztatót</a>. Az adataimat kizárólag a megkeresésem megválaszolására használjátok.</span>
                     </label>
-                    <button type="submit" className="submit">Küldöm az ajánlatkérést <span className="arrow">→</span></button>
+                    <button type="submit" className="submit" disabled={loading}>
+                      {loading ? 'Küldés…' : <>Küldöm az ajánlatkérést <span className="arrow">→</span></>}
+                    </button>
                   </div>
+                  {error && <p className="form-error" role="alert">{error}</p>}
                 </form>
               ) : (
                 <div className="success-msg show">
