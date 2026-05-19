@@ -4,6 +4,7 @@ import { Phone, Mail } from 'lucide-react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import RevealWrapper from './components/RevealWrapper';
+import AboutCollage from './components/AboutCollage';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from './lib/wordpress';
@@ -245,48 +246,13 @@ function Team() {
           </div>
           <p className="sec-sub">Egy fejlesztő, egy projektmenedzser. Aki megtervezi az oldaladat, az is fogja kódolni; aki felveszi a telefont, az tudja, hol tart a projekt.</p>
         </div>
-        <div className="team-panel reveal">
-          <div className="team-people">
-            <article className="team-card">
-              <span className="team-idx">01</span>
-              <div className="team-photo balazs">B</div>
-              <div className="team-info">
-                <div className="team-name">Balázs</div>
-                <div className="team-role">Fejlesztő · Társalapító</div>
-                <p className="team-bio">9 éve foglalkozik weboldalakkal. WordPress, WooCommerce és modern frontend a szakterülete. Hisz benne, hogy a gyors weboldal nem luxus, hanem alap.</p>
-                <div className="team-tags">
-                  <span className="team-tag">WordPress</span>
-                  <span className="team-tag">WooCommerce</span>
-                  <span className="team-tag">Sebesség</span>
-                  <span className="team-tag">SEO</span>
-                </div>
-              </div>
-            </article>
-            <article className="team-card">
-              <span className="team-idx">02</span>
-              <div className="team-photo fanni">
-                <Image src="/fanni-small.jpg" alt="Ágoston Fanni" width={92} height={92} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div className="team-info">
-                <div className="team-name">Ágoston Fanni</div>
-                <div className="team-role">Projektmenedzser · Társalapító</div>
-                <p className="team-bio">Ő a kapocs közted és a fejlesztés között. Tartja a határidőket, magyarázza érthetően a műszaki dolgokat, és gondoskodik róla, hogy ne maradjon nyitott kérdés.</p>
-                <div className="team-tags">
-                  <span className="team-tag">Ügyfélkapcsolat</span>
-                  <span className="team-tag">Tervezés</span>
-                  <span className="team-tag">Copywriting</span>
-                  <span className="team-tag">Onboarding</span>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div className="trust trust-team">
-            <div className="trust-label">Akiknek már dolgoztunk</div>
-            <div className="trust-marquee">
-              <div className="trust-track">
-                <ClientLogos />
-                <ClientLogos />
-              </div>
+        <AboutCollage />
+        <div className="ac-trust reveal">
+          <div className="trust-label">Akiknek már dolgoztunk</div>
+          <div className="trust-marquee">
+            <div className="trust-track">
+              <ClientLogos />
+              <ClientLogos />
             </div>
           </div>
         </div>
