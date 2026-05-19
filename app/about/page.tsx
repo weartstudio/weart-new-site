@@ -361,7 +361,7 @@ function BigCTA() {
       <div className="container">
         <div className="big-cta reveal">
           <div>
-            <div className="meta">2026 Q3-ra még 2 hely van</div>
+            <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
             <h2 style={{ marginTop: 18 }}>
               Beszéljünk az
               <br />
@@ -372,12 +372,9 @@ function BigCTA() {
               szükséged, és egy munkanapon belül küldünk egy konkrét
               árajánlatot — csomagolás nélkül.
             </p>
-            <div className="ctas">
-              <Link href="/contact" className="btn btn-primary">
-                Ingyenes árajánlat <span className="arrow">→</span>
-              </Link>
-              <span className="meta">Élő — válasz 1 munkanap</span>
-            </div>
+            <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
+              Kezdjük el <span className="arrow">→</span>
+            </Link>
           </div>
           <div className="contact-card">
             <div className="contact-card-head">

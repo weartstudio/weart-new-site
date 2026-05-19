@@ -167,13 +167,12 @@ export default async function MunkainkPage() {
 
           <section className="big-cta reveal" id="cta">
             <div>
-              <div className="meta">2026 Q3-ra még 2 hely van</div>
+              <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
               <h2 style={{ marginTop: 18 }}>Tied lehet a <em>következő</em><br />referencia.</h2>
               <p>Ha érdekel, írj egy mondatot: mi a vállalkozásod, mi hiányzik a mostani oldaladból. Egy munkanapon belül válaszolunk konkrét számmal.</p>
-              <div className="ctas">
-                <Link href="/contact" className="btn btn-primary">Ingyenes árajánlat <span className="arrow">→</span></Link>
-                <span className="meta">Élő — válasz 1 munkanap</span>
-              </div>
+              <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
+                Kezdjük el <span className="arrow">→</span>
+              </Link>
             </div>
             <div className="contact-card">
               <div className="contact-card-head">

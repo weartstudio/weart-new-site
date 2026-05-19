@@ -89,7 +89,7 @@ function Hero({ projects }: { projects: WPProject[] }) {
           <p className="lead">Magyar kkv-knak készítünk gyors, jól kereshető, könnyen kezelhető weboldalakat — a tervezéstől a karbantartásig. Nincs marketing duma, csak tiszta munka.</p>
           <div className="hero-ctas">
             <Link href="/contact" className="btn btn-primary">Ingyenes árajánlat <span className="arrow">→</span></Link>
-            <Link href="#folyamat" className="btn btn-ghost">Hogyan dolgozunk?</Link>
+            <Link href="/portfolio" className="btn btn-ghost">Munkáink</Link>
           </div>
           <div className="hero-meta">
             <div className="meta-item"><div className="num">9 év</div><div className="lbl">tapasztalat</div></div>
@@ -244,7 +244,6 @@ function Team() {
             <div className="sec-tag">Rólunk</div>
             <h2 className="sec-h">Ketten vagyunk —<br /><em>és ez pont elég.</em></h2>
           </div>
-          <p className="sec-sub">Egy fejlesztő, egy projektmenedzser. Aki megtervezi az oldaladat, az is fogja kódolni; aki felveszi a telefont, az tudja, hol tart a projekt.</p>
         </div>
         <AboutCollage />
         <div className="ac-trust reveal">
@@ -371,9 +370,10 @@ function BigCTA() {
       <div className="container">
         <div className="big-cta reveal">
           <div>
-            <div className="meta">2026 Q3-ra még 2 hely van</div>
+            <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
             <h2 style={{ marginTop: 18 }}>Beszéljünk az<br /><em>oldaladról.</em></h2>
             <p>Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van szükséged, és egy munkanapon belül küldünk egy konkrét árajánlatot — csomagolás nélkül.</p>
+            <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Kezdjük el <span className="arrow">→</span></Link>
           </div>
           <div className="contact-card">
             <div className="contact-card-head">

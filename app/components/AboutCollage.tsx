@@ -97,7 +97,7 @@ export default function AboutCollage() {
               <Image src="/balazs.black-white.jpg" alt="Egyed Balázs" fill sizes="240px" style={{ objectFit: 'cover' }} />
             </div>
             <figcaption className="ac-cap">
-              <b>Balázs</b>
+              <b>Egyed Balázs</b>
               <span>Fejlesztő</span>
             </figcaption>
           </figure>
@@ -119,7 +119,6 @@ export default function AboutCollage() {
           <i className="ac-chip-dot" />10+ év tapasztalat
         </span>
         <span className="ac-chip ac-chip--2" data-d="46">Nem tűnünk el</span>
-        <span className="ac-chip ac-chip--3" data-d="38">Mérnöki képzettség</span>
       </div>
 
       <div className="ac-side">
