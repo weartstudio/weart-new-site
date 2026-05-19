@@ -4,13 +4,12 @@ import { Phone, Mail } from 'lucide-react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import RevealWrapper from './components/RevealWrapper';
-import ScoreCard from './components/ScoreCard';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import { getPosts, getProjects, type WPPost, type WPProject } from './lib/wordpress';
+import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from './lib/wordpress';
 
-// A hero böngésző-makett véletlen valós projektet mutat oldalbetöltésenként,
-// ezért a kezdőlapot kérésenként rendereljük (lásd Next 16 docs:
+// A kezdőlap a WordPress-ből élő projekt- és cikklistát mutat,
+// ezért kérésenként rendereljük (lásd Next 16 docs:
 // guides/caching-without-cache-components → route segment config `dynamic`).
 export const dynamic = 'force-dynamic';
 
@@ -41,11 +40,42 @@ function ClientLogos() {
   );
 }
 
-function Hero({ project }: { project: WPProject | null }) {
-  const shot = project?.image ?? project?.imageSecondary ?? null;
-  const domain = project?.website
-    ? project.website.replace(/^https?:\/\//, '').replace(/\/.*$/, '')
-    : 'weart.hu/portfolio';
+function WorkCard({ img, project }: { img: WPImage; project: WPProject }) {
+  return (
+    <figure className="ww-card">
+      <div className="ww-shot">
+        <Image
+          src={img.url}
+          alt={img.alt || project.title}
+          fill
+          sizes="(max-width: 1024px) 0px, 300px"
+          style={{ objectFit: 'cover', objectPosition: 'top center' }}
+        />
+      </div>
+      {project.clientName && <figcaption className="ww-cap">{project.clientName}</figcaption>}
+    </figure>
+  );
+}
+
+// Mindkét oszlop önmagában is hosszabb legyen a látható sávnál, hogy
+// a duplikált sáv -50%-os görgetése sehol ne hagyjon rést.
+function fill<T>(arr: T[], min: number): T[] {
+  if (arr.length === 0) return arr;
+  const out = [...arr];
+  while (out.length < min) out.push(...arr);
+  return out;
+}
+
+function Hero({ projects }: { projects: WPProject[] }) {
+  const shots = projects.flatMap((p) => {
+    const out: { img: WPImage; project: WPProject }[] = [];
+    if (p.image) out.push({ img: p.image, project: p });
+    if (p.imageSecondary) out.push({ img: p.imageSecondary, project: p });
+    return out;
+  });
+  const colA = fill(shots.filter((_, i) => i % 2 === 0), 6);
+  const colB = fill(shots.filter((_, i) => i % 2 === 1), 6);
+
   return (
     <section className="hero">
       <div className="container hero-grid">
@@ -68,40 +98,25 @@ function Hero({ project }: { project: WPProject | null }) {
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="hero-glow" aria-hidden="true"></div>
-          <div className="hero-grid-bg" aria-hidden="true"></div>
-          <div className="browser browser-main">
-            <div className="browser-bar">
-              <span className="dot"></span><span className="dot"></span><span className="dot"></span>
-              <span className="url">{domain}</span>
+        {shots.length > 0 && (
+          <div className="hero-visual" aria-hidden="true">
+            <div className="hero-glow"></div>
+            <div className="ww-col ww-col-up">
+              <div className="ww-track">
+                {[...colA, ...colA].map((s, i) => (
+                  <WorkCard key={`a${i}`} img={s.img} project={s.project} />
+                ))}
+              </div>
             </div>
-            <div className="browser-body shot-body">
-              {shot ? (
-                <Image
-                  className="shot-img"
-                  src={shot.url}
-                  alt={shot.alt || project!.title}
-                  fill
-                  sizes="(max-width: 1024px) 400px, 520px"
-                  priority
-                />
-              ) : (
-                <span className="shot-fallback" aria-hidden="true" />
-              )}
-              {project?.clientName && (
-                <div className="shot-chip">
-                  <b>{project.clientName}</b>
-                  {project.clientRole && <small>{project.clientRole}</small>}
-                </div>
-              )}
+            <div className="ww-col ww-col-down">
+              <div className="ww-track">
+                {[...colB, ...colB].map((s, i) => (
+                  <WorkCard key={`b${i}`} img={s.img} project={s.project} />
+                ))}
+              </div>
             </div>
           </div>
-          <ScoreCard cls="score-1" value={100} label="Ügyfél-elégedettség" />
-          <ScoreCard cls="score-2" value={100} label="Határidőre átadva" />
-          <ScoreCard cls="score-3" value={98} label="Ajánlana minket" />
-          <ScoreCard cls="score-4" value={100} label="Mobilbarát" />
-        </div>
+        )}
       </div>
     </section>
   );
@@ -429,16 +444,12 @@ function BigCTA() {
 export default async function Home() {
   const [allPosts, projects] = await Promise.all([getPosts(), getProjects()]);
   const latestPosts = allPosts.slice(0, 3);
-  const withImage = projects.filter((p) => p.image || p.imageSecondary);
-  const heroProject =
-    withImage.length > 0
-      ? withImage[Math.floor(Math.random() * withImage.length)]
-      : null;
+  const projectsWithImage = projects.filter((p) => p.image || p.imageSecondary);
 
   return (
     <>
       <Nav />
-      <Hero project={heroProject} />
+      <Hero projects={projectsWithImage} />
       <Services />
       <Team />
       <WhyUs />
