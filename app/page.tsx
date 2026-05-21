@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import RevealWrapper from './components/RevealWrapper';
 import AboutCollage from './components/AboutCollage';
+import ServicesCollage from './components/ServicesCollage';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from './lib/wordpress';
@@ -127,109 +128,14 @@ function Services() {
   return (
     <section className="sec" id="szolgaltatasok">
       <div className="container">
-        <div className="sec-head reveal">
+        <div className="sec-head sec-head--solo reveal">
           <div>
             <div className="sec-tag">Mit csinálunk</div>
             <h2 className="sec-h">Mindent, ami a weboldalad<br /><em>jól működéséhez kell.</em></h2>
           </div>
-          <p className="sec-sub">A tervezéstől a tárhelyig. Egy helyen, magyarul, érthetően. Nem kell több beszállítóval levelezned — mi mindent megoldunk.</p>
         </div>
 
-        <div className="bento reveal">
-          <div className="tile tile-1">
-            <div className="wp-mark" aria-hidden="true">
-              <svg viewBox="0 0 122 122" width="122" height="122" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="61" cy="61" r="59" fill="none" stroke="currentColor" strokeWidth="3"/>
-                <path fill="currentColor" d="M12.5 61c0-7 1.5-13.7 4.2-19.7L39.6 104A48.5 48.5 0 0 1 12.5 61zm81.4-2.5c0 3-1.2 6.5-2.7 11.5l-3.6 12-13-38.7c2.2-.1 4.1-.3 4.1-.3 2-.2 1.7-3.1-.2-3 0 0-5.8.5-9.6.5-3.5 0-9.5-.5-9.5-.5-2-.1-2.2 2.9-.2 3 0 0 1.9.2 3.8.3l5.5 15.1L60.7 81 47.8 42.3c2.2-.1 4.1-.3 4.1-.3 2-.2 1.7-3.1-.2-3 0 0-5.8.5-9.6.5-.7 0-1.5 0-2.3 0A48.5 48.5 0 0 1 109.5 61c0 17.4-9.2 32.7-23 41.2L101 61.4c2.7-6.7 3.6-12.1 3.6-16.9 0-1.7-.1-3.4-.3-5 3.7 6.8 5.8 14.6 5.8 22.9zM62.4 65.5l11 30c.1.2.2.3.3.5a48.4 48.4 0 0 1-29.9-.7l.5-1.6L62.4 65.5zM104 35.4c0 .2.1.4.1.7 0 6.5-1.2 13.8-4.9 23l-19.8-58.9A48.6 48.6 0 0 1 104 35.4zM61 12.5c14.7 0 28 5.6 38.1 14.7-.2 0-.5 0-.8 0-3.6 0-6.2 3.2-6.2 6.5 0 3 1.7 5.6 3.6 8.7 1.4 2.5 3 5.7 3 10.3 0 3.2-1.2 6.9-2.9 12L91 75.4 78.3 38.7c2.1-.1 4-.3 4-.3 1.9-.3 1.7-3.2-.3-3.1 0 0-5.7.5-9.4.5-3.5 0-9.5-.5-9.5-.5-1.9-.1-2.2 2.9-.2 3 0 0 1.8.2 3.8.3l5.5 14.9-7.7 23-12.7-37.9c2.1-.1 4-.3 4-.3 1.9-.3 1.7-3.2-.3-3.1 0 0-5.7.5-9.4.5-.7 0-1.4 0-2.2 0a48.5 48.5 0 0 1 27.1-22.2C71.4 12.7 66.3 12.5 61 12.5z"/>
-              </svg>
-              <span className="wp-mark-label">Built on WordPress</span>
-            </div>
-            <div>
-              <div className="badge-row">
-                <span className="b">Fő szolgáltatás</span>
-                <span className="b ghost">Egyedi WordPress</span>
-              </div>
-              <h3 className="hero-tile-h">Villámgyors weboldal,<br /><em>egyedi fejlesztéssel.</em></h3>
-              <p className="hero-tile-desc">Nem sablonokra építünk. Saját, célra szabott WordPress kódot fejlesztünk — ami minimális bővítményt használ, gyors, biztonságos, és pont annyi funkciót tud, amennyire szükséged van. Hosszú távra tervezett, mérnöki minőségű weboldal.</p>
-            </div>
-            <div className="visual"></div>
-            <div className="feat-row">
-              <div className="mini-feat"><div className="ico">⚡</div><h5>Villámgyors</h5><p>Lighthouse 95+ pontszám minden oldalon, már mobilon is.</p></div>
-              <div className="mini-feat"><div className="ico">✎</div><h5>Egyszerű, mint a Word</h5><p>Saját szerkesztőfelület, kategóriába rendezett mezőkkel.</p></div>
-              <div className="mini-feat"><div className="ico">🛡</div><h5>Biztonságos</h5><p>Minimális bővítmény = minimális támadási felület.</p></div>
-              <div className="mini-feat"><div className="ico">↗</div><h5>Skálázható</h5><p>Évek múlva is bővíthető, nem kell nullról kezdeni.</p></div>
-            </div>
-          </div>
-
-          <div className="tile tile-2">
-            <div>
-              <div className="tile-num">/ 02</div>
-              <h3 className="tile-title">Régi oldal felújítása.</h3>
-              <p className="tile-desc">Megvan az oldal, de lassú, csúnya, vagy nem hoz érdeklődőt? Átnézzük, modernizáljuk — sokszor olcsóbb, mint nullról kezdeni.</p>
-            </div>
-            <div className="gauge">
-              {[28, 46, 72, 55, 88, 40, 66, 90, 72, 52, 78, 95].map((h, i) => <i key={i} style={{ height: `${h}%` }} />)}
-            </div>
-          </div>
-
-          <div className="tile tile-3">
-            <div>
-              <div className="tile-num">/ 03</div>
-              <h3 className="tile-title">Webshop indítás.</h3>
-              <p className="tile-desc">WooCommerce alapú webáruház magyar fizetési megoldásokkal (Barion, SimplePay), GLS/Foxpost integrációval, NAV-kompatibilis számlázással.</p>
-            </div>
-            <div className="pulse">
-              <div className="bar-row"><span>Betöltés</span><span>1,2 mp</span></div>
-              <div className="bar"><i style={{ width: '88%' }} /></div>
-              <div className="bar-row"><span>Mobil pontszám</span><span>96/100</span></div>
-              <div className="bar"><i style={{ width: '96%' }} /></div>
-              <div className="bar-row"><span>Konverzió</span><span>+34%</span></div>
-              <div className="bar"><i style={{ width: '78%' }} /></div>
-            </div>
-          </div>
-
-          <div className="tile tile-4">
-            <div>
-              <div className="tile-num">/ 04</div>
-              <h3 className="tile-title">Arculat, logó &amp; webdesign tervezés.</h3>
-              <p className="tile-desc">Logó, névjegykártya, színek, betűtípusok — és persze a weboldal teljes vizuális tervezése. Egységes megjelenés, ami profi vállalkozás benyomását kelti.</p>
-            </div>
-            <div className="icon-stack">
-              <div className="design-glyph" style={{ background: '#fff', border: '1px solid rgba(13,23,46,0.1)', borderRadius: 12, width: 60, height: 60, display: 'grid', placeItems: 'center' }}>
-                <svg viewBox="0 0 38 57" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="#1ABCFE"/><path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" fill="#0ACF83"/><path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262"/><path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/><path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/></svg>
-              </div>
-              <div className="design-glyph canvas"></div>
-              <div className="design-glyph swatch">
-                <i style={{ background: 'var(--primary)' }}></i>
-                <i style={{ background: 'var(--dark)' }}></i>
-                <i style={{ background: 'var(--accent)' }}></i>
-              </div>
-            </div>
-          </div>
-
-          <div className="tile tile-5">
-            <div>
-              <div className="tile-num">/ 05</div>
-              <h3 className="tile-title">Karbantartás havidíjban.</h3>
-              <p className="tile-desc">Frissítések, biztonsági mentés, kisebb módosítások. Te csak szólsz — mi megcsináljuk.</p>
-            </div>
-            <div className="ssl">
-              <div className="ssl-row"><span className="check" />Heti biztonsági mentés</div>
-              <div className="ssl-row"><span className="check" />Frissítések, javítások</div>
-              <div className="ssl-row"><span className="check" />2 órás módosítás / hó</div>
-            </div>
-          </div>
-
-          <div className="tile tile-6">
-            <div>
-              <div className="tile-num">/ 06</div>
-              <h3 className="tile-title">SEO &amp; Google Ads.</h3>
-              <p className="tile-desc">Hogy ne csak szép legyen az oldal, hanem találjanak is rá. Google-be való optimalizálás, hirdetések kezelése.</p>
-              <div className="tile-link">Részletek</div>
-            </div>
-            <div className="big-arrow">↗</div>
-          </div>
-        </div>
+        <ServicesCollage />
       </div>
     </section>
   );
