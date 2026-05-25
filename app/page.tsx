@@ -228,12 +228,11 @@ function Insights({ posts }: { posts: WPPost[] }) {
   return (
     <section className="sec" id="tudastar">
       <div className="container">
-        <div className="sec-head reveal">
+        <div className="sec-head sec-head--solo reveal">
           <div>
             <div className="sec-tag">Blog</div>
             <h2 className="sec-h">Cikkek, ami segít,<br />hogy <em>jobban dönts.</em></h2>
           </div>
-          <p className="sec-sub">Magyar nyelven, kkv-tulajdonosoknak — érthetően arról, hogyan működik egy weboldal, és mit érdemes elvárni egy fejlesztőtől.</p>
         </div>
         <div className="insights reveal">
           {posts.map((p) => (
@@ -268,7 +267,7 @@ function Insights({ posts }: { posts: WPPost[] }) {
             </article>
           ))}
         </div>
-        <div className="reveal" style={{ marginTop: 40, display: 'flex', justifyContent: 'center' }}>
+        <div className="reveal" style={{ marginTop: 48, display: 'flex', justifyContent: 'center' }}>
           <Link href="/posts" className="btn btn-primary">Összes cikk megtekintése <span className="arrow">→</span></Link>
         </div>
       </div>

@@ -150,7 +150,6 @@ export default async function MunkainkPage() {
               <div className="sec-tag">Referenciák</div>
               <h2 className="sec-h">Munkáink, amikre <em>a legbüszkébbek</em> vagyunk.</h2>
             </div>
-            <p className="sec-sub">Időrendben visszafelé. Minden kártya egy valós projekt — kattints a linkre, és nézd meg élőben a kész weboldalt.</p>
           </div>
 
           {rows.map((row, ri) => (
