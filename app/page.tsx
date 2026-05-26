@@ -231,7 +231,7 @@ function Insights({ posts }: { posts: WPPost[] }) {
         <div className="sec-head sec-head--solo reveal">
           <div>
             <div className="sec-tag">Blog</div>
-            <h2 className="sec-h">Cikkek, ami segít,<br />hogy <em>jobban dönts.</em></h2>
+            <h2 className="sec-h">Cikkek, amik segítenek,<br />hogy <em>jobban dönts</em></h2>
           </div>
         </div>
         <div className="insights reveal">

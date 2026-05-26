@@ -20,7 +20,8 @@ export default async function BlogPage() {
       <Nav />
       <header className="page-head">
         <div className="container">
-          <h1 className="page-h1">Cikkek, ami segít, hogy <span className="underline">jobban dönts.</span></h1>
+          <div className="page-eyebrow">Blog</div>
+          <h1 className="page-h1">Cikkek, amik segítenek, hogy <span className="underline">jobban dönts</span></h1>
           <p className="page-lead">Magyar nyelven, kkv-tulajdonosoknak — érthetően arról, hogyan működik egy weboldal, mit érdemes elvárni egy fejlesztőtől, és hogyan hozhatsz ki belőle több vevőt.</p>
         </div>
       </header>

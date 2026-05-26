@@ -129,14 +129,6 @@ function Founders() {
         </div>
 
         <FoundersTabs />
-
-        <Testimonials
-          variant="light"
-          quote={<>„Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb projekt nekik.”</>}
-          name="Dr. Halász Eszter"
-          role="Klinikaigazgató · AurumMed"
-          stat={<><b>2</b> fő, akivel végig beszélt — nem 6</>}
-        />
       </div>
     </section>
   );
@@ -236,6 +228,13 @@ function Values() {
               </div>
             </div>
           </div>
+          <Testimonials
+            variant="dark"
+            quote={<>„Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb projekt nekik.”</>}
+            name="Dr. Halász Eszter"
+            role="Klinikaigazgató · AurumMed"
+            stat={<><b>2</b> fő, akivel végig beszélt — nem 6</>}
+          />
         </div>
       </div>
     </section>

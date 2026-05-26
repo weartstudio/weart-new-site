@@ -186,10 +186,13 @@ export default function KapcsolatPage() {
                     <div className="field full">
                       <label>Tervezett keret</label>
                       <div className="budget-row">
-                        <label><input type="radio" name="budget" value="500e Ft alatt" /><span>500e Ft alatt</span></label>
-                        <label><input type="radio" name="budget" value="500e – 1,5M" /><span>500e – 1,5M</span></label>
-                        <label><input type="radio" name="budget" value="1,5M – 3M" /><span>1,5M – 3M</span></label>
-                        <label><input type="radio" name="budget" value="3M felett / nem tudom" /><span>3M felett / nem tudom</span></label>
+                        {['500e Ft alatt', '500e – 1,5M', '1,5M – 3M', '3M felett / nem tudom'].map((v) => (
+                          <label key={v}>
+                            <input type="radio" name="budget" value={v} />
+                            <span className="budget-label">{v}</span>
+                            <span className="budget-check" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>
+                          </label>
+                        ))}
                       </div>
                     </div>
 
@@ -226,41 +229,41 @@ export default function KapcsolatPage() {
         </div>
       </section>
 
-      {/* Mi történik ezután */}
-      <section className="next-section">
-        <div className="container">
-          <div className="next-card reveal">
-            <div>
-              <div className="sec-tag">Mi történik most?</div>
-              <h2>Nem tűnünk el<br/>az „Érdeklődöm" gomb után — <em>4 lépés, ennyi.</em></h2>
+      {/* Mi történik most */}
+      <section className="sec">
+        <div className="container-wide">
+          <div className="why reveal">
+            <div className="why-grid">
+              <div>
+                <div className="sec-tag">Mi történik most?</div>
+                <h2 className="sec-h">Nem tűnünk el<br/>az „Érdeklődöm" gomb után — <em>4 lépés, ennyi.</em></h2>
+                <p style={{ marginTop: 24, color: 'rgba(255,255,255,0.65)', fontSize: 17, maxWidth: 480, lineHeight: 1.6 }}>
+                  Pontosan tudod, mikor mire számíts. Nincs sales-folyamat, nincs CRM-be tűnt csapatpostafiók — Fanni személyesen válaszol minden megkeresésre.
+                </p>
+              </div>
+              <div className="why-feat">
+                <div className="feat">
+                  <div className="feat-h"><span className="feat-num">01.</span><h4>Visszahívunk</h4></div>
+                  <p>Fanni felveszi a kapcsolatot 1 munkanapon belül, megbeszélünk egy 30 perces időpontot.</p>
+                  <div className="feat-time">~ 1 munkanap</div>
+                </div>
+                <div className="feat">
+                  <div className="feat-h"><span className="feat-num">02.</span><h4>Konzultáció</h4></div>
+                  <p>30 perc telefon vagy Meet — végigvesszük, mit szeretnél, milyen tartalmaid vannak.</p>
+                  <div className="feat-time">30 perc · ingyenes</div>
+                </div>
+                <div className="feat">
+                  <div className="feat-h"><span className="feat-num">03.</span><h4>Fix árajánlat</h4></div>
+                  <p>Konkrét összeg, konkrét határidő, tételes lebontás. Nem ár-tól, nem becslés.</p>
+                  <div className="feat-time">2-3 munkanap</div>
+                </div>
+                <div className="feat">
+                  <div className="feat-h"><span className="feat-num">04.</span><h4>Indul a munka</h4></div>
+                  <p>Aláírjuk, kifizeted a 30%-os előleget, és pár napon belül elküldjük az első wireframe-eket.</p>
+                  <div className="feat-time">3–6 hét átfutás</div>
+                </div>
+              </div>
             </div>
-            <div className="steps">
-              <div className="step">
-                <div className="step-num">/ 01</div>
-                <div className="step-title">Visszahívunk</div>
-                <div className="step-desc">Fanni felveszi a kapcsolatot 1 munkanapon belül, megbeszélünk egy 30 perces időpontot.</div>
-                <div className="step-time">~ 1 munkanap</div>
-              </div>
-              <div className="step">
-                <div className="step-num">/ 02</div>
-                <div className="step-title">Konzultáció</div>
-                <div className="step-desc">30 perc telefon vagy Meet — végigvesszük, mit szeretnél, milyen tartalmaid vannak.</div>
-                <div className="step-time">30 perc · ingyenes</div>
-              </div>
-              <div className="step">
-                <div className="step-num">/ 03</div>
-                <div className="step-title">Fix árajánlat</div>
-                <div className="step-desc">Konkrét összeg, konkrét határidő, tételes lebontás. Nem ár-tól, nem becslés.</div>
-                <div className="step-time">2-3 munkanap</div>
-              </div>
-              <div className="step">
-                <div className="step-num">/ 04</div>
-                <div className="step-title">Indul a munka</div>
-                <div className="step-desc">Aláírjuk, kifizeted a 30%-os előleget, és pár napon belül elküldjük az első wireframe-eket.</div>
-                <div className="step-time">3–6 hét átfutás</div>
-              </div>
-            </div>
-          <div style={{ gridColumn: '1 / -1' }}>
             <Testimonials
               variant="dark"
               quote={<>A webshopunk az indulás óta <em>háromszor annyi rendelést hoz,</em> mint a régi. A betanítás után a feleségem is magabiztosan kezeli a termékeket.</>}
@@ -268,7 +271,6 @@ export default function KapcsolatPage() {
               role="Alapító · Bortrezor.hu"
               stat={<><b>3×</b> annyi rendelés</>}
             />
-          </div>
           </div>
         </div>
       </section>

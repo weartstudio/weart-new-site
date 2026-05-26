@@ -145,12 +145,6 @@ export default async function MunkainkPage() {
 
       <section className="showcase">
         <div className="container">
-          <div className="showcase-head">
-            <div>
-              <div className="sec-tag">Referenciák</div>
-              <h2 className="sec-h">Munkáink, amikre <em>a legbüszkébbek</em> vagyunk.</h2>
-            </div>
-          </div>
 
           {rows.map((row, ri) => (
             <div className="proj-grid reveal" key={ri}>
