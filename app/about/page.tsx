@@ -5,7 +5,7 @@ import { Phone, Mail } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import TechStack from '../components/TechStack';
-import FoundersTabs from '../components/FoundersTabs';
+import FoundersCollage from '../components/FoundersCollage';
 import Testimonials from '../components/Testimonials';
 import RevealWrapper from '../components/RevealWrapper';
 
@@ -122,13 +122,9 @@ function Founders() {
               <em>Nincs harmadik a vonalban.</em>
             </h2>
           </div>
-          <p className="sec-sub">
-            Nem kapsz account managert, aki továbbít. Velünk beszélsz —
-            azzal, aki a munkát is csinálja.
-          </p>
         </div>
 
-        <FoundersTabs />
+        <FoundersCollage />
       </div>
     </section>
   );
@@ -242,79 +238,90 @@ function Values() {
 }
 
 function Credibility() {
+  const items = [
+    {
+      tag: 'Végzettség',
+      title: 'ELTE — Programtervező informatikus',
+      sub: 'Eötvös Loránd Tudományegyetem, Informatikai Kar. Nem „összeollózott” tudás: tényleg programozó.',
+      source: { label: 'inf.elte.hu', href: 'https://www.inf.elte.hu/' },
+    },
+    {
+      tag: 'Nemzetközi mérce',
+      title: '700+ élő weboldal a saját kódjainkból',
+      sub: '50+ országban fut, az ausztrál Envato globális piactéren keresztül — naponta több tízezren használják.',
+      source: { label: 'envato.com', href: 'https://themeforest.net/' },
+    },
+    {
+      tag: 'Vélemények',
+      title: '4,9★ Google-értékelés',
+      sub: '90+ valódi ügyféltől, név szerint olvasható. Nem ami sehol nincs: nyilvános, kereshető.',
+      source: { label: 'Google Cégem', href: 'https://www.google.com/search?q=weart+studio' },
+    },
+    {
+      tag: 'Közösség',
+      title: 'Ingyenes pluginek és magyar fordítások',
+      sub: 'Nyílt WordPress bővítmények, hivatalos magyar fordítások és GitHubra feltöltött fejlesztői eszközök.',
+      source: { label: 'GitHub · WP.org', href: 'https://github.com/' },
+    },
+    {
+      tag: 'Tudásmegosztás',
+      title: 'Magyar nyelvű szakmai blog',
+      sub: 'Érthető cikkek kkv-tulajdonosoknak arról, hogyan működik egy weboldal — nem fejlesztőknek, magyarul.',
+      source: { label: '/posts', href: '/posts' },
+    },
+  ];
+
   return (
     <section className="sec">
       <div className="container">
-        <div className="sec-head reveal">
-          <div>
+        <div className="cb reveal">
+          <aside className="cb-intro">
             <div className="sec-tag">Miért bízhatsz bennünk</div>
-            <h2 className="sec-h">
+            <h2 className="cb-h">
               Nem csak ügyfeleknek dolgozunk —
               <br />
               <em>a szakmának is.</em>
             </h2>
-          </div>
-          <p className="sec-sub">
-            A hitelesség nem marketingszöveg. Ezek mérhető, ellenőrizhető
-            dolgok, amik mögött évek munkája áll.
-          </p>
-        </div>
+            <p className="cb-lead">
+              A hitelesség nem marketingszöveg. Ez a <b>háttér áll a munkánk
+              mögött</b> — szakmai diploma, közösségi adás, nemzetközi mérce és
+              valódi ügyfelek.
+            </p>
+            <div className="cb-cite">
+              <div className="cb-cite-num">9 év</div>
+              <div>
+                <div className="cb-cite-lbl">Megszerzett háttér</div>
+                <div className="cb-cite-sub">Szakma · közösség · ügyfél</div>
+              </div>
+            </div>
+          </aside>
 
-        <div className="cred-grid reveal">
-          <div className="cred">
-            <div className="cred-tag">Végzettség</div>
-            <h4>ELTE — Programtervező informatikus</h4>
-            <p>
-              Az Eötvös Loránd Tudományegyetem Informatikai Karán szerzett
-              háttér. Nem „összeollózott” tudás: tényleg programozó.
-            </p>
-          </div>
-          <div className="cred">
-            <div className="cred-tag">Nemzetközi</div>
-            <div className="cred-num">
-              700<em>+</em>
-            </div>
-            <p>
-              Élő weboldal fut a saját WordPress-megoldásaiból, 50+ országban —
-              az Envato globális piactéren keresztül.
-            </p>
-          </div>
-          <div className="cred">
-            <div className="cred-tag">Közösség</div>
-            <h4>Ingyenes pluginek &amp; fordítások</h4>
-            <p>
-              Nyílt WordPress bővítmények, magyar fordítások és GitHubra
-              feltöltött fejlesztői eszközök — vissza a közösségnek.
-            </p>
-          </div>
-          <div className="cred">
-            <div className="cred-tag">Tudásmegosztás</div>
-            <h4>Szakmai blog, magyarul</h4>
-            <p>
-              Érthető cikkek kkv-tulajdonosoknak arról, hogyan működik egy
-              weboldal, és mit érdemes elvárni egy fejlesztőtől.
-            </p>
-          </div>
-          <div className="cred">
-            <div className="cred-tag">Tapasztalat</div>
-            <div className="cred-num">
-              120<em>+</em>
-            </div>
-            <p>
-              Leszállított weboldal 9 év alatt — bemutatkozók, webshopok,
-              felújítások, az ország 14 megyéjéből.
-            </p>
-          </div>
-          <div className="cred">
-            <div className="cred-tag">Értékelés</div>
-            <div className="cred-num">
-              4,9<em> ★</em>
-            </div>
-            <p>
-              Google-értékelés valódi ügyfelektől. A munkáinkat és a
-              véleményeket a portfólióoldalon is megnézheted.
-            </p>
-          </div>
+          <ol className="cb-list">
+            {items.map((it, i) => (
+              <li className="cb-row" key={i}>
+                <span className="cb-mark" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="3 8.5 7 12.5 13 4.5" />
+                  </svg>
+                </span>
+                <div className="cb-row-body">
+                  <div className="cb-row-tag">{it.tag}</div>
+                  <h4 className="cb-row-title">{it.title}</h4>
+                  <p className="cb-row-sub">{it.sub}</p>
+                  <a
+                    className="cb-row-source"
+                    href={it.source.href}
+                    target={it.source.href.startsWith('http') ? '_blank' : undefined}
+                    rel={it.source.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    <span className="cb-row-source-lbl">Forrás</span>
+                    <span>{it.source.label}</span>
+                    <span className="cb-row-source-arrow" aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
