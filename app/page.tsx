@@ -54,7 +54,7 @@ function WorkCard({ img, project }: { img: WPImage; project: WPProject }) {
           style={{ objectFit: 'cover', objectPosition: 'top center' }}
         />
       </div>
-      {project.clientName && <figcaption className="ww-cap">{project.clientName}</figcaption>}
+      {project.title && <figcaption className="ww-cap">{project.title}</figcaption>}
     </figure>
   );
 }
