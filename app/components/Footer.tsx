@@ -3,7 +3,7 @@ import Link from 'next/link';
 const LogoMark = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
     <path d="M12 2.2c2.4 2.6 3.8 5.9 3.8 9.3v6.2H8.2v-6.2C8.2 8.1 9.6 4.8 12 2.2z"/>
-    <circle cx="12" cy="10.2" r="1.7" fill="#0D172E"/>
+    <circle cx="12" cy="10.2" r="1.7" fill="#1E2D47"/>
     <path d="M8.2 14.5L5.6 17.6l3.1-.4z" opacity="0.85"/>
     <path d="M15.8 14.5l2.6 3.1-3.1-.4z" opacity="0.85"/>
     <path d="M11 19.5h2l-.4 2.3h-1.2z" opacity="0.6"/>

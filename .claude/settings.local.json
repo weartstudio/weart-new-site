@@ -60,7 +60,31 @@
       "Bash(command -v playwright)",
       "Bash(command -v chromium)",
       "Bash(command -v google-chrome)",
-      "Read(//Applications/**)"
+      "Read(//Applications/**)",
+      "Bash(sed -i '' 's/rgba\\(13,23,46,/rgba\\(26,31,54,/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#0D172E/#1A1F36/g; s/#0d172e/#1a1f36/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#FF6B4A/#8B5CF6/g; s/#ff6b4a/#8b5cf6/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#0D172E/#1A1F36/g' /Users/weart/Projects/weart/weart-new-site/app/components/Nav.tsx)",
+      "Bash(sed -i '' 's/#0D172E/#1A1F36/g' /Users/weart/Projects/weart/weart-new-site/app/components/Footer.tsx)",
+      "Bash(sed -i '' 's/#00C2CB/#8B5CF6/g; s/#00c2cb/#8b5cf6/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#AEDFDC/#C4B5FD/g; s/#aedfdc/#c4b5fd/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#C0EBF1/#EDE9FE/g; s/#c0ebf1/#ede9fe/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/rgba\\(0,194,203,/rgba\\(139,92,246,/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#8B5CF6/#2563EB/g; s/#8b5cf6/#2563eb/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/rgba\\(139,92,246,/rgba\\(37,99,235,/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#C4B5FD/#BFDBFE/g; s/#c4b5fd/#bfdbfe/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#EDE9FE/#DBEAFE/g; s/#ede9fe/#dbeafe/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' \\\\ *)",
+      "Bash(sed -i '' 's/#1A1F36/#0F1F3D/g; s/#1a1f36/#0f1f3d/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/rgba\\(26,31,54,/rgba\\(15,31,61,/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#2563EB/#4668C6/g; s/#2563eb/#4668c6/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/rgba\\(37,99,235,/rgba\\(70,104,198,/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#BFDBFE/#C0CEF5/g; s/#bfdbfe/#c0cef5/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#DBEAFE/#F3F9FC/g; s/#dbeafe/#f3f9fc/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "Bash(sed -i '' 's/#0F1F3D/#1E2D47/g; s/#0f1f3d/#1e2d47/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)"
+    ],
+    "additionalDirectories": [
+      "/Users/weart/Projects/weart/weart-new-site/app"
     ]
   }
 }

@@ -31,7 +31,7 @@ function Hero() {
 
         <div className="head-meta">
           <div className="meta-item">
-            <div className="num">9 év</div>
+            <div className="num">10+ év</div>
             <div className="lbl">Tapasztalat</div>
           </div>
           <div className="meta-item">
@@ -288,7 +288,7 @@ function Credibility() {
               valódi ügyfelek.
             </p>
             <div className="cb-cite">
-              <div className="cb-cite-num">9 év</div>
+              <div className="cb-cite-num">10+ év</div>
               <div>
                 <div className="cb-cite-lbl">Megszerzett háttér</div>
                 <div className="cb-cite-sub">Szakma · közösség · ügyfél</div>

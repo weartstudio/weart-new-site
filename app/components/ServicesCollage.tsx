@@ -72,7 +72,7 @@ export default function ServicesCollage() {
 
             <div className="sc-feature-foot">
               <div className="sc-feature-stats">
-                <span><b>9 év</b>tapasztalat</span>
+                <span><b>10+ év</b>tapasztalat</span>
                 <span><b>120+</b>elkészült oldal</span>
                 <span><b>3–6 hét</b>átfutás</span>
               </div>

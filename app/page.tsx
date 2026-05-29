@@ -93,7 +93,7 @@ function Hero({ projects }: { projects: WPProject[] }) {
             <Link href="/portfolio" className="btn btn-ghost">Munkáink</Link>
           </div>
           <div className="hero-meta">
-            <div className="meta-item"><div className="num">9 év</div><div className="lbl">tapasztalat</div></div>
+            <div className="meta-item"><div className="num">10+ év</div><div className="lbl">tapasztalat</div></div>
             <div className="meta-item"><div className="num">120+</div><div className="lbl">elkészült weboldal</div></div>
             <div className="meta-item"><div className="num">4,9 ★</div><div className="lbl">Google értékelés</div></div>
             <div className="meta-item"><div className="num">3–6 hét</div><div className="lbl">átlagos átfutás</div></div>
@@ -169,7 +169,7 @@ function Team() {
 function WhyUs() {
   return (
     <section className="sec" id="folyamat">
-      <div className="container-wide">
+      <div className="container">
         <div className="why reveal">
           <div className="why-grid">
             <div>
@@ -180,7 +180,7 @@ function WhyUs() {
               </p>
               <div style={{ marginTop: 32, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <Link className="btn btn-primary" href="/contact">Kérek ajánlatot →</Link>
-                <Link className="btn" style={{ color: '#fff', border: '1px solid rgba(255,255,255,0.18)' }} href="/portfolio">Munkáink</Link>
+                <Link className="btn" href="/portfolio">Munkáink</Link>
               </div>
             </div>
             <div className="why-feat">
@@ -203,7 +203,7 @@ function WhyUs() {
             quote={<>Sokakkal egyeztettem az új honlap miatt, de itt éreztem először, hogy <em>tényleg értik, mit csinálok.</em> Két hónap után már egyértelműen több ajánlatkérés érkezik.</>}
             name="Kovács István"
             role="Tulajdonos · Kovács Lakatos Kft."
-            stat={<><b>9 év</b> ugyanaz a két ember</>}
+            stat={<><b>10+ év</b> ugyanaz a két ember</>}
           />
         </div>
       </div>
