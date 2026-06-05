@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Phone, Mail } from 'lucide-react';
 import Nav from '../components/Nav';
+import RevealWrapper from '../components/RevealWrapper';
 import Footer from '../components/Footer';
 import BlogList from '../components/BlogList';
 import { getPosts, getCategories } from '../lib/wordpress';
@@ -67,21 +69,65 @@ export default async function BlogPage() {
 
       <BlogList posts={posts} categories={categories} />
 
-      <div className="container">
-        <div className="news">
-          <div>
-            <h3>Iratkozz fel a<br /><em>Weart Blogra.</em></h3>
-            <p>Havonta egyszer küldünk hasznos cikkeket, tippeket és kkv-knak szóló weboldal-tanácsokat. Spam nincs, leiratkozni bármikor lehet.</p>
-          </div>
-          <div>
-            <div className="news-form">
-              <input type="email" placeholder="email@cimed.hu" />
-              <button>Feliratkozom</button>
+      <section className="sec" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="big-cta reveal">
+            <div>
+              <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
+              <h2 style={{ marginTop: 18 }}>
+                Beszéljünk az
+                <br />
+                <em>oldaladról.</em>
+              </h2>
+              <p>
+                Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van
+                szükséged, és egy munkanapon belül küldünk egy konkrét
+                árajánlatot — csomagolás nélkül.
+              </p>
+              <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
+                Kezdjük el <span className="arrow">→</span>
+              </Link>
+            </div>
+            <div className="contact-card">
+              <div className="contact-card-head">
+                <div className="contact-avatar">
+                  <Image
+                    src="/fanni-small.jpg"
+                    alt="Ágoston Fanni"
+                    fill
+                    sizes="56px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div>
+                  <div className="contact-name">Ágoston Fanni</div>
+                  <div className="contact-role">A hívásokat fogadja</div>
+                </div>
+              </div>
+              <p className="contact-blurb">
+                A megkereséseket elsősorban <b>Fanni</b> kezeli, hogy Balázs minél
+                jobban tudjon a weboldalak építésére koncentrálni.
+              </p>
+              <div className="contact-rows">
+                <a className="contact-row" href="tel:+36301958114">
+                  <span className="contact-row-ico">
+                    <Phone size={14} strokeWidth={1.6} />
+                  </span>
+                  <span>+36 30 / 195 8114</span>
+                </a>
+                <a className="contact-row" href="mailto:info@weart.hu">
+                  <span className="contact-row-ico">
+                    <Mail size={14} strokeWidth={1.6} />
+                  </span>
+                  <span>info@weart.hu</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
+      <RevealWrapper />
       <Footer />
     </>
   );

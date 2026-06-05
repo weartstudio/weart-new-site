@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { useState, type SubmitEvent } from 'react';
 import { Phone, Mail, Calendar, Check } from 'lucide-react';
 import Nav from '../components/Nav';
+import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
-import Testimonials from '../components/Testimonials';
 
 
 export default function KapcsolatPage() {
@@ -266,10 +266,9 @@ export default function KapcsolatPage() {
             </div>
             <Testimonials
               variant="dark"
-              quote={<>A webshopunk az indulás óta <em>háromszor annyi rendelést hoz,</em> mint a régi. A betanítás után a feleségem is magabiztosan kezeli a termékeket.</>}
-              name="Szabó Tamás"
-              role="Alapító · Bortrezor.hu"
-              stat={<><b>3×</b> annyi rendelés</>}
+              quote={<>Mivel az első weboldalunkat készítették el, külön örültünk, hogy <em>számunkra is érthető módon zajlott a kommunikáció.</em> Köszönjük a gyors és pontos munkát!</>}
+              name="Kövesdi Éva"
+              role="Tulajdonos · Üveg Trend Plusz Kft."
             />
           </div>
         </div>

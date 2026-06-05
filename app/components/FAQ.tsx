@@ -7,7 +7,7 @@ const items = [
   { q: 'Mi van, ha még nincs logóm vagy szövegem?', a: 'Az is rendben van. Tudunk logót tervezni, és ajánlunk megbízható copywritert is. Ha nincs képanyag, közös fotózást szervezünk a vállalkozásodról — ez sokszor a legjobb döntés.' },
   { q: 'Tudom magam módosítani az oldalt utána?', a: 'Igen — ez nálunk alap. WordPress alapra építünk, és átadáskor kapsz egy 1 órás betanítást videóval együtt. Új termék, új blogbejegyzés, új képek — bárki fel tudja vinni a csapatból.' },
   { q: 'Kell-e havi díjat fizetnem utána?', a: 'A weboldalért egyszer fizetsz, az a tied. Tárhelyet és domaint évente kell megújítani (kb. 30–40 ezer Ft / év). Karbantartást is tudunk havidíjban (29.900 Ft-tól) — ez nem kötelező, de ajánljuk.' },
-  { q: 'Számlát adtok ÁFÁ-val?', a: 'Igen, magyar Kft-ként számlát állítunk ki, ÁFA-tartalommal. A munkadíj 50%-a foglaló (szerződéskötéskor), a maradék átadáskor.' },
+  { q: 'Számlát adtok ÁFÁ-val?', a: 'Igen, magyar Kft-ként számlát állítunk ki, ÁFA-tartalommal. A munkadíj 30%-a előleg (szerződéskötéskor), a maradék átadáskor.' },
   { q: 'Mi van, ha nem elégedett vagyok?', a: 'Az első egyeztetés és wireframe (vázlat) szakaszban bármikor visszaléphetsz, ekkor csak az addigi munka árát számlázzuk. A kész oldalra 60 nap garancia jár — ha valami nem úgy működik, ahogy kellene, javítjuk.' }
 ];
 

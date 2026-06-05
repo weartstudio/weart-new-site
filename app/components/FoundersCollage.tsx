@@ -33,8 +33,8 @@ const PEOPLE: Person[] = [
           biztonságosan.
         </p>
         <p>
-          Az ausztrál <b>Envato</b> piactéren a sablonjait világszerte 700+
-          oldalon használják, 50+ országban. Ingyenes WordPress pluginokat ad
+          Az ausztrál <b>Envato</b> piactéren a saját fejlesztéseit külföldön,
+          több országban is használják. Ingyenes WordPress pluginokat ad
           ki, részt vesz a magyar fordításokban, és fejlesztői eszközöket oszt
           meg nyíltan — mert a szakmai közösség neki is sokat adott.
         </p>
@@ -54,7 +54,7 @@ const PEOPLE: Person[] = [
         ico: '⚡',
         text: (
           <>
-            <b>Sebesség és SEO</b> — Lighthouse 95+ mobilon is, hogy a Google és
+            <b>Sebesség és SEO</b> — gyors betöltés mobilon is, hogy a Google és
             a látogató is szeresse.
           </>
         ),

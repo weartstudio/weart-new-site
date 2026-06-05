@@ -5,8 +5,8 @@ import { Phone, Mail } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import TechStack from '../components/TechStack';
-import FoundersCollage from '../components/FoundersCollage';
 import Testimonials from '../components/Testimonials';
+import FoundersCollage from '../components/FoundersCollage';
 import RevealWrapper from '../components/RevealWrapper';
 
 export const metadata: Metadata = {
@@ -75,11 +75,8 @@ function Story() {
               A Weart <b>Egyed Balázs</b> egyszemélyes vállalkozásaként indult.
               Az elmúlt közel egy évtizedben dolgozott nagyvállalatoknak,
               reklámügynökségeknek, kiadóknak és kkv-knak — Magyarországon és
-              külföldön egyaránt. A saját fejlesztésű WordPress-megoldásai ma{' '}
-              <span className="story-mark">
-                több mint 50 országban, 700+ élő weboldalon futnak
-              </span>
-              .
+              külföldön egyaránt. A saját fejlesztésű WordPress-megoldásait{' '}
+              külföldön, több országban is használják.
             </p>
             <p>
               A kkv-tulajdonosok mégis újra és újra ugyanazzal a két történettel
@@ -226,10 +223,9 @@ function Values() {
           </div>
           <Testimonials
             variant="dark"
-            quote={<>„Két ügynökséget kipróbáltunk előttük. A Weart az első, ahol <em>érzem, hogy értik, mi a klinika</em> — nem csak egy újabb projekt nekik.”</>}
-            name="Dr. Halász Eszter"
-            role="Klinikaigazgató · AurumMed"
-            stat={<><b>2</b> fő, akivel végig beszélt — nem 6</>}
+            quote={<>Állatorvosként nem sok informatikai ismerettel rendelkezem, ezért Balázs <em>egy személyre szabott oktató-videót is készített számomra.</em> Így már könnyedén tudom az oldalt szerkeszteni, az új tartalmakat feltölteni.</>}
+            name="dr. Héjja Imre"
+            role="Állatorvos · szuri-kata.hu"
           />
         </div>
       </div>
@@ -246,16 +242,10 @@ function Credibility() {
       source: { label: 'inf.elte.hu', href: 'https://www.inf.elte.hu/' },
     },
     {
-      tag: 'Nemzetközi mérce',
-      title: '700+ élő weboldal a saját kódjainkból',
-      sub: '50+ országban fut, az ausztrál Envato globális piactéren keresztül — naponta több tízezren használják.',
+      tag: 'Nemzetközi háttér',
+      title: 'Külföldön is futnak a fejlesztéseink',
+      sub: 'A saját WordPress-megoldásainkat az ausztrál Envato globális piactéren keresztül több országban is használják.',
       source: { label: 'envato.com', href: 'https://themeforest.net/' },
-    },
-    {
-      tag: 'Vélemények',
-      title: '4,9★ Google-értékelés',
-      sub: '90+ valódi ügyféltől, név szerint olvasható. Nem ami sehol nincs: nyilvános, kereshető.',
-      source: { label: 'Google Cégem', href: 'https://www.google.com/search?q=weart+studio' },
     },
     {
       tag: 'Közösség',
@@ -358,8 +348,7 @@ function BigCTA() {
       <div className="container">
         <div className="big-cta reveal">
           <div>
-            <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
-            <h2 style={{ marginTop: 18 }}>
+            <h2>
               Beszéljünk az
               <br />
               <em>oldaladról.</em>

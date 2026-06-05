@@ -51,7 +51,7 @@ export default function ServicesCollage() {
               <div className="sc-benefit">
                 <div className="ico">⚡</div>
                 <h5>Villámgyors</h5>
-                <p>Egyedi kód, Lighthouse 95+ pontszám — már mobilon is.</p>
+                <p>Egyedi kód, optimalizált betöltés — már mobilon is gyors.</p>
               </div>
               <div className="sc-benefit">
                 <div className="ico">✎</div>
@@ -106,11 +106,10 @@ export default function ServicesCollage() {
             <h4 className="sc-sat-title">Webshop indítás</h4>
             <p className="sc-sat-desc">WooCommerce + Barion/SimplePay, GLS/Foxpost, NAV-kompatibilis számlázás — kulcsra készen.</p>
             <div className="sc-sat-viz" aria-hidden="true">
-              <div className="pulse">
-                <div className="bar-row"><span>Mobil pontszám</span><span>96/100</span></div>
-                <div className="bar"><i style={{ width: '96%' }} /></div>
-                <div className="bar-row"><span>Konverzió</span><span>+34%</span></div>
-                <div className="bar"><i style={{ width: '78%' }} /></div>
+              <div className="ssl">
+                <div className="ssl-row"><span className="check" />Barion / SimplePay integráció</div>
+                <div className="ssl-row"><span className="check" />GLS / Foxpost szállítás</div>
+                <div className="ssl-row"><span className="check" />NAV-kompatibilis számlázás</div>
               </div>
             </div>
           </article>

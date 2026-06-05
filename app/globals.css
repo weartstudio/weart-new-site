@@ -119,13 +119,14 @@ img { max-width: 100%; display: block; }
 .trust-track { display: flex; gap: 48px; width: max-content; animation: trustScroll 32s linear infinite; }
 .trust-marquee:hover .trust-track { animation-play-state: paused; }
 @keyframes trustScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-.client-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; opacity: .65; transition: opacity .25s ease, transform .25s ease; color: var(--text); }
-.client-logo:hover { opacity: 1; transform: translateY(-2px); }
-.client-logo-mark { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--text); flex-shrink: 0; transition: background .25s ease, color .25s ease; }
-.client-logo:hover .client-logo-mark { background: var(--primary); color: var(--dark); }
-.client-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-.client-logo-text b { font-weight: 700; font-size: 14.5px; letter-spacing: -0.02em; }
-.client-logo-text small { font-family: var(--font-jetbrains), ui-monospace, monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+.client-logo { display: flex; align-items: center; justify-content: center; flex-shrink: 0; height: 40px; transition: transform .25s ease; }
+.client-logo:hover { transform: translateY(-2px); }
+/* mix-blend-mode: multiply — a fehér háttér beleolvad a világos csíkba (fehér × háttér = háttér),
+   így a fehér hátterű logók (pl. szerszamot, lizingo) háttere "átlátszóvá" válik. */
+.client-logo-img { height: 30px; width: auto; max-width: 150px; object-fit: contain; opacity: .55; filter: grayscale(1); mix-blend-mode: multiply; transition: opacity .25s ease, filter .25s ease; }
+.client-logo:hover .client-logo-img { opacity: 1; filter: grayscale(0); }
+.client-logo-img--invert { filter: grayscale(1) invert(1); }
+.client-logo:hover .client-logo-img--invert { filter: invert(1); }
 
 /* Services — réteges showcase + sávos lista (nem dobozos) */
 /* Services — réteges kollázs (csak mouse-parallax, scroll-animáció nélkül) */

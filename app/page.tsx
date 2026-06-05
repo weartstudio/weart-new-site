@@ -6,8 +6,8 @@ import Footer from './components/Footer';
 import RevealWrapper from './components/RevealWrapper';
 import AboutCollage from './components/AboutCollage';
 import ServicesCollage from './components/ServicesCollage';
-import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
+import Testimonials from './components/Testimonials';
 import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from './lib/wordpress';
 
 // A kezdőlap a WordPress-ből élő projekt- és cikklistát mutat,
@@ -16,14 +16,25 @@ import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from
 export const dynamic = 'force-dynamic';
 
 const clientLogos = [
-  { name: 'Kovács Lakatos', tag: 'kisipar', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 30 L18 6 L30 30"/><path d="M11 22 L25 22"/><circle cx="18" cy="14" r="2" fill="currentColor"/></svg> },
-  { name: 'Zöldkert Bt.', tag: 'kertészet', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 30 V14"/><path d="M18 18 C12 18 8 14 8 8 C14 8 18 12 18 18 Z" fill="currentColor" fillOpacity=".15"/><path d="M18 22 C24 22 28 18 28 12 C22 12 18 16 18 22 Z" fill="currentColor" fillOpacity=".15"/></svg> },
-  { name: 'Bódi Fogászat', tag: 'egészségügy', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 6 C9 6 8 9 8 13 C8 18 10 22 10 26 C10 28 11 30 12.5 30 C14 30 14.5 28 15 24 C15.5 21 16 19 18 19 C20 19 20.5 21 21 24 C21.5 28 22 30 23.5 30 C25 30 26 28 26 26 C26 22 28 18 28 13 C28 9 27 6 24 6 C21 6 20 8 18 8 C16 8 15 6 12 6 Z"/></svg> },
-  { name: 'Mátra Panzió', tag: 'vendéglátás', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 26 L13 14 L18 20 L23 10 L31 26 Z"/><circle cx="25" cy="9" r="2.2" fill="currentColor"/></svg> },
-  { name: 'Szabó Könyvelő', tag: 'könyvelő iroda', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="7" y="7" width="22" height="22" rx="3"/><path d="M12 14 H24"/><path d="M12 19 H20"/><path d="M12 24 H22"/></svg> },
-  { name: 'Holló Pékség', tag: 'kézműves pékség', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="18" cy="20" rx="12" ry="7"/><path d="M10 16 C10 12 14 10 18 10 C22 10 26 12 26 16"/><path d="M14 21 L14 24"/><path d="M18 21 L18 25"/><path d="M22 21 L22 24"/></svg> },
-  { name: 'Tóth Ügyvédi', tag: 'jogi iroda', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 V30"/><path d="M10 30 H26"/><path d="M11 12 L18 9 L25 12"/><path d="M7 20 L11 12 L15 20 Z"/><path d="M21 20 L25 12 L29 20 Z"/></svg> },
-  { name: 'NagyAuto Kft.', tag: 'autószerviz', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 22 L8 14 H28 L31 22 V26 H5 Z"/><circle cx="11" cy="26" r="2.5" fill="currentColor"/><circle cx="25" cy="26" r="2.5" fill="currentColor"/><path d="M9 18 H27"/></svg> },
+  { name: 'Szerszámot.eu', src: '/logos/szerszamot-1.png', w: 694, h: 86 },
+  { name: 'Amberg Audio', src: '/logos/amberg.png', w: 268, h: 50 },
+  { name: 'Lizingo.hu', src: '/logos/lizingo.webp', w: 273, h: 40 },
+  { name: 'Papa Joe Pizza', src: '/logos/papajoe.png', w: 188, h: 58 },
+  { name: 'Green Policy Center', src: '/logos/greenpolicy.png', w: 148, h: 56 },
+  { name: 'GMR Electric', src: '/logos/gmr.png', w: 300, h: 105 },
+  { name: 'Zombori Zenina', src: '/logos/zenina.png', w: 300, h: 114 },
+  { name: 'Primor', src: '/logos/primor-1.png', w: 558, h: 71 },
+  { name: 'KB Massage Therapy', src: '/logos/khb.png', w: 130, h: 102 },
+  { name: 'Hymato', src: '/logos/hymato.png', w: 133, h: 138 },
+  { name: 'Gina Lash Terrace', src: '/logos/ginalash.png', w: 768, h: 234 },
+  { name: 'KKV Éve', src: '/logos/kkveve.png', w: 56, h: 56 },
+  // Fehér / sötét-dobozos logók — invert tükrözi a világos csíkhoz, hogy olvashatók legyenek.
+  { name: 'DataMagic', src: '/logos/datamagic.png', w: 192, h: 43, invert: true },
+  { name: 'Szentgáli Csaba', src: '/logos/szentgali.png', w: 427, h: 47, invert: true },
+  { name: 'House Hévíz', src: '/logos/hosueheviz.png', w: 200, h: 56, invert: true },
+  { name: 'VCTC', src: '/logos/vctc-logo.png', w: 161, h: 62 },
+  { name: 'Palantax.hu', src: '/logos/palantax.png', w: 280, h: 66, invert: true },
+  { name: 'Almási Családi Méhészet', src: '/logos/almasi.png', w: 258, h: 120, invert: true },
 ];
 
 function ClientLogos() {
@@ -31,11 +42,14 @@ function ClientLogos() {
     <>
       {clientLogos.map((c, i) => (
         <div className="client-logo" key={i}>
-          <span className="client-logo-mark">{c.mark}</span>
-          <span className="client-logo-text">
-            <b>{c.name}</b>
-            <small>{c.tag}</small>
-          </span>
+          <Image
+            className={`client-logo-img${c.invert ? ' client-logo-img--invert' : ''}`}
+            src={c.src}
+            alt={c.name}
+            width={c.w}
+            height={c.h}
+            sizes="160px"
+          />
         </div>
       ))}
     </>
@@ -82,20 +96,18 @@ function Hero({ projects }: { projects: WPProject[] }) {
     <section className="hero">
       <div className="container hero-grid">
         <div>
-          <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
           <h1 className="h1">
-            Weboldal, ami<br />
-            tényleg <span className="underline">vevőket hoz.</span>
+            Weboldalt készítünk kkv-knak —<br />
+            ketten, névvel és <span className="underline">telefonszámmal.</span>
           </h1>
-          <p className="lead">Magyar kkv-knak készítünk gyors, jól kereshető, könnyen kezelhető weboldalakat — a tervezéstől a karbantartásig. Nincs marketing duma, csak tiszta munka.</p>
+          <p className="lead">Balázs fejleszt, Fanni egyeztet — ugyanaz a két ember az első megkereséstől az átadásig, és utána is. Egyedi WordPress kód, fix ár, tartott határidő. Se ügynökségi lánc, se eltűnő ismerős.</p>
           <div className="hero-ctas">
-            <Link href="/contact" className="btn btn-primary">Ingyenes árajánlat <span className="arrow">→</span></Link>
+            <Link href="/contact" className="btn btn-primary">Kérek árajánlatot <span className="arrow">→</span></Link>
             <Link href="/portfolio" className="btn btn-ghost">Munkáink</Link>
           </div>
           <div className="hero-meta">
             <div className="meta-item"><div className="num">10+ év</div><div className="lbl">tapasztalat</div></div>
             <div className="meta-item"><div className="num">120+</div><div className="lbl">elkészült weboldal</div></div>
-            <div className="meta-item"><div className="num">4,9 ★</div><div className="lbl">Google értékelés</div></div>
             <div className="meta-item"><div className="num">3–6 hét</div><div className="lbl">átlagos átfutás</div></div>
           </div>
         </div>
@@ -200,10 +212,9 @@ function WhyUs() {
           </div>
           <Testimonials
             variant="dark"
-            quote={<>Sokakkal egyeztettem az új honlap miatt, de itt éreztem először, hogy <em>tényleg értik, mit csinálok.</em> Két hónap után már egyértelműen több ajánlatkérés érkezik.</>}
-            name="Kovács István"
-            role="Tulajdonos · Kovács Lakatos Kft."
-            stat={<><b>10+ év</b> ugyanaz a két ember</>}
+            quote={<>Ha kérdésre választ vagy kérésemre megoldást kérek, azt megkapom. <em>Az elképzeléseim kezdenek megjelenni</em> — és ezt Balázsnak köszönöm.</>}
+            name="Lázár László"
+            role="Tulajdonos · szerszamot.eu"
           />
         </div>
       </div>
@@ -211,17 +222,6 @@ function WhyUs() {
   );
 }
 
-function MarqueeStrip() {
-  const items = ['Gyors', 'Mobilbarát', 'SEO-ra optimalizált', 'Magyar nyelvű támogatás', 'Fix ár', 'Átlátható', 'Kkv-barát', 'Egyedi', 'Karbantartott'];
-  const all = [...items, ...items];
-  return (
-    <div className="marquee">
-      <div className="marquee-track">
-        {all.map((w, i) => <span key={i}>{w}</span>)}
-      </div>
-    </div>
-  );
-}
 
 function Insights({ posts }: { posts: WPPost[] }) {
   if (posts.length === 0) return null;
@@ -281,8 +281,7 @@ function BigCTA() {
       <div className="container">
         <div className="big-cta reveal">
           <div>
-            <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
-            <h2 style={{ marginTop: 18 }}>Beszéljünk az<br /><em>oldaladról.</em></h2>
+            <h2>Beszéljünk az<br /><em>oldaladról.</em></h2>
             <p>Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van szükséged, és egy munkanapon belül küldünk egy konkrét árajánlatot — csomagolás nélkül.</p>
             <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Kezdjük el <span className="arrow">→</span></Link>
           </div>
@@ -330,7 +329,6 @@ export default async function Home() {
       <Services />
       <Team />
       <WhyUs />
-      <MarqueeStrip />
       <Insights posts={latestPosts} />
       <FAQ />
       <BigCTA />

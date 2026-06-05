@@ -81,10 +81,15 @@
       "Bash(sed -i '' 's/rgba\\(37,99,235,/rgba\\(70,104,198,/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
       "Bash(sed -i '' 's/#BFDBFE/#C0CEF5/g; s/#bfdbfe/#c0cef5/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
       "Bash(sed -i '' 's/#DBEAFE/#F3F9FC/g; s/#dbeafe/#f3f9fc/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
-      "Bash(sed -i '' 's/#0F1F3D/#1E2D47/g; s/#0f1f3d/#1e2d47/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)"
+      "Bash(sed -i '' 's/#0F1F3D/#1E2D47/g; s/#0f1f3d/#1e2d47/g' /Users/weart/Projects/weart/weart-new-site/app/globals.css)",
+      "WebSearch",
+      "Bash(npm run dev -- --port 3001 &>/tmp/nextdev.log & *)",
+      "Bash(python3 -)",
+      "WebFetch(domain:new.weart.hu)"
     ],
     "additionalDirectories": [
-      "/Users/weart/Projects/weart/weart-new-site/app"
+      "/Users/weart/Projects/weart/weart-new-site/app",
+      "/tmp"
     ]
   }
 }
