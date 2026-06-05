@@ -12,7 +12,7 @@ import RevealWrapper from '../components/RevealWrapper';
 export const metadata: Metadata = {
   title: 'Rólunk — Weart | Ketten egy weboldal mögött',
   description:
-    'Egy fejlesztő és egy projektmenedzser — Egyed Balázs és Ágoston Fanni. 2017 óta készítünk gyors, egyedi weboldalakat magyar kkv-knak. Nem ügynökség: aki megtervezi, az kódolja, az veszi fel a telefont.',
+    'Egy fejlesztő és egy projektmenedzser — Egyed Balázs és Ágoston Fanni. 2017 óta készítünk gyors, egyedi weboldalakat vállalkozásoknak. Nem ügynökség: aki megtervezi, az kódolja, az veszi fel a telefont.',
 };
 
 function Hero() {
@@ -74,12 +74,12 @@ function Story() {
             <p>
               A Weart <b>Egyed Balázs</b> egyszemélyes vállalkozásaként indult.
               Az elmúlt közel egy évtizedben dolgozott nagyvállalatoknak,
-              reklámügynökségeknek, kiadóknak és kkv-knak — Magyarországon és
+              reklámügynökségeknek, kiadóknak és vállalkozásoknak — Magyarországon és
               külföldön egyaránt. A saját fejlesztésű WordPress-megoldásait{' '}
               külföldön, több országban is használják.
             </p>
             <p>
-              A kkv-tulajdonosok mégis újra és újra ugyanazzal a két történettel
+              A vállalkozók mégis újra és újra ugyanazzal a két történettel
               érkeztek. Az egyik: egy drága ügynökség sorszámként kezelte őket,
               junior projektmenedzserek váltották egymást, és senki nem értette,
               mit csinál a cégük. A másik: egy olcsó „ismerős srác” félkész
@@ -249,14 +249,14 @@ function Credibility() {
     },
     {
       tag: 'Közösség',
-      title: 'Ingyenes pluginek és magyar fordítások',
-      sub: 'Nyílt WordPress bővítmények, hivatalos magyar fordítások és GitHubra feltöltött fejlesztői eszközök.',
+      title: 'Ingyenes pluginek és fordítások',
+      sub: 'Nyílt WordPress bővítmények, hivatalos fordítások és GitHubra feltöltött fejlesztői eszközök.',
       source: { label: 'GitHub · WP.org', href: 'https://github.com/' },
     },
     {
       tag: 'Tudásmegosztás',
-      title: 'Magyar nyelvű szakmai blog',
-      sub: 'Érthető cikkek kkv-tulajdonosoknak arról, hogyan működik egy weboldal — nem fejlesztőknek, magyarul.',
+      title: 'Szakmai blog',
+      sub: 'Érthető cikkek vállalkozóknak arról, hogyan működik egy weboldal — nem fejlesztőknek.',
       source: { label: '/posts', href: '/posts' },
     },
   ];
@@ -323,11 +323,11 @@ function MarqueeStrip() {
     'Egyedi kód',
     'Fix ár',
     'Tartott határidő',
-    'Magyar nyelvű támogatás',
+    'Érthető támogatás',
     'Te kezeled',
     'Nem tűnünk el',
     'Mérnöki minőség',
-    'Kkv-barát',
+    'Vállalkozóknak',
     'Átlátható',
   ];
   const all = [...items, ...items];
@@ -355,7 +355,7 @@ function BigCTA() {
             </h2>
             <p>
               Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van
-              szükséged, és egy munkanapon belül küldünk egy konkrét
+              szükséged, és két munkanapon belül küldünk egy konkrét
               árajánlatot — csomagolás nélkül.
             </p>
             <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>

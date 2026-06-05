@@ -21,8 +21,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Weart — Weboldalak kkv-knak, profin",
-  description: "Magyar kkv-knak készítünk gyors, jól kereshető, könnyen kezelhető weboldalakat — a tervezéstől a karbantartásig.",
+  title: "Weart — Weboldalak vállalkozásoknak, profin",
+  description: "Vállalkozásoknak készítünk gyors, jól kereshető, könnyen kezelhető weboldalakat — a tervezéstől a karbantartásig.",
 };
 
 export default function RootLayout({

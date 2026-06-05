@@ -122,7 +122,7 @@ export default async function PostPage({ params }: Props) {
             <div className="a-end">
               <div>
                 <h3>Szeretnéd, hogy <em>mi csináljuk meg</em> helyetted?</h3>
-                <p>Weboldal, webshop, SEO — kkv-knak, magyarul, egy munkanapon belül kapsz árajánlatot.</p>
+                <p>Weboldal, webshop, SEO — két munkanapon belül kapsz árajánlatot.</p>
               </div>
               <Link href="/contact" className="btn btn-primary">Kérek árajánlatot <span className="arrow">→</span></Link>
             </div>
@@ -162,13 +162,13 @@ export default async function PostPage({ params }: Props) {
             <div className="aside-card">
               <div className="label">Hírlevél</div>
               <h4>Havi 1 cikk, semmi spam</h4>
-              <p>Magyar kkv-tulajdonosoknak — pontokba szedve, érthetően. Bármikor leiratkozhatsz.</p>
+              <p>Vállalkozóknak — pontokba szedve, érthetően. Bármikor leiratkozhatsz.</p>
               <NewsletterModal trigger={<>Feliratkozom →</>} />
             </div>
             <div className="aside-card">
               <div className="label">Ajánlat</div>
-              <h4>Új weboldal kkv-knak</h4>
-              <p>Tervezés, fejlesztés, tartalomtöltés — egy árban. Egy munkanapon belül árajánlat.</p>
+              <h4>Új weboldal vállalkozásoknak</h4>
+              <p>Tervezés, fejlesztés, tartalomtöltés — egy árban. Két munkanapon belül árajánlat.</p>
               <Link href="/contact">Egyeztetést kérek →</Link>
             </div>
             {related[0] && (

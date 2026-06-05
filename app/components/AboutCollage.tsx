@@ -123,9 +123,9 @@ export default function AboutCollage() {
 
       <div className="ac-side">
         <p className="ac-lead">
-          Balázs kódol, Fanni a kapcsolatot tartja — <em>ugyanaz a két ember</em> a
-          tervezéstől a támogatásig. Nincs ügynökségi lánc, nincs junior, akinek
-          átadnak a szerződés után.
+          Balázs fejleszt egyedi WordPress kóddal, Fanni koordinál — <em>ugyanaz a két ember</em> a
+          specifikációtól a támogatásig. 10+ éve WooCommerce és WordPress rendszereken dolgozunk,
+          vállalkozásoknak.
         </p>
         <div className="ac-tags">
           {['Webfejlesztés', 'WordPress', 'WooCommerce', 'Webshop', 'Design', 'Tervezés', 'Sebesség', 'SEO', 'Ügyfélkapcsolat', 'Onboarding'].map((t) => (

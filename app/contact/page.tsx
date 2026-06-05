@@ -64,11 +64,11 @@ export default function KapcsolatPage() {
         <div className="container">
           <div className="page-eyebrow">Kapcsolat</div>
           <h1 className="page-h1">Beszéljünk az<br/><span className="underline">oldaladról.</span></h1>
-          <p className="page-lead">Mondd el pár mondatban, mire van szükséged — egy munkanapon belül válaszolunk, és időpontot egyeztetünk egy díjmentes konzultációra. Nincs kötelezettség, nincs marketing duma.</p>
+          <p className="page-lead">Mondd el pár mondatban, mire van szükséged — két munkanapon belül válaszolunk, és időpontot egyeztetünk egy díjmentes konzultációra. Nincs kötelezettség, nincs marketing duma.</p>
 
           <div className="head-meta">
             <div className="meta-item">
-              <div className="num">1 munkanap</div>
+              <div className="num">2 munkanap</div>
               <div className="lbl">Válaszadási idő</div>
             </div>
             <div className="meta-item">
@@ -81,7 +81,7 @@ export default function KapcsolatPage() {
             </div>
             <div className="meta-item">
               <div className="num">100%</div>
-              <div className="lbl">Magyarul, érthetően</div>
+              <div className="lbl">Érthetően, személyesen</div>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function KapcsolatPage() {
                 </div>
               </div>
 
-              <p className="fanni-bio">Hozzám fut be minden megkeresés. <b>Te csak szólsz</b> — én visszahívlak, megbeszéljük, mire van szükséged, és <b>egy munkanapon belül</b> küldök egy reális, fix árajánlatot. Nincs sales-folyamat, nincs „felfedező hívás" után 5 emailes követés.</p>
+              <p className="fanni-bio">Hozzám fut be minden megkeresés. <b>Te csak szólsz</b> — én visszahívlak, megbeszéljük, mire van szükséged, és <b>két munkanapon belül</b> küldök egy reális, fix árajánlatot. Nincs sales-folyamat, nincs „felfedező hívás" után 5 emailes követés.</p>
 
               <div className="availability">
                 <span className="avail-dot"></span>
@@ -220,7 +220,7 @@ export default function KapcsolatPage() {
                   </span>
                   <div>
                     <h4>Megkaptuk. Köszi!</h4>
-                    <p>Egy munkanapon belül válaszol Fanni a megadott e-mail címre. Ha sürgős, hívd nyugodtan: <b>+36 30 / 195 8114</b>.</p>
+                    <p>Két munkanapon belül válaszol Fanni a megadott e-mail címre. Ha sürgős, hívd nyugodtan: <b>+36 30 / 195 8114</b>.</p>
                   </div>
                 </div>
               )}
@@ -244,8 +244,8 @@ export default function KapcsolatPage() {
               <div className="why-feat">
                 <div className="feat">
                   <div className="feat-h"><span className="feat-num">01.</span><h4>Visszahívunk</h4></div>
-                  <p>Fanni felveszi a kapcsolatot 1 munkanapon belül, megbeszélünk egy 30 perces időpontot.</p>
-                  <div className="feat-time">~ 1 munkanap</div>
+                  <p>Fanni felveszi a kapcsolatot két munkanapon belül, megbeszélünk egy 30 perces időpontot.</p>
+                  <div className="feat-time">~ 2 munkanap</div>
                 </div>
                 <div className="feat">
                   <div className="feat-h"><span className="feat-num">02.</span><h4>Konzultáció</h4></div>

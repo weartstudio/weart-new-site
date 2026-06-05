@@ -10,7 +10,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Munkáink – Weart',
-  description: 'Válogatott referenciák — weboldalak, webshopok és egyedi fejlesztések magyar vállalkozásoknak.',
+  description: 'Válogatott referenciák — weboldalak, webshopok és egyedi fejlesztések vállalkozásoknak.',
 };
 
 const TINTS = ['light', 'cream', 'accent', 'deep', 'dark'];
@@ -125,7 +125,7 @@ export default async function MunkainkPage() {
       <header className="page-head">
         <div className="container">
           <div className="page-eyebrow">Portfólió · Referenciák</div>
-          <h1 className="page-h1">Magyar vállalkozások weboldalai, amiket <em>tényleg</em> szeretnek a <span className="underline">megrendelőink.</span></h1>
+          <h1 className="page-h1">Vállalkozások weboldalai, amiket <em>tényleg</em> szeretnek a <span className="underline">megrendelőink.</span></h1>
 
           <div className="page-head-row">
             <p className="page-lead">Néhány kiválasztott projekt az elmúlt évekből — weboldalak, webshopok és egyedi fejlesztések. Mindegyik mögött egy konkrét igény és egy elégedett ügyfél.</p>
@@ -162,7 +162,7 @@ export default async function MunkainkPage() {
             <div>
               <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
               <h2 style={{ marginTop: 18 }}>Tied lehet a <em>következő</em><br />referencia.</h2>
-              <p>Ha érdekel, írj egy mondatot: mi a vállalkozásod, mi hiányzik a mostani oldaladból. Egy munkanapon belül válaszolunk konkrét számmal.</p>
+              <p>Ha érdekel, írj egy mondatot: mi a vállalkozásod, mi hiányzik a mostani oldaladból. Két munkanapon belül válaszolunk konkrét számmal.</p>
               <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
                 Kezdjük el <span className="arrow">→</span>
               </Link>

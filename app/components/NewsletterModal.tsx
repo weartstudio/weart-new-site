@@ -54,7 +54,7 @@ export default function NewsletterModal({ trigger }: Props) {
             <form className="newsletter-form" onSubmit={submit}>
               <div className="aside-label">Hírlevél</div>
               <h3>Iratkozz fel a <em>Weart Blogra</em></h3>
-              <p>Havonta egy cikk magyar kkv-tulajdonosoknak — érthetően, marketingduma nélkül. Bármikor leiratkozhatsz.</p>
+              <p>Havonta egy cikk vállalkozóknak — érthetően, marketingduma nélkül. Bármikor leiratkozhatsz.</p>
               <label className="newsletter-field">
                 <span>Email cím</span>
                 <input

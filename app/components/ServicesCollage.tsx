@@ -27,7 +27,7 @@ export default function ServicesCollage() {
 
             <div className="sc-feature-head">
               <span className="sc-feature-num">/ 01</span>
-              <span className="sc-mark-label">Built on WordPress · saját kód</span>
+              <span className="sc-mark-label">WordPress · egyedi fejlesztés</span>
             </div>
 
             <div className="sc-badges">
@@ -36,37 +36,37 @@ export default function ServicesCollage() {
             </div>
 
             <h3 className="sc-feature-h">
-              Villámgyors weboldal,
+              Egyedi WordPress weboldal —
               <br />
-              <em>egyedi fejlesztéssel.</em>
+              <em>sablon nélkül, célra szabva.</em>
             </h3>
 
             <p className="sc-feature-lead">
-              A tervezéstől a tárhelyig — <em>egy helyen, magyarul, érthetően.</em> Saját, célra szabott
-              WordPress kódot fejlesztünk, <em>nem sablonokra építünk.</em> Minimális bővítménnyel, gyorsan,
-              biztonságosan — pont annyi funkció, amennyire szükséged van.
+              A vállalkozásodnak több kell, mint egy vásárolható sablon pár testreszabással. Saját kódot
+              fejlesztünk: csak az a funkció kerül bele, amire tényleg szükséged van — gyorsabb,
+              biztonságosabb, könnyebben bővíthető alap.
             </p>
 
             <div className="sc-benefits">
               <div className="sc-benefit">
                 <div className="ico">⚡</div>
-                <h5>Villámgyors</h5>
-                <p>Egyedi kód, optimalizált betöltés — már mobilon is gyors.</p>
+                <h5>Minimális bővítmény</h5>
+                <p>Kisebb támadási felület, kevesebb törési pont — stabilabb alap.</p>
               </div>
               <div className="sc-benefit">
                 <div className="ico">✎</div>
-                <h5>Egyszerűen kezelhető</h5>
-                <p>Saját szerkesztőfelület, kategóriákba rendezve.</p>
+                <h5>Gyors betöltés</h5>
+                <p>Egyedi kód, optimalizált teljesítmény — sablon-csomag helyett.</p>
               </div>
               <div className="sc-benefit">
                 <div className="ico">🛡</div>
-                <h5>Biztonságos</h5>
-                <p>Minimális bővítmény = kisebb támadási felület.</p>
+                <h5>Egyszerű szerkesztés</h5>
+                <p>Saját admin felület — Word-szerű élmény, fejlesztő nélkül.</p>
               </div>
               <div className="sc-benefit">
                 <div className="ico">↗</div>
-                <h5>Skálázható</h5>
-                <p>Mérnöki minőségben — évek múlva is bővíthető.</p>
+                <h5>Tartós alap</h5>
+                <p>Évek múlva is bővíthető — nem kell nulláról kezdeni.</p>
               </div>
             </div>
 
@@ -88,12 +88,12 @@ export default function ServicesCollage() {
               <span className="sc-sat-tag">Felújítás</span>
             </div>
             <h4 className="sc-sat-title">Régi oldal felújítása</h4>
-            <p className="sc-sat-desc">Lassú vagy ronda oldalból modern, gyors verzió — sokszor olcsóbb, mint nullról kezdeni.</p>
+            <p className="sc-sat-desc">Elavult vagy lassú oldalból modern, gyors verzió — sokszor olcsóbb, mint nulláról kezdeni.</p>
             <div className="sc-sat-viz" aria-hidden="true">
-              <div className="gauge">
-                {[28, 46, 72, 55, 88, 40, 66, 90, 72, 52, 78, 95].map((h, i) => (
-                  <i key={i} style={{ height: `${h}%` }} />
-                ))}
+              <div className="ssl">
+                <div className="ssl-row"><span className="check" />Mobilbarát újratervezés</div>
+                <div className="ssl-row"><span className="check" />Gyorsabb, biztonságos alap</div>
+                <div className="ssl-row"><span className="check" />Megtartott tartalom és SEO</div>
               </div>
             </div>
           </article>
@@ -104,11 +104,11 @@ export default function ServicesCollage() {
               <span className="sc-sat-tag">Webshop</span>
             </div>
             <h4 className="sc-sat-title">Webshop indítás</h4>
-            <p className="sc-sat-desc">WooCommerce + Barion/SimplePay, GLS/Foxpost, NAV-kompatibilis számlázás — kulcsra készen.</p>
+            <p className="sc-sat-desc">WooCommerce, Barion/SimplePay, csomagpont, NAV-kompatibilis számlázás — hazai fizetésre és szállításra hangolva, betanítással, kulcsra készen.</p>
             <div className="sc-sat-viz" aria-hidden="true">
               <div className="ssl">
                 <div className="ssl-row"><span className="check" />Barion / SimplePay integráció</div>
-                <div className="ssl-row"><span className="check" />GLS / Foxpost szállítás</div>
+                <div className="ssl-row"><span className="check" />Csomagpontos szállítás</div>
                 <div className="ssl-row"><span className="check" />NAV-kompatibilis számlázás</div>
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function ServicesCollage() {
               <span className="sc-sat-tag">Karbantartás</span>
             </div>
             <h4 className="sc-sat-title">Karbantartás havidíjban</h4>
-            <p className="sc-sat-desc">Frissítések, biztonsági mentés, kisebb módosítás. Te csak szólsz — mi megcsináljuk.</p>
+            <p className="sc-sat-desc">Frissítések, biztonsági mentés, kisebb módosítás — 10 ezer Ft / hó. Te csak szólsz, mi megcsináljuk.</p>
             <div className="sc-sat-viz" aria-hidden="true">
               <div className="ssl">
                 <div className="ssl-row"><span className="check" />Heti biztonsági mentés</div>

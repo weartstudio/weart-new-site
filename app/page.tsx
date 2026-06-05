@@ -97,17 +97,21 @@ function Hero({ projects }: { projects: WPProject[] }) {
       <div className="container hero-grid">
         <div>
           <h1 className="h1">
-            Weboldalt készítünk kkv-knak —<br />
-            ketten, névvel és <span className="underline">telefonszámmal.</span>
+            Egyedi weboldal és webshop fejlesztés <span className="underline">vállalkozásoknak.</span>
           </h1>
-          <p className="lead">Balázs fejleszt, Fanni egyeztet — ugyanaz a két ember az első megkereséstől az átadásig, és utána is. Egyedi WordPress kód, fix ár, tartott határidő. Se ügynökségi lánc, se eltűnő ismerős.</p>
+          <p className="lead">
+            10+ éve egyedi weboldalakat és webshopokat fejlesztünk WordPressen és WooCommerce-en — saját
+            kóddal, gyorsan és könnyen kezelhetően. A tervezés és fejlesztés egy kézben van: nem csak
+            szép, hanem működik is.
+          </p>
           <div className="hero-ctas">
-            <Link href="/contact" className="btn btn-primary">Kérek árajánlatot <span className="arrow">→</span></Link>
+            <Link href="/contact" className="btn btn-primary">Ingyenes ajánlat <span className="arrow">→</span></Link>
             <Link href="/portfolio" className="btn btn-ghost">Munkáink</Link>
           </div>
           <div className="hero-meta">
             <div className="meta-item"><div className="num">10+ év</div><div className="lbl">tapasztalat</div></div>
             <div className="meta-item"><div className="num">120+</div><div className="lbl">elkészült weboldal</div></div>
+            <div className="meta-item"><div className="num">90+</div><div className="lbl">elégedett ügyfél</div></div>
             <div className="meta-item"><div className="num">3–6 hét</div><div className="lbl">átlagos átfutás</div></div>
           </div>
         </div>
@@ -142,8 +146,8 @@ function Services() {
       <div className="container">
         <div className="sec-head sec-head--solo reveal">
           <div>
-            <div className="sec-tag">Mit csinálunk</div>
-            <h2 className="sec-h">Mindent, ami a weboldalad<br /><em>jól működéséhez kell.</em></h2>
+            <div className="sec-tag">Szolgáltatások</div>
+            <h2 className="sec-h">Egyedi WordPress fejlesztés —<br /><em>weboldal, webshop, karbantartás.</em></h2>
           </div>
         </div>
 
@@ -160,7 +164,7 @@ function Team() {
         <div className="sec-head reveal">
           <div>
             <div className="sec-tag">Rólunk</div>
-            <h2 className="sec-h">Ketten vagyunk —<br /><em>és ez pont elég.</em></h2>
+            <h2 className="sec-h">Ketten vagyunk —<br /><em>szándékosan.</em></h2>
           </div>
         </div>
         <AboutCollage />
@@ -186,27 +190,27 @@ function WhyUs() {
           <div className="why-grid">
             <div>
               <div className="sec-tag">Miért a Weart</div>
-              <h2 className="sec-h">Nem ügynökség.<br /><em>Egy csapat, aki felveszi a telefont.</em></h2>
+              <h2 className="sec-h">Egy fejlesztő gondolja végig.<br /><em>Egy projektmenedzser tartja a fonalat.</em></h2>
               <p style={{ marginTop: 24, color: 'rgba(255,255,255,0.65)', fontSize: 17, maxWidth: 480, lineHeight: 1.6 }}>
-                Ketten vagyunk. Magyarul beszélünk veled, gyorsan válaszolunk, és nem adunk át téged egy junior projektmenedzsernek a szerződés után. Aki megtervezi az oldalt, az kódolja, az válaszol fél év múlva is.
+                Nem ügynökségi lánc, ahol junior dolgozik rajtad. Balázs végig kódol — a specifikációtól a telepítésig. Fanni koordinál, egyeztet, és elérhető marad, ha kérdésed van. Ketten vagyunk szándékosan: így marad a minőség és a személyes kapcsolat is.
               </p>
               <div style={{ marginTop: 32, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <Link className="btn btn-primary" href="/contact">Kérek ajánlatot →</Link>
+                <Link className="btn btn-primary" href="/contact">Ingyenes ajánlat →</Link>
                 <Link className="btn" href="/portfolio">Munkáink</Link>
               </div>
             </div>
             <div className="why-feat">
               <div className="feat">
-                <div className="feat-h"><span className="feat-num">01.</span><h4>Fix árak, fix határidő.</h4></div>
-                <p>Az ajánlatban szereplő ár nem változik menet közben. Ha mégis új igény merül fel, előre szólunk, mennyibe kerül — meglepetés-számlák nálunk nincsenek.</p>
+                <div className="feat-h"><span className="feat-num">01.</span><h4>Specifikáció előre, nem meglepetés utána.</h4></div>
+                <p>Az ajánlatban fix ár és határidő szerepel. Új igény esetén előre számolunk — rejtett költség és meglepetés-számla nincs.</p>
               </div>
               <div className="feat">
-                <div className="feat-h"><span className="feat-num">02.</span><h4>Te kezelhetsz mindent magad.</h4></div>
-                <p>Átadáskor 1 órás betanítást kapsz videóval együtt. Új kép, új szöveg, új termék — bárki fel tudja vinni a csapatból, nem kell minket hívni.</p>
+                <div className="feat-h"><span className="feat-num">02.</span><h4>Egyedi kód, nem bővítmény-halmaz.</h4></div>
+                <p>Csak iparági szintű plugint használunk, ha muszáj. A többit magunk írjuk — stabilabb, gyorsabb, biztonságosabb alap.</p>
               </div>
               <div className="feat">
-                <div className="feat-h"><span className="feat-num">03.</span><h4>Mindenkivel külön foglalkozunk.</h4></div>
-                <p>Nincs sablon. Megbeszéljük, mit csinálsz, ki a vevőd, mire van szükséged. Az oldal arra lesz szabva, nem fordítva.</p>
+                <div className="feat-h"><span className="feat-num">03.</span><h4>Átadás után is te kezeled.</h4></div>
+                <p>Saját szerkesztőfelület, 1 órás betanítás videóval. Új tartalom feltöltése fejlesztő nélkül — bárki a csapatodból.</p>
               </div>
             </div>
           </div>
@@ -230,8 +234,8 @@ function Insights({ posts }: { posts: WPPost[] }) {
       <div className="container">
         <div className="sec-head sec-head--solo reveal">
           <div>
-            <div className="sec-tag">Blog</div>
-            <h2 className="sec-h">Cikkek, amik segítenek,<br />hogy <em>jobban dönts</em></h2>
+            <div className="sec-tag">Tudástár</div>
+            <h2 className="sec-h">Segítünk dönteni —<br /><em>mielőtt weboldalba fektetsz.</em></h2>
           </div>
         </div>
         <div className="insights reveal">
@@ -282,8 +286,8 @@ function BigCTA() {
         <div className="big-cta reveal">
           <div>
             <h2>Beszéljünk az<br /><em>oldaladról.</em></h2>
-            <p>Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van szükséged, és egy munkanapon belül küldünk egy konkrét árajánlatot — csomagolás nélkül.</p>
-            <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Kezdjük el <span className="arrow">→</span></Link>
+            <p>Egy 30 perces, kötelezettség nélküli konzultáció — megnézzük, mire van szükséged, és két munkanapon belül küldünk egy konkrét, fix áras ajánlatot.</p>
+            <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Ingyenes ajánlat <span className="arrow">→</span></Link>
           </div>
           <div className="contact-card">
             <div className="contact-card-head">
@@ -295,7 +299,7 @@ function BigCTA() {
                 <div className="contact-role">A hívásokat fogadja</div>
               </div>
             </div>
-            <p className="contact-blurb">A megkereséseket elsősorban a feleségem és a jobbkezem, <b>Fanni</b> kezeli, hogy minél jobban tudjak koncentrálni a weboldalak építésére.</p>
+            <p className="contact-blurb">A megkereséseket <b>Fanni</b>, projektmenedzserünk kezeli — hogy Balázs a fejlesztésre koncentrálhasson, és minden kérdésedre gyorsan válasz érkezzen.</p>
             <div className="contact-rows">
               <a className="contact-row" href="tel:+36301958114">
                 <span className="contact-row-ico">

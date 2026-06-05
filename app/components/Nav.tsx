@@ -17,7 +17,8 @@ export default function Nav() {
   const path = usePathname();
   return (
     <nav className="nav">
-      <div className="container nav-inner">
+      <div className="container">
+        <div className="nav-inner">
         <Link href="/" className="logo">
           <span className="logo-mark" aria-hidden="true"><LogoMark /></span>
           <b>weart<span style={{ color: 'var(--primary)' }}>.</span>hu</b>
@@ -26,11 +27,12 @@ export default function Nav() {
           <Link href="/#szolgaltatasok">Szolgáltatások</Link>
           <Link href="/about" className={path === '/about' ? 'active' : ''}>Rólunk</Link>
           <Link href="/portfolio" className={path === '/portfolio' ? 'active' : ''}>Munkáink</Link>
-          <Link href="/posts" className={path.startsWith('/posts') ? 'active' : ''}>Blog</Link>
+          <Link href="/posts" className={path.startsWith('/posts') ? 'active' : ''}>Tudástár</Link>
           <Link href="/contact" className={path === '/contact' ? 'active' : ''}>Kapcsolat</Link>
         </div>
         <div className="nav-cta">
-          <Link href="/contact" className="btn btn-ghost">Kérek ajánlatot</Link>
+          <Link href="/contact" className="btn btn-ghost">Ingyenes ajánlat</Link>
+        </div>
         </div>
       </div>
     </nav>

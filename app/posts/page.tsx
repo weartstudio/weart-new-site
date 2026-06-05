@@ -10,7 +10,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Blog – Weart',
-  description: 'Magyar nyelven, kkv-tulajdonosoknak — érthetően arról, hogyan működik egy weboldal.',
+  description: 'Vállalkozóknak — érthetően arról, hogyan működik egy weboldal.',
 };
 
 export default async function BlogPage() {
@@ -24,7 +24,7 @@ export default async function BlogPage() {
         <div className="container">
           <div className="page-eyebrow">Blog</div>
           <h1 className="page-h1">Cikkek, amik segítenek, hogy <span className="underline">jobban dönts</span></h1>
-          <p className="page-lead">Magyar nyelven, kkv-tulajdonosoknak — érthetően arról, hogyan működik egy weboldal, mit érdemes elvárni egy fejlesztőtől, és hogyan hozhatsz ki belőle több vevőt.</p>
+          <p className="page-lead">Vállalkozóknak — érthetően arról, hogyan működik egy weboldal, mit érdemes elvárni egy fejlesztőtől, és hogyan hozhatsz ki belőle több vevőt.</p>
         </div>
       </header>
 
@@ -81,7 +81,7 @@ export default async function BlogPage() {
               </h2>
               <p>
                 Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van
-                szükséged, és egy munkanapon belül küldünk egy konkrét
+                szükséged, és két munkanapon belül küldünk egy konkrét
                 árajánlatot — csomagolás nélkül.
               </p>
               <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>

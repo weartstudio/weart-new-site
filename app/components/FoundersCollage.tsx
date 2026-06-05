@@ -35,7 +35,7 @@ const PEOPLE: Person[] = [
         <p>
           Az ausztrál <b>Envato</b> piactéren a saját fejlesztéseit külföldön,
           több országban is használják. Ingyenes WordPress pluginokat ad
-          ki, részt vesz a magyar fordításokban, és fejlesztői eszközöket oszt
+          ki, részt vesz a WordPress fordításokban, és fejlesztői eszközöket oszt
           meg nyíltan — mert a szakmai közösség neki is sokat adott.
         </p>
       </>
@@ -80,12 +80,12 @@ const PEOPLE: Person[] = [
       <>
         <p>
           Ő a kapocs közted és a fejlesztés között. Hozzá fut be minden
-          megkeresés: visszahív, végigveszi veled, mire van szükséged, és egy
+          megkeresés: visszahív, végigveszi veled, mire van szükséged, és két
           munkanapon belül konkrét, fix árajánlatot küld — nincs sales-folyamat,
           nincs öt e-mailes „követés”.
         </p>
         <p>
-          A projekt alatt ő tartja a határidőket, fordítja érthető magyarra a
+          A projekt alatt ő tartja a határidőket, fordítja érthető nyelvre a
           műszaki döntéseket, és gondoskodik róla, hogy ne maradjon nyitott
           kérdés. <b>Te csak szólsz</b> — a többit intézi.
         </p>
@@ -96,7 +96,7 @@ const PEOPLE: Person[] = [
         ico: '☎',
         text: (
           <>
-            <b>Egy munkanapon belül válasz</b> — és egy valódi emberi hang, nem
+            <b>Két munkanapon belül válasz</b> — és egy valódi emberi hang, nem
             automata.
           </>
         ),
@@ -114,7 +114,7 @@ const PEOPLE: Person[] = [
         ico: '✎',
         text: (
           <>
-            <b>Érthető fordítás</b> — a műszaki dolgokat magyarul, nem
+            <b>Érthető fordítás</b> — a műszaki dolgokat közérthetően, nem
             fejlesztőül kapod.
           </>
         ),

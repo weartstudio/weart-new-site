@@ -13,6 +13,8 @@
   --line: rgba(30,45,71,0.08);
   --muted: #6B7A8D;
   --heading-font: var(--font-manrope), system-ui, sans-serif;
+  --site-max: 1240px;
+  --site-gutter: 32px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,17 +40,19 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 img { max-width: 100%; display: block; }
 
-.container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-.container-wide { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
+.container { width: 100%; max-width: var(--site-max); margin: 0 auto; padding: 0 var(--site-gutter); }
+.container-wide { width: 100%; max-width: var(--site-max); margin: 0 auto; padding: 0 var(--site-gutter); }
 
-/* Nav */
+/* Nav — ugyanaz a .container szélesség, mint a többi szekció */
 .nav {
   position: sticky; top: 0; z-index: 50;
+}
+.nav > .container {
   backdrop-filter: blur(16px);
   background: color-mix(in srgb, var(--bg) 78%, transparent);
   border-bottom: 1px solid var(--line);
 }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 32px; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 18px 0; gap: 32px; }
 .logo { display: flex; align-items: center; gap: 10px; font-size: 18px; letter-spacing: -0.02em; }
 .logo-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--dark); display: grid; place-items: center; color: var(--primary); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
 .logo-mark svg { display: block; }
@@ -236,17 +240,7 @@ img { max-width: 100%; display: block; }
 .sc-sat-viz { margin-top: 12px; display: flex; justify-content: flex-start; align-items: center; }
 .sc-sat-viz--arrow { justify-content: flex-end; margin-top: -32px; padding-right: 4px; }
 
-/* megosztott vizualizáció-stílusok (gauge, pulse, ssl, icon-stack, big-arrow) */
-.sc-sat-viz .gauge { width: 100%; max-width: 220px; height: 38px; display: flex; align-items: flex-end; gap: 4px; }
-.sc-sat-viz .gauge i { flex: 1; background: linear-gradient(180deg, var(--primary) 0%, var(--primary-2) 100%); border-radius: 3px 3px 1px 1px; display: block; transform-origin: bottom; transition: transform .3s ease; }
-.sc-sat:hover .gauge i { transform: scaleY(1.1); }
-
-.sc-sat-viz .pulse { width: 100%; max-width: 240px; }
-.sc-sat-viz .bar-row { display: flex; justify-content: space-between; font-family: var(--font-jetbrains), ui-monospace, monospace; font-size: 10px; color: var(--muted); margin-bottom: 4px; }
-.sc-sat-viz .bar { height: 4px; background: color-mix(in srgb, var(--dark) 7%, transparent); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
-.sc-sat-viz .bar:last-child { margin-bottom: 0; }
-.sc-sat-viz .bar i { display: block; height: 100%; background: var(--primary); border-radius: 3px; }
-
+/* megosztott vizualizáció-stílusok (ssl, icon-stack, big-arrow) */
 .sc-sat-viz .icon-stack { display: flex; align-items: flex-end; gap: 8px; }
 .sc-sat-viz .design-glyph { width: 44px; height: 44px; border-radius: 11px; background: #fff; border: 1px solid var(--line); position: relative; display: grid; place-items: center; box-shadow: 0 8px 18px -12px rgba(30,45,71,0.25); transition: transform .3s ease; }
 .sc-sat:hover .design-glyph { transform: translateY(-2px); }
@@ -293,7 +287,6 @@ img { max-width: 100%; display: block; }
 .feat-h h4 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
 .feat p { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 1.6; max-width: 480px; }
 .feat-time { font-family: var(--font-jetbrains), ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 10px; }
-
 /* Marquee */
 .marquee { padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--bg); }
 .marquee-track { display: flex; gap: 48px; animation: scroll 30s linear infinite; white-space: nowrap; align-items: center; }
@@ -677,11 +670,21 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 44px; }
 .foot-brand .logo { color: var(--light); margin-bottom: 18px; }
 .foot-brand .logo b { color: var(--light); }
-.foot-brand p { font-size: 14.5px; line-height: 1.6; max-width: 320px; }
+.foot-brand p { font-size: 14.5px; line-height: 1.6; max-width: 360px; color: rgba(243,249,252,0.72); }
+.foot-cta { margin-top: 22px; display: inline-flex; }
 .foot-col h5 { color: var(--light); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
 .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .foot-col a { font-size: 14.5px; transition: color .2s; }
 .foot-col a:hover { color: var(--light); }
+.foot-note { font-size: 12.5px; color: rgba(243,249,252,0.45); margin-top: 4px; }
+.foot-social { display: flex; gap: 10px; margin-top: 18px; }
+.foot-social a {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  display: grid; place-items: center; color: rgba(243,249,252,0.72);
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.foot-social a:hover { background: rgba(255,255,255,0.12); color: var(--light); border-color: rgba(255,255,255,0.18); }
 .foot-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; flex-wrap: wrap; gap: 20px; }
 .foot-bottom .links { display: flex; gap: 28px; }
 .foot-newsletter { display: flex; gap: 8px; margin-top: 18px; }
@@ -1137,7 +1140,7 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
   .team-idx { right: 22px; top: 22px; }
   .trust.trust-team { padding: 18px 24px; }
   .nav-links { display: none; }
-  .container, .container-wide { padding: 0 20px; }
+  :root { --site-gutter: 20px; }
   .hero-meta { gap: 24px; flex-wrap: wrap; }
   .big-cta { padding: 50px 28px; }
   .sec { padding: 60px 0; }
