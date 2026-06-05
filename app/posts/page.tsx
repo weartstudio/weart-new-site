@@ -84,7 +84,7 @@ export default async function BlogPage() {
                 szükséged, és két munkanapon belül küldünk egy konkrét
                 árajánlatot — csomagolás nélkül.
               </p>
-              <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
+              <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
                 Kezdjük el <span className="arrow">→</span>
               </Link>
             </div>

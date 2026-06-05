@@ -124,7 +124,7 @@ export default async function PostPage({ params }: Props) {
                 <h3>Szeretnéd, hogy <em>mi csináljuk meg</em> helyetted?</h3>
                 <p>Weboldal, webshop, SEO — két munkanapon belül kapsz árajánlatot.</p>
               </div>
-              <Link href="/contact" className="btn btn-primary">Kérek árajánlatot <span className="arrow">→</span></Link>
+              <Link href="/ajanlatkeres" className="btn btn-primary">Kérek árajánlatot <span className="arrow">→</span></Link>
             </div>
 
             <div className="a-foot">
@@ -169,7 +169,7 @@ export default async function PostPage({ params }: Props) {
               <div className="label">Ajánlat</div>
               <h4>Új weboldal vállalkozásoknak</h4>
               <p>Tervezés, fejlesztés, tartalomtöltés — egy árban. Két munkanapon belül árajánlat.</p>
-              <Link href="/contact">Egyeztetést kérek →</Link>
+              <Link href="/ajanlatkeres">Egyeztetést kérek →</Link>
             </div>
             {related[0] && (
               <div className="aside-card">

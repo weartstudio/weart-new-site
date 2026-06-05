@@ -161,7 +161,7 @@ function Values() {
                   flexWrap: 'wrap',
                 }}
               >
-                <Link className="btn btn-primary" href="/contact">
+                <Link className="btn btn-primary" href="/ajanlatkeres">
                   Kérek ajánlatot →
                 </Link>
                 <Link
@@ -358,7 +358,7 @@ function BigCTA() {
               szükséged, és két munkanapon belül küldünk egy konkrét
               árajánlatot — csomagolás nélkül.
             </p>
-            <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
+            <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
               Kezdjük el <span className="arrow">→</span>
             </Link>
           </div>

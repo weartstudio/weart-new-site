@@ -287,6 +287,8 @@ img { max-width: 100%; display: block; }
 .feat-h h4 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
 .feat p { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 1.6; max-width: 480px; }
 .feat-time { font-family: var(--font-jetbrains), ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 10px; }
+.feat-accent { background: color-mix(in srgb, var(--primary) 12%, transparent); border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent); border-radius: 16px; padding: 18px 20px; }
+.feat-accent .feat-time { color: var(--primary); }
 /* Marquee */
 .marquee { padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--bg); }
 .marquee-track { display: flex; gap: 48px; animation: scroll 30s linear infinite; white-space: nowrap; align-items: center; }
@@ -807,6 +809,10 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
 .submit:hover .arrow { transform: translateX(3px); }
 .submit:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
 .form-error { margin-top: 16px; font-size: 13.5px; line-height: 1.5; color: var(--accent); background: rgba(255,107,74,0.08); border: 1px solid rgba(255,107,74,0.25); border-radius: 12px; padding: 12px 16px; }
+.contact-quote-cta { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.contact-quote-cta > div { display: flex; flex-direction: column; gap: 4px; }
+.contact-quote-cta b { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.contact-quote-cta span { font-size: 13.5px; color: var(--muted); line-height: 1.5; max-width: 360px; }
 
 /* Munkáink */
 .stats-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin: 40px 0; }
@@ -1043,6 +1049,9 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
 
 /* Contact page meta strip */
 .head-meta { display: flex; gap: 32px; margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.head-checks { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 30px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+.head-checks li { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 500; color: var(--text); }
+.head-checks .hc-ico { width: 22px; height: 22px; border-radius: 50%; background: color-mix(in srgb, var(--primary) 16%, transparent); color: var(--primary); display: grid; place-items: center; flex-shrink: 0; }
 @keyframes pulseDot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.15);opacity:.85} }
 .meta-item .pulse { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--primary); margin-right: 8px; vertical-align: middle; box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent); animation: pulseDot 1.6s ease-in-out infinite; }
 

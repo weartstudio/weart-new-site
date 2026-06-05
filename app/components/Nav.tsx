@@ -31,7 +31,7 @@ export default function Nav() {
           <Link href="/contact" className={path === '/contact' ? 'active' : ''}>Kapcsolat</Link>
         </div>
         <div className="nav-cta">
-          <Link href="/contact" className="btn btn-ghost">Ingyenes ajánlat</Link>
+          <Link href="/ajanlatkeres" className="btn btn-ghost">Ingyenes ajánlat</Link>
         </div>
         </div>
       </div>

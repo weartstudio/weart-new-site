@@ -25,7 +25,7 @@ export default function Footer() {
               átlátható áron. Karbantartás, SEO, felújítás. Budapesten és a Balaton környékén is
               elérhetőek vagyunk.
             </p>
-            <Link href="/contact" className="btn btn-primary foot-cta">
+            <Link href="/ajanlatkeres" className="btn btn-primary foot-cta">
               Ingyenes ajánlat <span className="arrow">→</span>
             </Link>
           </div>
@@ -47,6 +47,7 @@ export default function Footer() {
               <li><Link href="/portfolio">Munkáink</Link></li>
               <li><Link href="/posts">Tudástár</Link></li>
               <li><Link href="/#faq">Gyakori kérdések</Link></li>
+              <li><Link href="/ajanlatkeres">Ingyenes ajánlat</Link></li>
               <li><Link href="/contact">Kapcsolat</Link></li>
             </ul>
           </div>

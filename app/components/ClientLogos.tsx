@@ -1,14 +1,27 @@
-import type { ReactNode } from 'react';
+import Image from 'next/image';
 
-const clientLogos: { name: string; tag: string; mark: ReactNode }[] = [
-  { name: 'Kovács Lakatos', tag: 'kisipar', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 30 L18 6 L30 30"/><path d="M11 22 L25 22"/><circle cx="18" cy="14" r="2" fill="currentColor"/></svg> },
-  { name: 'Zöldkert Bt.', tag: 'kertészet', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 30 V14"/><path d="M18 18 C12 18 8 14 8 8 C14 8 18 12 18 18 Z" fill="currentColor" fillOpacity=".15"/><path d="M18 22 C24 22 28 18 28 12 C22 12 18 16 18 22 Z" fill="currentColor" fillOpacity=".15"/></svg> },
-  { name: 'Bódi Fogászat', tag: 'egészségügy', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 6 C9 6 8 9 8 13 C8 18 10 22 10 26 C10 28 11 30 12.5 30 C14 30 14.5 28 15 24 C15.5 21 16 19 18 19 C20 19 20.5 21 21 24 C21.5 28 22 30 23.5 30 C25 30 26 28 26 26 C26 22 28 18 28 13 C28 9 27 6 24 6 C21 6 20 8 18 8 C16 8 15 6 12 6 Z"/></svg> },
-  { name: 'Mátra Panzió', tag: 'vendéglátás', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 26 L13 14 L18 20 L23 10 L31 26 Z"/><circle cx="25" cy="9" r="2.2" fill="currentColor"/></svg> },
-  { name: 'Szabó Könyvelő', tag: 'könyvelő iroda', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="7" y="7" width="22" height="22" rx="3"/><path d="M12 14 H24"/><path d="M12 19 H20"/><path d="M12 24 H22"/></svg> },
-  { name: 'Holló Pékség', tag: 'kézműves pékség', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="18" cy="20" rx="12" ry="7"/><path d="M10 16 C10 12 14 10 18 10 C22 10 26 12 26 16"/><path d="M14 21 L14 24"/><path d="M18 21 L18 25"/><path d="M22 21 L22 24"/></svg> },
-  { name: 'Tóth Ügyvédi', tag: 'jogi iroda', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 V30"/><path d="M10 30 H26"/><path d="M11 12 L18 9 L25 12"/><path d="M7 20 L11 12 L15 20 Z"/><path d="M21 20 L25 12 L29 20 Z"/></svg> },
-  { name: 'NagyAuto Kft.', tag: 'autószerviz', mark: <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 22 L8 14 H28 L31 22 V26 H5 Z"/><circle cx="11" cy="26" r="2.5" fill="currentColor"/><circle cx="25" cy="26" r="2.5" fill="currentColor"/><path d="M9 18 H27"/></svg> },
+type ClientLogo = { name: string; src: string; w: number; h: number; invert?: boolean };
+
+export const clientLogos: ClientLogo[] = [
+  { name: 'Szerszámot.eu', src: '/logos/szerszamot-1.png', w: 694, h: 86 },
+  { name: 'Amberg Audio', src: '/logos/amberg.png', w: 268, h: 50 },
+  { name: 'Lizingo.hu', src: '/logos/lizingo.webp', w: 273, h: 40 },
+  { name: 'Papa Joe Pizza', src: '/logos/papajoe.png', w: 188, h: 58 },
+  { name: 'Green Policy Center', src: '/logos/greenpolicy.png', w: 148, h: 56 },
+  { name: 'GMR Electric', src: '/logos/gmr.png', w: 300, h: 105 },
+  { name: 'Zombori Zenina', src: '/logos/zenina.png', w: 300, h: 114 },
+  { name: 'Primor', src: '/logos/primor-1.png', w: 558, h: 71 },
+  { name: 'KB Massage Therapy', src: '/logos/khb.png', w: 130, h: 102 },
+  { name: 'Hymato', src: '/logos/hymato.png', w: 133, h: 138 },
+  { name: 'Gina Lash Terrace', src: '/logos/ginalash.png', w: 768, h: 234 },
+  { name: 'KKV Éve', src: '/logos/kkveve.png', w: 56, h: 56 },
+  // Fehér / sötét-dobozos logók — invert tükrözi a világos csíkhoz, hogy olvashatók legyenek.
+  { name: 'DataMagic', src: '/logos/datamagic.png', w: 192, h: 43, invert: true },
+  { name: 'Szentgáli Csaba', src: '/logos/szentgali.png', w: 427, h: 47, invert: true },
+  { name: 'House Hévíz', src: '/logos/hosueheviz.png', w: 200, h: 56, invert: true },
+  { name: 'VCTC', src: '/logos/vctc-logo.png', w: 161, h: 62 },
+  { name: 'Palantax.hu', src: '/logos/palantax.png', w: 280, h: 66, invert: true },
+  { name: 'Almási Családi Méhészet', src: '/logos/almasi.png', w: 258, h: 120, invert: true },
 ];
 
 export default function ClientLogos() {
@@ -16,11 +29,14 @@ export default function ClientLogos() {
     <>
       {clientLogos.map((c, i) => (
         <div className="client-logo" key={i}>
-          <span className="client-logo-mark">{c.mark}</span>
-          <span className="client-logo-text">
-            <b>{c.name}</b>
-            <small>{c.tag}</small>
-          </span>
+          <Image
+            className={`client-logo-img${c.invert ? ' client-logo-img--invert' : ''}`}
+            src={c.src}
+            alt={c.name}
+            width={c.w}
+            height={c.h}
+            sizes="160px"
+          />
         </div>
       ))}
     </>

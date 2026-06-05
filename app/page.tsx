@@ -8,53 +8,13 @@ import AboutCollage from './components/AboutCollage';
 import ServicesCollage from './components/ServicesCollage';
 import FAQ from './components/FAQ';
 import Testimonials from './components/Testimonials';
+import ClientLogoMarquee from './components/ClientLogoMarquee';
 import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from './lib/wordpress';
 
 // A kezdőlap a WordPress-ből élő projekt- és cikklistát mutat,
 // ezért kérésenként rendereljük (lásd Next 16 docs:
 // guides/caching-without-cache-components → route segment config `dynamic`).
 export const dynamic = 'force-dynamic';
-
-const clientLogos = [
-  { name: 'Szerszámot.eu', src: '/logos/szerszamot-1.png', w: 694, h: 86 },
-  { name: 'Amberg Audio', src: '/logos/amberg.png', w: 268, h: 50 },
-  { name: 'Lizingo.hu', src: '/logos/lizingo.webp', w: 273, h: 40 },
-  { name: 'Papa Joe Pizza', src: '/logos/papajoe.png', w: 188, h: 58 },
-  { name: 'Green Policy Center', src: '/logos/greenpolicy.png', w: 148, h: 56 },
-  { name: 'GMR Electric', src: '/logos/gmr.png', w: 300, h: 105 },
-  { name: 'Zombori Zenina', src: '/logos/zenina.png', w: 300, h: 114 },
-  { name: 'Primor', src: '/logos/primor-1.png', w: 558, h: 71 },
-  { name: 'KB Massage Therapy', src: '/logos/khb.png', w: 130, h: 102 },
-  { name: 'Hymato', src: '/logos/hymato.png', w: 133, h: 138 },
-  { name: 'Gina Lash Terrace', src: '/logos/ginalash.png', w: 768, h: 234 },
-  { name: 'KKV Éve', src: '/logos/kkveve.png', w: 56, h: 56 },
-  // Fehér / sötét-dobozos logók — invert tükrözi a világos csíkhoz, hogy olvashatók legyenek.
-  { name: 'DataMagic', src: '/logos/datamagic.png', w: 192, h: 43, invert: true },
-  { name: 'Szentgáli Csaba', src: '/logos/szentgali.png', w: 427, h: 47, invert: true },
-  { name: 'House Hévíz', src: '/logos/hosueheviz.png', w: 200, h: 56, invert: true },
-  { name: 'VCTC', src: '/logos/vctc-logo.png', w: 161, h: 62 },
-  { name: 'Palantax.hu', src: '/logos/palantax.png', w: 280, h: 66, invert: true },
-  { name: 'Almási Családi Méhészet', src: '/logos/almasi.png', w: 258, h: 120, invert: true },
-];
-
-function ClientLogos() {
-  return (
-    <>
-      {clientLogos.map((c, i) => (
-        <div className="client-logo" key={i}>
-          <Image
-            className={`client-logo-img${c.invert ? ' client-logo-img--invert' : ''}`}
-            src={c.src}
-            alt={c.name}
-            width={c.w}
-            height={c.h}
-            sizes="160px"
-          />
-        </div>
-      ))}
-    </>
-  );
-}
 
 function WorkCard({ img, project }: { img: WPImage; project: WPProject }) {
   return (
@@ -105,7 +65,7 @@ function Hero({ projects }: { projects: WPProject[] }) {
             szép, hanem működik is.
           </p>
           <div className="hero-ctas">
-            <Link href="/contact" className="btn btn-primary">Ingyenes ajánlat <span className="arrow">→</span></Link>
+            <Link href="/ajanlatkeres" className="btn btn-primary">Ingyenes ajánlat <span className="arrow">→</span></Link>
             <Link href="/portfolio" className="btn btn-ghost">Munkáink</Link>
           </div>
           <div className="hero-meta">
@@ -168,15 +128,7 @@ function Team() {
           </div>
         </div>
         <AboutCollage />
-        <div className="ac-trust reveal">
-          <div className="trust-label">Akiknek már dolgoztunk</div>
-          <div className="trust-marquee">
-            <div className="trust-track">
-              <ClientLogos />
-              <ClientLogos />
-            </div>
-          </div>
-        </div>
+        <ClientLogoMarquee className="reveal" />
       </div>
     </section>
   );
@@ -195,7 +147,7 @@ function WhyUs() {
                 Nem ügynökségi lánc, ahol junior dolgozik rajtad. Balázs végig kódol — a specifikációtól a telepítésig. Fanni koordinál, egyeztet, és elérhető marad, ha kérdésed van. Ketten vagyunk szándékosan: így marad a minőség és a személyes kapcsolat is.
               </p>
               <div style={{ marginTop: 32, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <Link className="btn btn-primary" href="/contact">Ingyenes ajánlat →</Link>
+                <Link className="btn btn-primary" href="/ajanlatkeres">Ingyenes ajánlat →</Link>
                 <Link className="btn" href="/portfolio">Munkáink</Link>
               </div>
             </div>
@@ -287,7 +239,7 @@ function BigCTA() {
           <div>
             <h2>Beszéljünk az<br /><em>oldaladról.</em></h2>
             <p>Egy 30 perces, kötelezettség nélküli konzultáció — megnézzük, mire van szükséged, és két munkanapon belül küldünk egy konkrét, fix áras ajánlatot.</p>
-            <Link href="/contact" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Ingyenes ajánlat <span className="arrow">→</span></Link>
+            <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Ingyenes ajánlat <span className="arrow">→</span></Link>
           </div>
           <div className="contact-card">
             <div className="contact-card-head">
