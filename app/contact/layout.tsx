@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 export const metadata: Metadata = {
   title: 'Kapcsolat – Weart',
   description:
-    'Beszéljünk — telefon, e-mail vagy egy 30 perces hívás. Van egy kérdésed? Írj pár sort, két munkanapon belül válaszolunk.',
+    'Beszéljünk — telefonon vagy e-mailben. Van egy kérdésed? Írj pár sort, két munkanapon belül visszajelzünk.',
 };
 
 export default function ContactLayout({ children }: { children: ReactNode }) {

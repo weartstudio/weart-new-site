@@ -3,8 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
+import {
+  FOUNDER_SELECT_EVENT,
+  selectFounder,
+  type FounderId,
+} from '../lib/founder-nav';
 
-type Id = 'balazs' | 'fanni';
+type Id = FounderId;
 
 type Person = {
   id: Id;
@@ -128,6 +133,30 @@ export default function FoundersCollage() {
   const [activeId, setActiveId] = useState<Id>('balazs');
 
   useEffect(() => {
+    const syncFromHash = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash === 'balazs' || hash === 'fanni') {
+        setActiveId(hash);
+      }
+    };
+
+    const onSelect = (e: Event) => {
+      const id = (e as CustomEvent<Id>).detail;
+      if (id === 'balazs' || id === 'fanni') {
+        setActiveId(id);
+      }
+    };
+
+    syncFromHash();
+    window.addEventListener(FOUNDER_SELECT_EVENT, onSelect);
+    window.addEventListener('hashchange', syncFromHash);
+    return () => {
+      window.removeEventListener(FOUNDER_SELECT_EVENT, onSelect);
+      window.removeEventListener('hashchange', syncFromHash);
+    };
+  }, []);
+
+  useEffect(() => {
     const el = root.current;
     if (!el) return;
 
@@ -225,7 +254,7 @@ export default function FoundersCollage() {
                 isActive ? ' is-active' : ''
               }`}
               data-d={p.id === 'balazs' ? '16' : '26'}
-              onClick={() => setActiveId(p.id)}
+              onClick={() => selectFounder(p.id, { scroll: false })}
               aria-pressed={isActive}
               aria-label={`${p.name} bemutatkozása`}
             >
@@ -264,11 +293,12 @@ export default function FoundersCollage() {
             return (
               <button
                 key={p.id}
+                id={p.id}
                 type="button"
                 role="tab"
                 aria-selected={isActive}
                 className={`fc-switch-btn${isActive ? ' is-active' : ''}`}
-                onClick={() => setActiveId(p.id)}
+                onClick={() => selectFounder(p.id, { scroll: false })}
               >
                 <span className="fc-switch-name">{p.name}</span>
                 <span className="fc-switch-role">{p.shortRole}</span>

@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import TechStack from '../components/TechStack';
 import Testimonials from '../components/Testimonials';
 import FoundersCollage from '../components/FoundersCollage';
+import FounderAnchorLink from '../components/FounderAnchorLink';
 import RevealWrapper from '../components/RevealWrapper';
 
 export const metadata: Metadata = {
@@ -24,10 +25,9 @@ function Hero() {
           Ketten vagyunk — és nálunk nem <span className="underline">sorszám</span> vagy.
         </h1>
         <p className="page-lead">
-          Nem ügynökség, nem alvállalkozói lánc. Egy fejlesztő és egy
-          projektmenedzser, akikkel végig ugyanaz a két ember beszél — a
-          tervezéstől a karbantartásig, évekkel később is, amikor módosítanál
-          valamit.
+          Egy fejlesztő és egy projektmenedzser — akik megértik, mivel
+          foglalkozol, nem váltják egymást projektmenedzserek, és fél év múlva
+          is felveszik a telefont.
         </p>
 
         <div className="head-meta">
@@ -37,7 +37,7 @@ function Hero() {
           </div>
           <div className="meta-item">
             <div className="num">120+</div>
-            <div className="lbl">Leszállított weboldal</div>
+            <div className="lbl">Átadott weboldal</div>
           </div>
           <div className="meta-item">
             <div className="num">90+</div>
@@ -61,9 +61,9 @@ function Story() {
           <div className="story-aside">
             <div className="sec-tag">A történet</div>
             <h2>
-              Egy emberként indult.
+              Drága ügynökség, vagy
               <br />
-              Kettő lett belőle — <em>szándékosan.</em>
+              eltűnő „ismerős srác”?
             </h2>
             <p className="story-kicker">
               Nem azért nőttünk, hogy ügynökség legyünk. Azért, hogy minden
@@ -73,11 +73,12 @@ function Story() {
 
           <div className="story-prose">
             <p>
-              A Weart <b>Egyed Balázs</b> egyszemélyes vállalkozásaként indult.
+              A Weart <FounderAnchorLink id="balazs">Balázs</FounderAnchorLink>{' '}
+              egyszemélyes vállalkozásaként indult.
               Az elmúlt közel egy évtizedben dolgozott nagyvállalatoknak,
-              reklámügynökségeknek, kiadóknak és vállalkozásoknak — Magyarországon és
-              külföldön egyaránt. A saját fejlesztésű WordPress-megoldásait{' '}
-              külföldön, több országban is használják.
+              reklámügynökségeknek és kisebb vállalkozásoknak is — ebből
+              tanulta meg, mire van szüksége annak, aki nem fejlesztőt keres,
+              hanem egy működő, érthető weboldalt.
             </p>
             <p>
               A vállalkozók mégis újra és újra ugyanazzal a két történettel
@@ -89,10 +90,13 @@ function Story() {
             <p>
               Ahogy nőtt a megkeresések száma, egy ember kevés lett ahhoz, hogy
               mindkét oldal — a kommunikáció és a kód — végig minőségi maradjon.
-              Itt lépett be <b>Ágoston Fanni</b>. Nem azért, hogy „skálázzunk”,
-              hanem hogy <b>neked legyen egy állandó kapcsolattartód</b>, aki
-              érthetően elmondja, hol tart a projekt — miközben Balázs arra
-              koncentrálhat, amihez ért: a mérnöki minőségű weboldalra.
+              Itt lépett be <FounderAnchorLink id="fanni">Fanni</FounderAnchorLink>.
+              Nem azért, hogy „skálázzunk”, hanem hogy{' '}
+              <b>neked legyen egy állandó kapcsolattartód</b>, aki érthetően
+              elmondja, hol tart a projekt — miközben{' '}
+              <FounderAnchorLink id="balazs">Balázs</FounderAnchorLink> arra
+              koncentrálhat,
+              amihez ért: a mérnöki minőségű weboldalra.
             </p>
             <p>
               Tudatosan maradtunk ketten. Aki megtervezi az oldaladat, az is
@@ -109,15 +113,19 @@ function Story() {
 
 function Founders() {
   return (
-    <section className="sec founders-spread" style={{ paddingTop: 0 }}>
+    <section
+      className="sec founders-spread"
+      id="founders"
+      style={{ paddingTop: 0 }}
+    >
       <div className="container">
         <div className="sec-head reveal">
           <div>
             <div className="sec-tag">Kivel dolgozol</div>
             <h2 className="sec-h">
-              Két ember.
+              Pontosan tudod,
               <br />
-              <em>Nincs harmadik a vonalban.</em>
+              <em>ki ül a másik oldalon.</em>
             </h2>
           </div>
         </div>
@@ -138,9 +146,9 @@ function Values() {
             <div>
               <div className="sec-tag">Miben hiszünk</div>
               <h2 className="sec-h">
-                Négy elv,
+                Négy elv, amit minden
                 <br />
-                <em>amitől sosem térünk el.</em>
+                projektnél betartunk.
               </h2>
               <p
                 style={{
@@ -151,9 +159,9 @@ function Values() {
                   lineHeight: 1.6,
                 }}
               >
-                Nem szlogenek. Ezek a döntések, amiket minden projektnél
-                ugyanúgy meghozunk — akkor is, ha lassabb vagy nehezebb úton
-                visz.
+                Ezek azok a döntések, amik miatt előre tudod, mennyibe kerül,
+                mikor készül el, kihez fordulhatsz, és mit kapsz kézhez az
+                átadáskor.
               </p>
               <div
                 style={{
@@ -164,7 +172,7 @@ function Values() {
                 }}
               >
                 <Link className="btn btn-primary" href="/portfolio">
-                  Nézzük meg a munkáitokat →
+                  Megnézem a munkáitokat →
                 </Link>
                 <Link
                   className="btn"
@@ -218,7 +226,7 @@ function Values() {
                 </div>
                 <p>
                   2017 óta itt vagyunk, és itt is maradunk. A kész oldalhoz is
-                  adunk támogatást — ugyanaz a két ember, aki építette.
+                  adunk támogatást — ugyanazok, akik építették.
                 </p>
               </div>
             </div>
@@ -270,14 +278,14 @@ function Credibility() {
           <aside className="cb-intro">
             <div className="sec-tag">Miért bízhatsz bennünk</div>
             <h2 className="cb-h">
-              Nem csak ügyfeleknek dolgozunk —
+              Háttér, ami nem véletlenül alakult ki —
               <br />
-              <em>a szakmának is.</em>
+              <em>hanem azért, hogy te biztonságban legyél.</em>
             </h2>
             <p className="cb-lead">
               A hitelesség nem marketingszöveg. Ez a <b>háttér áll a munkánk
-              mögött</b> — szakmai diploma, közösségi adás, nemzetközi mérce és
-              valódi ügyfelek.
+              mögött</b> — szakmai diploma, nyílt szakmai munka, nemzetközi
+              mérce és valódi ügyfelek.
             </p>
             <div className="cb-cite">
               <div className="cb-cite-num">10+ év</div>
@@ -327,9 +335,9 @@ function BigCTA() {
         <div className="big-cta reveal">
           <div>
             <h2>
-              Ha eddig tetszett,
+              Már tudod, kik vagyunk.
               <br />
-              <em>így lépsz tovább.</em>
+              <em>A következő lépés egyszerű.</em>
             </h2>
             <p>
               Kötelezettség nélkül — nézd meg a munkáinkat, írj egy kérdést,
@@ -345,11 +353,17 @@ function BigCTA() {
                 alignItems: 'center',
               }}
             >
-              <Link href="/portfolio" className="btn btn-primary" style={{ display: 'inline-flex' }}>
-                Munkáink <span className="arrow">→</span>
-              </Link>
               <Link
                 href="/contact"
+                className="btn btn-primary"
+                style={{
+                  display: 'inline-flex',
+                }}
+              >
+                Írok egy kérdést
+              </Link>
+              <Link
+                href="/portfolio"
                 className="btn"
                 style={{
                   color: '#fff',
@@ -357,7 +371,7 @@ function BigCTA() {
                   display: 'inline-flex',
                 }}
               >
-                Írok egy kérdést
+                Megnézem a munkáitokat <span className="arrow">→</span>
               </Link>
             </div>
           </div>
@@ -374,12 +388,13 @@ function BigCTA() {
               </div>
               <div>
                 <div className="contact-name">Ágoston Fanni</div>
-                <div className="contact-role">A hívásokat fogadja</div>
+                <div className="contact-role">Kapcsolattartó · projektmenedzser</div>
               </div>
             </div>
             <p className="contact-blurb">
-              A megkereséseket elsősorban <b>Fanni</b> kezeli, hogy Balázs minél
-              jobban tudjon a weboldalak építésére koncentrálni.
+              <b>Fannival</b> rögtön érdemben tudod megbeszélni, mire van
+              szükséged — mert a projekten ő is ott van az első beszélgetéstől
+              az átadásig.
             </p>
             <div className="contact-rows">
               <a className="contact-row" href="tel:+36301958114">

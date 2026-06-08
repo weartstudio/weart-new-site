@@ -3,15 +3,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, type SubmitEvent } from 'react';
-import { Phone, Mail, Calendar, Check } from 'lucide-react';
+import { Phone, Mail, Check } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
+import { useBusinessHours } from '../lib/useBusinessHours';
 
 export default function KapcsolatPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const available = useBusinessHours();
 
   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -54,7 +56,7 @@ export default function KapcsolatPage() {
         <div className="container">
           <div className="page-eyebrow">Kapcsolat</div>
           <h1 className="page-h1">Beszéljünk —<br/><span className="underline">emberi nyelven.</span></h1>
-          <p className="page-lead">Van egy kérdésed, vagy csak tájékozódnál? Hívj, írj, vagy foglalj egy időpontot — nem értékesítő vesz fel, hanem aki a munkát csinálja. Két munkanapon belül válaszolunk.</p>
+          <p className="page-lead">Van egy kérdésed, vagy csak tájékozódnál? Hívj vagy írj — nem értékesítő válaszol, hanem aki a munkát is végzi. Két munkanapon belül visszajelzünk.</p>
 
           <div className="head-meta">
             <div className="meta-item">
@@ -66,8 +68,8 @@ export default function KapcsolatPage() {
               <div className="lbl">Telefonon elérhető</div>
             </div>
             <div className="meta-item">
-              <div className="num">30 perc</div>
-              <div className="lbl">Ingyenes konzultáció</div>
+              <div className="num">Első kör</div>
+              <div className="lbl">Ingyenes egyeztetés</div>
             </div>
           </div>
         </div>
@@ -78,7 +80,7 @@ export default function KapcsolatPage() {
           <div className="contact-grid">
 
             {/* Direct channels */}
-            <aside className="fanni-card reveal">
+            <aside className={`fanni-card reveal${available === false ? ' fanni-card--away' : ''}`}>
               <div className="fanni-head">
                 <div className="fanni-photo">
                   <Image src="/fanni-small.jpg" alt="Ágoston Fanni" width={84} height={84} style={{ borderRadius: '50%', objectFit: 'cover' }} />
@@ -89,11 +91,15 @@ export default function KapcsolatPage() {
                 </div>
               </div>
 
-              <p className="fanni-bio">Hozzám fut be minden megkeresés. <b>Te csak szólsz</b> — visszahívlak, és megbeszéljük, mire van szükséged. Nincs sales-folyamat, nincs nyomulás.</p>
+              <p className="fanni-bio">Hozzám fut be minden megkeresés. <b>Te csak szólsz</b> — visszaírok, vagy ha megadod a számod, visszahívlak. Megbeszéljük, mire van szükséged. Nincs sales-folyamat, nincs nyomulás.</p>
 
               <div className="availability">
-                <span className="avail-dot"></span>
-                <span><b>Most elérhető</b> · H–P 9:00–17:00 között veszem fel a telefont</span>
+                <span className={`avail-dot${available === false ? ' avail-dot--off' : ' avail-dot--on'}`}></span>
+                {available === false ? (
+                  <span><b>Most nem vagyok gépnél</b> · H–P 9:00–17:00 között veszem fel a telefont — írj nyugodtan, 2 munkanapon belül válaszolok.</span>
+                ) : (
+                  <span><b>Most elérhető</b> · H–P 9:00–17:00 között veszem fel a telefont</span>
+                )}
               </div>
 
               <div className="channels">
@@ -117,16 +123,18 @@ export default function KapcsolatPage() {
                   </div>
                   <span className="ch-arrow">→</span>
                 </a>
-                <a className="channel" href="https://cal.eu/weart" target="_blank" rel="noopener noreferrer">
-                  <span className="ch-ico">
-                    <Calendar size={18} />
-                  </span>
-                  <div className="ch-meta">
-                    <div className="ch-lbl">Naptár · 30 perces hívás</div>
-                    <div className="ch-val">Időpont foglalása</div>
-                  </div>
-                  <span className="ch-arrow">→</span>
-                </a>
+              </div>
+
+              <div className="fanni-proof">
+                <div className="proof-stats">
+                  <span><b>120+</b> weboldal</span>
+                  <span><b>90+</b> ügyfél</span>
+                  <span><b>10+ év</b></span>
+                </div>
+                <p className="proof-note">
+                  „Első weboldalunknál is érthető volt a kommunikáció.”
+                  <span>Kövesdi Éva · Üveg Trend Plusz Kft.</span>
+                </p>
               </div>
             </aside>
 
@@ -160,12 +168,13 @@ export default function KapcsolatPage() {
                   <div className="form-foot">
                     <label className="consent">
                       <input type="checkbox" name="consent" required />
-                      <span>Elolvastam és elfogadom az <a href="#">adatkezelési tájékoztatót</a>. Az adataimat kizárólag a megkeresésem megválaszolására használjátok.</span>
+                      <span>Elolvastam és elfogadom az <Link href="/adatvedelem">adatkezelési tájékoztatót</Link>. Az adataimat kizárólag a megkeresésem megválaszolására használjátok — nem iratkoztatunk fel hírlevélre, és nem adjuk tovább.</span>
                     </label>
                     <button type="submit" className="submit" disabled={loading}>
-                      {loading ? 'Küldés…' : <>Üzenet küldése <span className="arrow">→</span></>}
+                      {loading ? 'Küldés…' : <>Elküldöm a kérdésem <span className="arrow">→</span></>}
                     </button>
                   </div>
+                  <p className="form-reassure">2 munkanapon belül válaszolunk · nem értékesítő hív, és nem adunk el semmit.</p>
                   {error && <p className="form-error" role="alert">{error}</p>}
                 </form>
               ) : (
@@ -183,7 +192,7 @@ export default function KapcsolatPage() {
               <div className="contact-quote-cta">
                 <div>
                   <b>Konkrét árajánlatra van szükséged?</b>
-                  <span>Töltsd ki a részletes ajánlatkérőt — két munkanapon belül tételes árat kapsz.</span>
+                  <span>Töltsd ki a részletes ajánlatkérőt — két munkanapon belül visszajelzünk, és elindítjuk a tételes ajánlatot.</span>
                 </div>
                 <Link href="/ajanlatkeres" className="btn btn-primary">
                   Ajánlatkérés <span className="arrow">→</span>

@@ -2,11 +2,12 @@
 
 import Image from 'next/image';
 import { useState, type SubmitEvent } from 'react';
-import { Phone, Mail, Calendar, Check } from 'lucide-react';
+import { Phone, Mail, Check } from 'lucide-react';
 import Nav from '../components/Nav';
 import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
+import { useBusinessHours } from '../lib/useBusinessHours';
 
 const TRUST = [
   'Konkrét, tételes árajánlat — nem „-tól" ár',
@@ -32,6 +33,7 @@ export default function AjanlatkeresPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const available = useBusinessHours();
 
   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -100,7 +102,7 @@ export default function AjanlatkeresPage() {
           <div className="contact-grid">
 
             {/* Fanni card */}
-            <aside className="fanni-card reveal">
+            <aside className={`fanni-card reveal${available === false ? ' fanni-card--away' : ''}`}>
               <div className="fanni-head">
                 <div className="fanni-photo">
                   <Image src="/fanni-small.jpg" alt="Ágoston Fanni" width={84} height={84} style={{ borderRadius: '50%', objectFit: 'cover' }} />
@@ -114,8 +116,12 @@ export default function AjanlatkeresPage() {
               <p className="fanni-bio">Hozzám fut be minden megkeresés. <b>Te csak szólsz</b> — két munkanapon belül visszahívlak vagy írok, megbeszéljük, mire van szükséged, és a konzultáció után küldök egy reális, <b>tételes árajánlatot</b>. Nincs sales-folyamat, nincs 5 emailes követés.</p>
 
               <div className="availability">
-                <span className="avail-dot"></span>
-                <span><b>Most elérhető</b> · H–P 9:00–17:00 között veszem fel a telefont</span>
+                <span className={`avail-dot${available === false ? ' avail-dot--off' : ' avail-dot--on'}`}></span>
+                {available === false ? (
+                  <span><b>Most nem vagyok gépnél</b> · H–P 9:00–17:00 között veszem fel a telefont — írj nyugodtan, 2 munkanapon belül válaszolok.</span>
+                ) : (
+                  <span><b>Most elérhető</b> · H–P 9:00–17:00 között veszem fel a telefont</span>
+                )}
               </div>
 
               <div className="channels">
@@ -136,16 +142,6 @@ export default function AjanlatkeresPage() {
                   <div className="ch-meta">
                     <div className="ch-lbl">E-mail · részletek</div>
                     <div className="ch-val">info@weart.hu</div>
-                  </div>
-                  <span className="ch-arrow">→</span>
-                </a>
-                <a className="channel" href="https://cal.eu/weart" target="_blank" rel="noopener noreferrer">
-                  <span className="ch-ico">
-                    <Calendar size={18} />
-                  </span>
-                  <div className="ch-meta">
-                    <div className="ch-lbl">Naptár · 30 perces hívás</div>
-                    <div className="ch-val">Időpont foglalása</div>
                   </div>
                   <span className="ch-arrow">→</span>
                 </a>
@@ -213,7 +209,7 @@ export default function AjanlatkeresPage() {
                   <div className="form-foot">
                     <label className="consent">
                       <input type="checkbox" name="consent" required />
-                      <span>Elolvastam és elfogadom az <a href="#">adatkezelési tájékoztatót</a>. Az adataimat kizárólag a megkeresésem megválaszolására használjátok — nem iratkoztatunk fel hírlevélre, és nem adjuk tovább.</span>
+                      <span>Elolvastam és elfogadom az <a href="/adatvedelem">adatkezelési tájékoztatót</a>. Az adataimat kizárólag a megkeresésem megválaszolására használjátok — nem iratkoztatunk fel hírlevélre, és nem adjuk tovább.</span>
                     </label>
                     <button type="submit" className="submit" disabled={loading}>
                       {loading ? 'Küldés…' : <>Küldöm az ajánlatkérést <span className="arrow">→</span></>}
