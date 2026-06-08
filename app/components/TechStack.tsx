@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 const TECH: { name: string; path: string }[] = [
   {
     name: 'WordPress',
@@ -33,18 +35,30 @@ const TECH: { name: string; path: string }[] = [
   },
 ];
 
-export default function TechStack() {
-  return (
-    <section className="sec tech-band" style={{ paddingTop: 0 }}>
-      <div className="container">
-        <div className="tech-inner reveal">
-          <div className="tech-aside">
-            <div className="sec-tag">Műszaki alap</div>
-            <p className="tech-lead">
-              Nem keverünk be tíz bővítményt. Néhány, jól ismert eszközből
-              építünk — <em>kézzel, kódból</em>.
-            </p>
-          </div>
+const DEFAULT_LEAD = (
+  <>
+    Nem keverünk be tíz bővítményt. Néhány, jól ismert eszközből építünk —{' '}
+    <em>kézzel, kódból</em>.
+  </>
+);
+
+export default function TechStack({
+  embedded = false,
+  lead = DEFAULT_LEAD,
+  showAside = true,
+}: {
+  embedded?: boolean;
+  lead?: ReactNode;
+  showAside?: boolean;
+}) {
+  const inner = (
+        <div className={`tech-inner reveal${showAside ? '' : ' tech-inner--solo'}`}>
+          {showAside ? (
+            <div className="tech-aside">
+              <div className="sec-tag">Műszaki alap</div>
+              <p className="tech-lead">{lead}</p>
+            </div>
+          ) : null}
           <ul className="tech-logos" aria-label="Az általunk használt technológiák">
             {TECH.map((t) => (
               <li className="tech-logo" key={t.name}>
@@ -63,7 +77,13 @@ export default function TechStack() {
             ))}
           </ul>
         </div>
-      </div>
+  );
+
+  if (embedded) return inner;
+
+  return (
+    <section className="sec tech-band" style={{ paddingTop: 0 }}>
+      <div className="container">{inner}</div>
     </section>
   );
 }
