@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          <div>© 2017–2026 Weart · Egyed Balázs egyéni vállalkozó</div>
+          <div>© 2017–2026 weart.hu - Egyed Balázs</div>
           <div className="links">
             <Link href="#">Adatvédelem</Link>
             <Link href="#">ÁSZF</Link>
