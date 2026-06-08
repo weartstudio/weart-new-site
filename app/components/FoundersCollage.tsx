@@ -251,14 +251,6 @@ export default function FoundersCollage() {
             </button>
           );
         })}
-
-        <span className="fc-chip fc-chip--1" data-d="34" aria-hidden="true">
-          <i className="fc-chip-dot" />
-          10+ év együtt
-        </span>
-        <span className="fc-chip fc-chip--2" data-d="46" aria-hidden="true">
-          Nincs alvállalkozó
-        </span>
       </div>
 
       <div className="fc-side">

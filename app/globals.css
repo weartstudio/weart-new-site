@@ -1436,6 +1436,34 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
 .duo-quote--dark .dq-stat { color: rgba(255,255,255,0.6); border-left-color: rgba(255,255,255,0.18); }
 
 /* Tech stack — slim, borderless logo band (no cards) */
+.founders-spread .fc + .tech-inner { margin-top: 56px; }
+.tech-inner.tech-inner--solo {
+  display: block;
+  width: 100%;
+  grid-template-columns: unset;
+  border-top: 1px solid var(--line);
+  padding-top: 44px;
+}
+.tech-inner.tech-inner--solo .tech-logos {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  width: 100%;
+  gap: clamp(8px, 1.5vw, 28px);
+  align-items: start;
+  justify-items: center;
+  flex-wrap: unset;
+}
+.tech-inner.tech-inner--solo .tech-logo {
+  width: 100%;
+  max-width: 120px;
+  justify-self: center;
+}
+.tech-inner.tech-inner--solo .tech-logo span {
+  text-align: center;
+  white-space: normal;
+  line-height: 1.25;
+  max-width: 100%;
+}
 .tech-inner {
   display: grid;
   grid-template-columns: minmax(220px, 300px) 1fr;
@@ -1548,4 +1576,12 @@ footer { background: var(--footer-bg); color: var(--footer-text); padding: 60px 
   .dq-who { text-align: center; align-items: center; }
   .dq-stat { border-left: none; padding-left: 0; }
   .tech-logos { gap: 22px 30px; justify-content: space-between; }
+  .tech-inner.tech-inner--solo .tech-logos {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .tech-inner.tech-inner--solo .tech-logo span {
+    font-size: 8px;
+    letter-spacing: 0.06em;
+  }
 }

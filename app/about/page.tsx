@@ -25,8 +25,9 @@ function Hero() {
         </h1>
         <p className="page-lead">
           Nem ügynökség, nem alvállalkozói lánc. Egy fejlesztő és egy
-          projektmenedzser, akik nevükkel és telefonszámukkal állnak az
-          oldaladért — a tervezéstől a karbantartásig, évekkel később is.
+          projektmenedzser, akikkel végig ugyanaz a két ember beszél — a
+          tervezéstől a karbantartásig, évekkel később is, amikor módosítanál
+          valamit.
         </p>
 
         <div className="head-meta">
@@ -43,8 +44,8 @@ function Hero() {
             <div className="lbl">Elégedett ügyfél</div>
           </div>
           <div className="meta-item">
-            <div className="num">50+</div>
-            <div className="lbl">Ország, ahol fut a kódunk</div>
+            <div className="num">3–6 hét</div>
+            <div className="lbl">Átlagos átfutás</div>
           </div>
         </div>
       </div>
@@ -122,6 +123,7 @@ function Founders() {
         </div>
 
         <FoundersCollage />
+        <TechStack embedded showAside={false} />
       </div>
     </section>
   );
@@ -161,8 +163,8 @@ function Values() {
                   flexWrap: 'wrap',
                 }}
               >
-                <Link className="btn btn-primary" href="/ajanlatkeres">
-                  Kérek ajánlatot →
+                <Link className="btn btn-primary" href="/portfolio">
+                  Nézzük meg a munkáitokat →
                 </Link>
                 <Link
                   className="btn"
@@ -170,9 +172,9 @@ function Values() {
                     color: '#fff',
                     border: '1px solid rgba(255,255,255,0.18)',
                   }}
-                  href="/portfolio"
+                  href="/contact"
                 >
-                  Munkáink
+                  Van egy kérdésem
                 </Link>
               </div>
             </div>
@@ -318,30 +320,6 @@ function Credibility() {
   );
 }
 
-function MarqueeStrip() {
-  const items = [
-    'Egyedi kód',
-    'Fix ár',
-    'Tartott határidő',
-    'Érthető támogatás',
-    'Te kezeled',
-    'Nem tűnünk el',
-    'Mérnöki minőség',
-    'Vállalkozóknak',
-    'Átlátható',
-  ];
-  const all = [...items, ...items];
-  return (
-    <div className="marquee">
-      <div className="marquee-track">
-        {all.map((w, i) => (
-          <span key={i}>{w}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function BigCTA() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
@@ -349,18 +327,39 @@ function BigCTA() {
         <div className="big-cta reveal">
           <div>
             <h2>
-              Beszéljünk az
+              Ha eddig tetszett,
               <br />
-              <em>oldaladról.</em>
+              <em>így lépsz tovább.</em>
             </h2>
             <p>
-              Egy 20 perces, kötetlen telefonbeszélgetés. Megnézzük, mire van
-              szükséged, és két munkanapon belül küldünk egy konkrét
-              árajánlatot — csomagolás nélkül.
+              Kötelezettség nélkül — nézd meg a munkáinkat, írj egy kérdést,
+              vagy foglalj egy 30 perces, kötetlen beszélgetést. Ha már konkrét
+              a terved, két munkanapon belül küldünk tételes árajánlatot is.
             </p>
-            <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
-              Kezdjük el <span className="arrow">→</span>
-            </Link>
+            <div
+              style={{
+                marginTop: 28,
+                display: 'flex',
+                gap: 14,
+                flexWrap: 'wrap',
+                alignItems: 'center',
+              }}
+            >
+              <Link href="/portfolio" className="btn btn-primary" style={{ display: 'inline-flex' }}>
+                Munkáink <span className="arrow">→</span>
+              </Link>
+              <Link
+                href="/contact"
+                className="btn"
+                style={{
+                  color: '#fff',
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  display: 'inline-flex',
+                }}
+              >
+                Írok egy kérdést
+              </Link>
+            </div>
           </div>
           <div className="contact-card">
             <div className="contact-card-head">
@@ -410,9 +409,7 @@ export default function AboutPage() {
       <Hero />
       <Story />
       <Founders />
-      <TechStack />
       <Values />
-      <MarqueeStrip />
       <Credibility />
       <BigCTA />
       <Footer />
