@@ -36,11 +36,11 @@ function Hero() {
             <div className="lbl">Tapasztalat</div>
           </div>
           <div className="meta-item">
-            <div className="num">120+</div>
+            <div className="num">90+</div>
             <div className="lbl">Átadott weboldal</div>
           </div>
           <div className="meta-item">
-            <div className="num">90+</div>
+            <div className="num">80+</div>
             <div className="lbl">Elégedett ügyfél</div>
           </div>
           <div className="meta-item">
@@ -255,13 +255,13 @@ function Credibility() {
       tag: 'Nemzetközi háttér',
       title: 'Külföldön is futnak a fejlesztéseink',
       sub: 'A saját WordPress-megoldásainkat az ausztrál Envato globális piactéren keresztül több országban is használják.',
-      source: { label: 'envato.com', href: 'https://themeforest.net/' },
+      source: { label: 'themeforest.net', href: 'https://themeforest.net/user/weartstudio' },
     },
     {
       tag: 'Közösség',
       title: 'Ingyenes pluginek és fordítások',
       sub: 'Nyílt WordPress bővítmények, hivatalos fordítások és GitHubra feltöltött fejlesztői eszközök.',
-      source: { label: 'GitHub · WP.org', href: 'https://github.com/' },
+      source: { label: 'github.com/weartstudio', href: 'https://github.com/weartstudio' },
     },
     {
       tag: 'Tudásmegosztás',

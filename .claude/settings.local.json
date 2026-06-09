@@ -85,7 +85,8 @@
       "WebSearch",
       "Bash(npm run dev -- --port 3001 &>/tmp/nextdev.log & *)",
       "Bash(python3 -)",
-      "WebFetch(domain:new.weart.hu)"
+      "WebFetch(domain:new.weart.hu)",
+      "Bash(awk '/## Favicons/,/## Static Open Graph/' 01-app/01-getting-started/14-metadata-and-og-images.md)"
     ],
     "additionalDirectories": [
       "/Users/weart/Projects/weart/weart-new-site/app",

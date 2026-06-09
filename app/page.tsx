@@ -70,8 +70,8 @@ function Hero({ projects }: { projects: WPProject[] }) {
           </div>
           <div className="hero-meta">
             <div className="meta-item"><div className="num">10+ év</div><div className="lbl">tapasztalat</div></div>
-            <div className="meta-item"><div className="num">120+</div><div className="lbl">elkészült weboldal</div></div>
-            <div className="meta-item"><div className="num">90+</div><div className="lbl">elégedett ügyfél</div></div>
+            <div className="meta-item"><div className="num">90+</div><div className="lbl">elkészült weboldal</div></div>
+            <div className="meta-item"><div className="num">80+</div><div className="lbl">elégedett ügyfél</div></div>
             <div className="meta-item"><div className="num">3–6 hét</div><div className="lbl">átlagos átfutás</div></div>
           </div>
         </div>
@@ -163,6 +163,10 @@ function WhyUs() {
               <div className="feat">
                 <div className="feat-h"><span className="feat-num">03.</span><h4>Átadás után is te kezeled.</h4></div>
                 <p>Saját szerkesztőfelület, 1 órás betanítás videóval. Új tartalom feltöltése fejlesztő nélkül — bárki a csapatodból.</p>
+              </div>
+              <div className="feat">
+                <div className="feat-h"><span className="feat-num">04.</span><h4>Nem tűnünk el az átadás után.</h4></div>
+                <p>Frissítések, mentés, kisebb módosítások havidíjban — opcionális. Te csak szólsz, mi megcsináljuk.</p>
               </div>
             </div>
           </div>

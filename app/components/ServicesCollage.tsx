@@ -69,14 +69,6 @@ export default function ServicesCollage() {
                 <p>Évek múlva is bővíthető — nem kell nulláról kezdeni.</p>
               </div>
             </div>
-
-            <div className="sc-feature-foot">
-              <div className="sc-feature-stats">
-                <span><b>10+ év</b>tapasztalat</span>
-                <span><b>120+</b>elkészült oldal</span>
-                <span><b>3–6 hét</b>átfutás</span>
-              </div>
-            </div>
           </div>
 
         </div>

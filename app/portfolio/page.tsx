@@ -124,11 +124,11 @@ export default async function MunkainkPage() {
 
       <header className="page-head">
         <div className="container">
-          <div className="page-eyebrow">Portfólió · Referenciák</div>
+          <div className="page-eyebrow">Élő referenciák · valódi vállalkozások</div>
           <h1 className="page-h1">Olyan weboldalak, amiket <span className="underline">ügyfeleink naponta használnak.</span></h1>
 
           <div className="page-head-row">
-            <p className="page-lead">Válogatott referenciák az elmúlt évekből: bemutatkozó oldalak, webshopok, egyedi fejlesztések. Különböző iparágak, hasonló elvárások — működő, kezelhető, egyedi megoldások WordPressen.</p>
+            <p className="page-lead">Webshopok, bemutatkozó és foglalási oldalak — vendéglátástól a kiskereskedelemig. Mindegyik mögött valódi vállalkozás, ami nap mint nap dolgozik vele. A tiéd lehet a következő.</p>
           </div>
 
           <ClientLogoMarquee variant="page-head" />
@@ -152,8 +152,7 @@ export default async function MunkainkPage() {
 
           <section className="big-cta reveal" id="cta">
             <div>
-              <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
-              <h2 style={{ marginTop: 18 }}>Tied lehet a <em>következő</em><br />referencia.</h2>
+              <h2>Tied lehet a <em>következő</em><br />referencia.</h2>
               <p>Ha érdekel, írj egy mondatot: mi a vállalkozásod, mi hiányzik a mostani oldaladból. Két munkanapon belül válaszolunk konkrét számmal.</p>
               <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
                 Kezdjük el <span className="arrow">→</span>
