@@ -21,7 +21,6 @@ export default function KapcsolatPage() {
 
     const fd = new FormData(e.currentTarget);
     const payload = {
-      topic: 'Általános megkeresés',
       name: String(fd.get('name') ?? ''),
       email: String(fd.get('email') ?? ''),
       message: String(fd.get('message') ?? ''),
@@ -30,7 +29,7 @@ export default function KapcsolatPage() {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/kapcsolat', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -126,11 +125,6 @@ export default function KapcsolatPage() {
               </div>
 
               <div className="fanni-proof">
-                <div className="proof-stats">
-                  <span><b>120+</b> weboldal</span>
-                  <span><b>90+</b> ügyfél</span>
-                  <span><b>10+ év</b></span>
-                </div>
                 <p className="proof-note">
                   „Első weboldalunknál is érthető volt a kommunikáció.”
                   <span>Kövesdi Éva · Üveg Trend Plusz Kft.</span>

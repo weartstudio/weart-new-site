@@ -1,0 +1,120 @@
+{
+  "0": {
+    "title": "weART — Kapcsolat (rövid üzenet)",
+    "description": "A weart.hu/kapcsolat oldal egyszerű üzenetküldő űrlapja.",
+    "labelPlacement": "top_label",
+    "descriptionPlacement": "below",
+    "subLabelPlacement": "below",
+    "button": {
+      "type": "text",
+      "text": "Elküldöm a kérdésem",
+      "imageUrl": ""
+    },
+    "version": "2.8",
+    "id": 6,
+    "useCurrentUserAsAuthor": true,
+    "enableHoneypot": true,
+    "enableAnimation": false,
+    "requireLogin": false,
+    "fields": [
+      {
+        "type": "text",
+        "id": 1,
+        "label": "Neved",
+        "adminLabel": "Név",
+        "isRequired": true,
+        "size": "large",
+        "placeholder": "Kovács István",
+        "formId": 6,
+        "pageNumber": 1
+      },
+      {
+        "type": "email",
+        "id": 2,
+        "label": "E-mail cím",
+        "adminLabel": "E-mail",
+        "isRequired": true,
+        "size": "large",
+        "placeholder": "istvan@cegnev.hu",
+        "formId": 6,
+        "pageNumber": 1
+      },
+      {
+        "type": "textarea",
+        "id": 3,
+        "label": "Miben segíthetünk?",
+        "adminLabel": "Üzenet",
+        "isRequired": true,
+        "size": "large",
+        "placeholder": "Pl.: Van egy WordPress oldalam, ami lassú — meg tudnátok nézni?",
+        "formId": 6,
+        "pageNumber": 1
+      },
+      {
+        "type": "consent",
+        "id": 4,
+        "label": "Adatkezelési tájékoztató",
+        "adminLabel": "Hozzájárulás",
+        "isRequired": true,
+        "size": "large",
+        "checkboxLabel": "Elolvastam és elfogadom az adatkezelési tájékoztatót. Az adataimat kizárólag a megkeresésem megválaszolására használjátok — nem iratkoztatnak fel hírlevélre, és nem adják tovább.",
+        "description": "",
+        "inputs": [
+          { "id": "4.1", "label": "Consent", "name": "" },
+          { "id": "4.2", "label": "Text", "name": "" },
+          { "id": "4.3", "label": "Description", "name": "" }
+        ],
+        "formId": 6,
+        "pageNumber": 1
+      }
+    ],
+    "notifications": {
+      "wa2notifyadmin01": {
+        "id": "wa2notifyadmin01",
+        "isActive": true,
+        "to": "info@weart.hu",
+        "name": "Admin értesítés — új üzenet",
+        "event": "form_submission",
+        "toType": "email",
+        "subject": "Új üzenet a kapcsolat oldalról — {Neved:1}",
+        "message": "Új üzenet érkezett a weart.hu/kapcsolat oldalról.\n\nNév: {Neved:1}\nE-mail: {E-mail cím:2}\n\nÜzenet:\n{Miben segíthetünk?:3}\n\n---\nAdatkezelési hozzájárulás: {Adatkezelési tájékoztató:4.1}\nBeküldve: {date_dmy} | IP: {ip} | Forrás: {embed_url}",
+        "from": "{admin_email}",
+        "fromName": "weART weboldal",
+        "replyTo": "{E-mail cím:2}",
+        "bcc": "",
+        "disableAutoformat": false,
+        "enableAttachments": false
+      },
+      "wa2notifyuser02": {
+        "id": "wa2notifyuser02",
+        "isActive": true,
+        "to": "{E-mail cím:2}",
+        "name": "Automatikus visszaigazolás a feladónak",
+        "event": "form_submission",
+        "toType": "field",
+        "toField": "2",
+        "subject": "Megkaptuk az üzeneted — weART",
+        "message": "Szia {Neved:1}!\n\nKöszönjük a megkeresésed — megérkezett hozzánk. Két munkanapon belül válaszol Fanni a megadott e-mail címre.\n\nHa sürgős, hívj nyugodtan: +36 30 / 195 8114 (H–P 9:00–17:00).\n\nÜdv,\na weART csapata\nhttps://weart.hu",
+        "from": "{admin_email}",
+        "fromName": "weART",
+        "replyTo": "info@weart.hu",
+        "bcc": "",
+        "disableAutoformat": false,
+        "enableAttachments": false
+      }
+    },
+    "confirmations": {
+      "wa2confirm0001": {
+        "id": "wa2confirm0001",
+        "name": "Alapértelmezett visszajelzés",
+        "isDefault": true,
+        "type": "message",
+        "message": "<strong>Megkaptuk. Köszi!</strong> Két munkanapon belül válaszol Fanni a megadott e-mail címre. Ha sürgős, hívd nyugodtan: <strong>+36 30 / 195 8114</strong>.",
+        "url": "",
+        "pageId": 0,
+        "queryString": ""
+      }
+    }
+  },
+  "version": "2.8"
+}
