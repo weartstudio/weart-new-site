@@ -4,7 +4,6 @@ import { Phone, Mail } from 'lucide-react';
 import Nav from '../components/Nav';
 import RevealWrapper from '../components/RevealWrapper';
 import Footer from '../components/Footer';
-import HeroAtmosphere from '../components/HeroAtmosphere';
 import BlogList from '../components/BlogList';
 import { getPosts, getCategories } from '../lib/wordpress';
 import type { Metadata } from 'next';
@@ -22,7 +21,6 @@ export default async function BlogPage() {
     <>
       <Nav />
       <header className="page-head">
-        <HeroAtmosphere />
         <div className="container">
           <div className="page-eyebrow">Blog</div>
           <h1 className="page-h1">Cikkek, amik segítenek, hogy <span className="underline">jobban dönts</span></h1>

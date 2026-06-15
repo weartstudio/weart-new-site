@@ -28,7 +28,7 @@ export default function Nav() {
         setPastHeader(window.scrollY > 80);
         return;
       }
-      setPastHeader(header.getBoundingClientRect().bottom <= 0);
+      setPastHeader(true);
     };
 
     update();

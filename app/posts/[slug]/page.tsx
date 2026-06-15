@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
-import HeroAtmosphere from '../../components/HeroAtmosphere';
 import ArticleProgress from '../../components/ArticleProgress';
 import NewsletterModal from '../../components/NewsletterModal';
 import { getPostBySlug, getPosts } from '../../lib/wordpress';
@@ -38,7 +37,6 @@ export default async function PostPage({ params }: Props) {
       <div className="progress" aria-hidden="true"><i id="progressBar"></i></div>
 
       <header className="a-head">
-        <HeroAtmosphere />
         <div className="container">
           <div className="a-meta-top">
             <span className="pill-cat">{post.categoryName}</span>

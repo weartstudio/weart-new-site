@@ -7,7 +7,6 @@ import Nav from '../components/Nav';
 import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
-import HeroAtmosphere from '../components/HeroAtmosphere';
 import { useBusinessHours } from '../lib/useBusinessHours';
 
 const TRUST = [
@@ -82,7 +81,6 @@ export default function AjanlatkeresPage() {
       <Nav />
 
       <header className="page-head">
-        <HeroAtmosphere />
         <div className="container">
           <div className="page-eyebrow">Ingyenes ajánlat</div>
           <h1 className="page-h1">Kérj egy <span className="underline">tételes árajánlatot.</span></h1>

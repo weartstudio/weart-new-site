@@ -9,7 +9,6 @@ import Testimonials from '../components/Testimonials';
 import FoundersCollage from '../components/FoundersCollage';
 import FounderAnchorLink from '../components/FounderAnchorLink';
 import RevealWrapper from '../components/RevealWrapper';
-import HeroAtmosphere from '../components/HeroAtmosphere';
 
 export const metadata: Metadata = {
   title: 'Rólunk — Weart | Ketten egy weboldal mögött',
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
 function Hero() {
   return (
     <header className="page-head">
-      <HeroAtmosphere />
       <div className="container">
         <div className="page-eyebrow">Rólunk · 2017 óta egy csapat</div>
         <h1 className="page-h1">

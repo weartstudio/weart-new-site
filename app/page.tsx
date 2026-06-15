@@ -9,7 +9,6 @@ import ServicesCollage from './components/ServicesCollage';
 import FAQ from './components/FAQ';
 import Testimonials from './components/Testimonials';
 import ClientLogoMarquee from './components/ClientLogoMarquee';
-import HeroAtmosphere from './components/HeroAtmosphere';
 import { getPosts, getProjects, type WPPost, type WPProject, type WPImage } from './lib/wordpress';
 
 // A kezdőlap a WordPress-ből élő projekt- és cikklistát mutat,
@@ -55,7 +54,6 @@ function Hero({ projects }: { projects: WPProject[] }) {
 
   return (
     <section className="hero">
-      <HeroAtmosphere />
       <div className="container hero-grid">
         <div>
           <h1 className="h1">

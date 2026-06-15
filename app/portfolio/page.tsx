@@ -5,7 +5,6 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import ClientLogoMarquee from '../components/ClientLogoMarquee';
 import RevealWrapper from '../components/RevealWrapper';
-import HeroAtmosphere from '../components/HeroAtmosphere';
 import { getProjects, type WPProject } from '../lib/wordpress';
 import type { Metadata } from 'next';
 
@@ -124,7 +123,6 @@ export default async function MunkainkPage() {
       <Nav />
 
       <header className="page-head">
-        <HeroAtmosphere />
         <div className="container">
           <div className="page-eyebrow">Élő referenciák · valódi vállalkozások</div>
           <h1 className="page-h1">Olyan weboldalak, amiket <span className="underline">ügyfeleink naponta használnak.</span></h1>

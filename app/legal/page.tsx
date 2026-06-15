@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
-import HeroAtmosphere from '../components/HeroAtmosphere';
 
 export const metadata: Metadata = {
   title: 'Jogi információk – Weart',
@@ -17,7 +16,6 @@ export default function LegalPage() {
       <Nav />
 
       <header className="page-head">
-        <HeroAtmosphere />
         <div className="container">
           <div className="page-eyebrow">Jogi információk</div>
           <h1 className="page-h1">Jogi <span className="underline">információk.</span></h1>
