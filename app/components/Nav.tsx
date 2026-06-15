@@ -7,16 +7,19 @@ import { useEffect, useState } from 'react';
 
 export default function Nav() {
   const path = usePathname();
-  const [stuck, setStuck] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [pastHeader, setPastHeader] = useState(false);
 
   useEffect(() => {
     const update = () => {
+      setScrolled(window.scrollY > 8);
+
       const header = document.querySelector('.page-head, .hero, .a-head');
       if (!header) {
-        setStuck(window.scrollY > 12);
+        setPastHeader(window.scrollY > 80);
         return;
       }
-      setStuck(header.getBoundingClientRect().bottom <= 0);
+      setPastHeader(header.getBoundingClientRect().bottom <= 0);
     };
 
     update();
@@ -28,8 +31,14 @@ export default function Nav() {
     };
   }, [path]);
 
+  const navClass = [
+    'nav',
+    scrolled ? 'nav--scrolled' : '',
+    pastHeader ? 'nav--stuck' : '',
+  ].filter(Boolean).join(' ');
+
   return (
-    <nav className={`nav${stuck ? ' nav--stuck' : ''}`}>
+    <nav className={navClass}>
       <div className="container">
         <div className="nav-inner">
         <Link href="/" className="logo">

@@ -55,7 +55,7 @@ function Hero({ projects }: { projects: WPProject[] }) {
 
   return (
     <section className="hero">
-      <HeroAtmosphere showPlanet={false} />
+      <HeroAtmosphere />
       <div className="container hero-grid">
         <div>
           <h1 className="h1">

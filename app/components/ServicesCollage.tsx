@@ -23,7 +23,6 @@ export default function ServicesCollage() {
         <div className="sc-feature">
           <div className="sc-feature-card">
             <div className="sc-feature-shine" aria-hidden="true" />
-            <div className="sc-feature-watermark" aria-hidden="true" />
 
             <div className="sc-feature-head">
               <span className="sc-feature-num">/ 01</span>
