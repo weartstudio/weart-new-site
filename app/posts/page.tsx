@@ -51,8 +51,6 @@ export default async function BlogPage() {
               <div className="featured-body">
                 <div className="featured-meta">
                   <span className="tag">{featured.categoryName}</span>
-                  <span className="dot"></span>
-                  <span>{featured.formattedDate}</span>
                 </div>
                 <h2 className="featured-title">
                   <Link href={`/posts/${featured.slug}`}>{featured.title}</Link>

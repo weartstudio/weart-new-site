@@ -1,3 +1,5 @@
+import { BALAZS_PHOTO, FANNI_PHOTO } from './site-assets';
+
 const WP_GRAPHQL_URL = 'https://dev.weart.hu/graphql';
 
 const IMG_CLASSES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
@@ -163,16 +165,15 @@ type RawAuthor = {
   avatar: { url: string | null } | null;
 } | null;
 
-async function resolveAvatar(url: string | null | undefined): Promise<string | null> {
-  if (!url) return null;
-  const probeUrl = url.replace(/([?&])d=[^&]*/i, '$1d=404');
-  const finalUrl = url.replace(/([?&])d=[^&]*/i, '$1d=mp');
-  try {
-    const res = await fetch(probeUrl, { method: 'HEAD' });
-    return res.ok ? finalUrl : null;
-  } catch {
-    return null;
+function localAuthorPhoto(name: string, first: string, last: string): string | null {
+  const hay = `${name} ${first} ${last}`.toLowerCase();
+  if (hay.includes('fanni') || hay.includes('ágoston') || hay.includes('agoston')) {
+    return FANNI_PHOTO;
   }
+  if (hay.includes('balázs') || hay.includes('balazs') || hay.includes('egyed')) {
+    return BALAZS_PHOTO;
+  }
+  return null;
 }
 
 async function mapAuthor(raw: RawAuthor): Promise<WPAuthor | null> {
@@ -197,14 +198,12 @@ async function mapAuthor(raw: RawAuthor): Promise<WPAuthor | null> {
     }
   }
 
-  const avatarUrl = await resolveAvatar(raw.avatar?.url);
-
   return {
     name,
     initial,
     role,
     bio,
-    avatarUrl,
+    avatarUrl: localAuthorPhoto(name, first, last),
   };
 }
 

@@ -213,8 +213,6 @@ function Insights({ posts }: { posts: WPPost[] }) {
               <div className="insight-body">
                 <div className="insight-meta">
                   <span className="tag">{p.categoryName}</span>
-                  <span className="dot"></span>
-                  <span>{p.formattedDate}</span>
                 </div>
                 <h3 className="insight-title">
                   <Link href={`/posts/${p.slug}`}>{p.title}</Link>

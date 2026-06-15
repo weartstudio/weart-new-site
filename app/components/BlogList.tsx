@@ -60,8 +60,6 @@ export default function BlogList({ posts, categories }: { posts: WPPost[]; categ
                   <div className="insight-body">
                     <div className="insight-meta">
                       <span className="tag">{a.categoryName}</span>
-                      <span className="dot"></span>
-                      <span>{a.formattedDate}</span>
                     </div>
                     <h3 className="insight-title">
                       <Link href={`/posts/${a.slug}`}>{a.title}</Link>

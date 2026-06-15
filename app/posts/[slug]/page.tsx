@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
 import ArticleProgress from '../../components/ArticleProgress';
-import NewsletterModal from '../../components/NewsletterModal';
 import { getPostBySlug, getPosts } from '../../lib/wordpress';
 import type { Metadata } from 'next';
 
@@ -40,7 +39,6 @@ export default async function PostPage({ params }: Props) {
         <div className="container">
           <div className="a-meta-top">
             <span className="pill-cat">{post.categoryName}</span>
-            <span className="item">{post.formattedDate}</span>
             <span className="dot"></span>
             <span className="item">{post.readingMinutes} perc olvasás</span>
           </div>
@@ -160,12 +158,6 @@ export default async function PostPage({ params }: Props) {
 
           <aside className="aside-side">
             <div className="aside-card">
-              <div className="label">Hírlevél</div>
-              <h4>Havi 1 cikk, semmi spam</h4>
-              <p>Vállalkozóknak — pontokba szedve, érthetően. Bármikor leiratkozhatsz.</p>
-              <NewsletterModal trigger={<>Feliratkozom →</>} />
-            </div>
-            <div className="aside-card">
               <div className="label">Ajánlat</div>
               <h4>Új weboldal vállalkozásoknak</h4>
               <p>Tervezés, fejlesztés, tartalomtöltés — egy árban. Két munkanapon belül árajánlat.</p>
@@ -184,8 +176,9 @@ export default async function PostPage({ params }: Props) {
       </main>
 
       {related.length > 0 && (
-        <section className="container">
-          <div className="related">
+        <section className="sec">
+          <div className="container">
+            <div className="related">
             <div className="related-head">
               <div>
                 <div className="sec-tag">Folytasd az olvasást</div>
@@ -212,20 +205,18 @@ export default async function PostPage({ params }: Props) {
                   <div className="insight-body">
                     <div className="insight-meta">
                       <span className="tag-x">{r.categoryName}</span>
-                      <span className="dot"></span>
-                      <span>{r.formattedDate}</span>
                     </div>
                     <h3 className="insight-title">
                       <Link href={`/posts/${r.slug}`}>{r.title}</Link>
                     </h3>
                     <p className="insight-excerpt">{r.excerpt}</p>
                     <div className="insight-foot">
-                      <span>{r.formattedDate}</span>
                       <Link href={`/posts/${r.slug}`}>Tovább →</Link>
                     </div>
                   </div>
                 </article>
               ))}
+            </div>
             </div>
           </div>
         </section>
