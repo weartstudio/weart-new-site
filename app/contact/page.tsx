@@ -7,6 +7,7 @@ import { Phone, Mail, Check } from 'lucide-react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
+import HeroAtmosphere from '../components/HeroAtmosphere';
 import { useBusinessHours } from '../lib/useBusinessHours';
 
 export default function KapcsolatPage() {
@@ -52,6 +53,7 @@ export default function KapcsolatPage() {
       <Nav />
 
       <header className="page-head">
+        <HeroAtmosphere />
         <div className="container">
           <div className="page-eyebrow">Kapcsolat</div>
           <h1 className="page-h1">Beszéljünk —<br/><span className="underline">emberi nyelven.</span></h1>

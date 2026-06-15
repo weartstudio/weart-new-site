@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import RevealWrapper from '../components/RevealWrapper';
+import HeroAtmosphere from '../components/HeroAtmosphere';
 
 export const metadata: Metadata = {
   title: 'Adatkezelési tájékoztató – Weart',
@@ -15,6 +16,7 @@ export default function AdatvedelemPage() {
       <Nav />
 
       <header className="page-head">
+        <HeroAtmosphere />
         <div className="container">
           <div className="page-eyebrow">Adatkezelés</div>
           <h1 className="page-h1">Adatkezelési <span className="underline">tájékoztató.</span></h1>
