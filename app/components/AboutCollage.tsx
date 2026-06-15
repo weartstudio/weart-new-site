@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BALAZS_PHOTO } from '../lib/site-assets';
 
 // Réteges kollázs az "about" blokkhoz: egymásra csúsztatott portrék +
 // lebegő statisztikák, finom parallax-szal egérre és görgetésre.
@@ -94,7 +95,7 @@ export default function AboutCollage() {
         <div className="ac-item ac-item--b" data-d="16">
           <figure className="ac-card">
             <div className="ac-photo">
-              <Image src="/balazs.black-white.jpg" alt="Egyed Balázs" fill sizes="240px" style={{ objectFit: 'cover' }} />
+              <Image src={BALAZS_PHOTO} alt="Egyed Balázs" fill sizes="240px" style={{ objectFit: 'cover' }} />
             </div>
             <figcaption className="ac-cap">
               <b>Egyed Balázs</b>

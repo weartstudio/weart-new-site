@@ -51,8 +51,8 @@ export default function FAQ() {
           <div className="reveal">
             <div className="sec-tag">Gyakori kérdések</div>
             <h2 className="sec-h">Árak, határidők, technika —<br /><em>őszintén válaszolunk.</em></h2>
-            <p style={{ marginTop: 24, color: 'var(--muted)', fontSize: 16, maxWidth: 380, lineHeight: 1.6 }}>
-              Nem találod a tiéd? <Link href="/contact" style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: 3 }}>Írj nekünk</Link> — két munkanapon belül válaszolunk.
+            <p className="faq-intro">
+              Nem találod a tiéd? <Link href="/contact">Írj nekünk</Link> — két munkanapon belül válaszolunk.
             </p>
           </div>
           <div className="faq reveal">

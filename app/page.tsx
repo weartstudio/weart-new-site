@@ -102,7 +102,7 @@ function Hero({ projects }: { projects: WPProject[] }) {
 
 function Services() {
   return (
-    <section className="sec" id="szolgaltatasok">
+    <section className="sec sec--flush-top" id="szolgaltatasok">
       <div className="container">
         <div className="sec-head sec-head--solo reveal">
           <div>
@@ -143,10 +143,10 @@ function WhyUs() {
             <div>
               <div className="sec-tag">Miért a Weart</div>
               <h2 className="sec-h">Egy fejlesztő gondolja végig.<br /><em>Egy projektmenedzser tartja a fonalat.</em></h2>
-              <p style={{ marginTop: 24, color: 'rgba(255,255,255,0.65)', fontSize: 17, maxWidth: 480, lineHeight: 1.6 }}>
+              <p className="why-lead">
                 Nem ügynökségi lánc, ahol junior dolgozik rajtad. Balázs végig kódol — a specifikációtól a telepítésig. Fanni koordinál, egyeztet, és elérhető marad, ha kérdésed van. Ketten vagyunk szándékosan: így marad a minőség és a személyes kapcsolat is.
               </p>
-              <div style={{ marginTop: 32, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <div className="why-actions">
                 <Link className="btn btn-primary" href="/ajanlatkeres">Ingyenes ajánlat →</Link>
                 <Link className="btn" href="/portfolio">Munkáink</Link>
               </div>
@@ -227,7 +227,7 @@ function Insights({ posts }: { posts: WPPost[] }) {
             </article>
           ))}
         </div>
-        <div className="reveal" style={{ marginTop: 48, display: 'flex', justifyContent: 'center' }}>
+        <div className="reveal sec-actions">
           <Link href="/posts" className="btn btn-primary">Összes cikk megtekintése <span className="arrow">→</span></Link>
         </div>
       </div>
@@ -237,13 +237,15 @@ function Insights({ posts }: { posts: WPPost[] }) {
 
 function BigCTA() {
   return (
-    <section className="sec" id="kapcsolat" style={{ paddingTop: 0, padding: '0px' }}>
+    <section className="sec sec--cta" id="kapcsolat">
       <div className="container">
         <div className="big-cta reveal">
           <div>
             <h2>Beszéljünk az<br /><em>oldaladról.</em></h2>
             <p>Egy 30 perces, kötelezettség nélküli konzultáció — megnézzük, mire van szükséged, és két munkanapon belül küldünk egy konkrét, fix áras ajánlatot.</p>
-            <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>Ingyenes ajánlat <span className="arrow">→</span></Link>
+            <div className="ctas">
+              <Link href="/ajanlatkeres" className="btn btn-primary">Ingyenes ajánlat <span className="arrow">→</span></Link>
+            </div>
           </div>
           <div className="contact-card">
             <div className="contact-card-head">

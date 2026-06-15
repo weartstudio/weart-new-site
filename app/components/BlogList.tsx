@@ -21,10 +21,10 @@ export default function BlogList({ posts, categories }: { posts: WPPost[]; categ
   });
 
   return (
-    <>
-      <div style={{ borderTop: '1px solid var(--line)', padding: '24px 0 0' }}>
-        <div className="container">
-          <div className="filter-bar" style={{ borderTop: 'none', paddingTop: 0 }}>
+    <section className="sec sec--flush-top">
+      <div className="container">
+        <div className="blog-toolbar">
+          <div className="filter-bar">
             <div className="chips">
               {catNames.map(cat => (
                 <button key={cat} className={`chip${activeCat === cat ? ' active' : ''}`} onClick={() => setActiveCat(cat)}>{cat}</button>
@@ -36,13 +36,10 @@ export default function BlogList({ posts, categories }: { posts: WPPost[]; categ
             </label>
           </div>
         </div>
-      </div>
 
-      <section style={{ padding: '40px 0 80px' }}>
-        <div className="container">
-          <h2 style={{ fontSize: 'clamp(24px,2.6vw,32px)', letterSpacing: '-0.03em', fontWeight: 700, marginBottom: 24, lineHeight: 1.1 }}>Összes cikk</h2>
-          {filtered.length === 0 ? (
-            <p style={{ color: 'var(--muted)', padding: '40px 0' }}>Nincs találat a keresési feltételekre.</p>
+        <h2 className="blog-list-title">Összes cikk</h2>
+        {filtered.length === 0 ? (
+          <p className="blog-empty">Nincs találat a keresési feltételekre.</p>
           ) : (
             <div className="insights">
               {filtered.map((a) => (
@@ -80,6 +77,5 @@ export default function BlogList({ posts, categories }: { posts: WPPost[]; categ
           )}
         </div>
       </section>
-    </>
   );
 }

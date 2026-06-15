@@ -82,7 +82,7 @@ export default function TechStack({
   if (embedded) return inner;
 
   return (
-    <section className="sec tech-band" style={{ paddingTop: 0 }}>
+    <section className="sec sec--flush-top tech-band">
       <div className="container">{inner}</div>
     </section>
   );

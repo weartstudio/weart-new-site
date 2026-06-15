@@ -55,7 +55,7 @@ function Hero() {
 
 function Story() {
   return (
-    <section className="sec">
+    <section className="sec sec--flush-top">
       <div className="container">
         <div className="about-story reveal">
           <div className="story-aside">
@@ -114,9 +114,8 @@ function Story() {
 function Founders() {
   return (
     <section
-      className="sec founders-spread"
+      className="sec sec--flush-top founders-spread"
       id="founders"
-      style={{ paddingTop: 0 }}
     >
       <div className="container">
         <div className="sec-head reveal">
@@ -139,7 +138,7 @@ function Founders() {
 
 function Values() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }}>
+    <section className="sec sec--flush-top">
       <div className="container-wide">
         <div className="why reveal">
           <div className="why-grid">
@@ -150,38 +149,16 @@ function Values() {
                 <br />
                 projektnél betartunk.
               </h2>
-              <p
-                style={{
-                  marginTop: 24,
-                  color: 'rgba(255,255,255,0.65)',
-                  fontSize: 17,
-                  maxWidth: 480,
-                  lineHeight: 1.6,
-                }}
-              >
+              <p className="why-lead">
                 Ezek azok a döntések, amik miatt előre tudod, mennyibe kerül,
                 mikor készül el, kihez fordulhatsz, és mit kapsz kézhez az
                 átadáskor.
               </p>
-              <div
-                style={{
-                  marginTop: 32,
-                  display: 'flex',
-                  gap: 14,
-                  flexWrap: 'wrap',
-                }}
-              >
+              <div className="why-actions">
                 <Link className="btn btn-primary" href="/portfolio">
                   Megnézem a munkáitokat →
                 </Link>
-                <Link
-                  className="btn"
-                  style={{
-                    color: '#fff',
-                    border: '1px solid rgba(255,255,255,0.18)',
-                  }}
-                  href="/contact"
-                >
+                <Link className="btn" href="/contact">
                   Van egy kérdésem
                 </Link>
               </div>
@@ -330,7 +307,7 @@ function Credibility() {
 
 function BigCTA() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }}>
+    <section className="sec sec--cta">
       <div className="container">
         <div className="big-cta reveal">
           <div>
@@ -344,33 +321,11 @@ function BigCTA() {
               vagy foglalj egy 30 perces, kötetlen beszélgetést. Ha már konkrét
               a terved, két munkanapon belül küldünk tételes árajánlatot is.
             </p>
-            <div
-              style={{
-                marginTop: 28,
-                display: 'flex',
-                gap: 14,
-                flexWrap: 'wrap',
-                alignItems: 'center',
-              }}
-            >
-              <Link
-                href="/contact"
-                className="btn btn-primary"
-                style={{
-                  display: 'inline-flex',
-                }}
-              >
+            <div className="ctas-row">
+              <Link href="/contact" className="btn btn-primary">
                 Írok egy kérdést
               </Link>
-              <Link
-                href="/portfolio"
-                className="btn"
-                style={{
-                  color: '#fff',
-                  border: '1px solid rgba(255,255,255,0.18)',
-                  display: 'inline-flex',
-                }}
-              >
+              <Link href="/portfolio" className="btn">
                 Megnézem a munkáitokat <span className="arrow">→</span>
               </Link>
             </div>

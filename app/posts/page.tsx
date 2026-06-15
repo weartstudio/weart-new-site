@@ -29,7 +29,7 @@ export default async function BlogPage() {
       </header>
 
       {featured && (
-        <section style={{ padding: '48px 0' }}>
+        <section className="sec sec--flush-top">
           <div className="container">
             <div className="sec-tag">Kiemelt cikk</div>
             <article className="featured">
@@ -58,7 +58,7 @@ export default async function BlogPage() {
                   <Link href={`/posts/${featured.slug}`}>{featured.title}</Link>
                 </h2>
                 <p className="featured-excerpt">{featured.excerpt}</p>
-                <Link href={`/posts/${featured.slug}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 600, color: 'var(--primary)' }}>
+                <Link href={`/posts/${featured.slug}`} className="featured-cta">
                   Elolvasom →
                 </Link>
               </div>
@@ -69,12 +69,12 @@ export default async function BlogPage() {
 
       <BlogList posts={posts} categories={categories} />
 
-      <section className="sec" style={{ paddingTop: 0 }}>
+      <section className="sec sec--cta">
         <div className="container">
           <div className="big-cta reveal">
             <div>
               <span className="eyebrow"><span className="dot"></span> 2026 Q3-ra még 2 hely van</span>
-              <h2 style={{ marginTop: 18 }}>
+              <h2 className="has-eyebrow">
                 Beszéljünk az
                 <br />
                 <em>oldaladról.</em>
@@ -84,9 +84,11 @@ export default async function BlogPage() {
                 szükséged, és két munkanapon belül küldünk egy konkrét
                 árajánlatot — csomagolás nélkül.
               </p>
-              <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
-                Kezdjük el <span className="arrow">→</span>
-              </Link>
+              <div className="ctas">
+                <Link href="/ajanlatkeres" className="btn btn-primary">
+                  Kezdjük el <span className="arrow">→</span>
+                </Link>
+              </div>
             </div>
             <div className="contact-card">
               <div className="contact-card-head">

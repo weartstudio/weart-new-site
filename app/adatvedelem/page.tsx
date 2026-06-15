@@ -22,7 +22,7 @@ export default function AdatvedelemPage() {
         </div>
       </header>
 
-      <section className="sec">
+      <section className="sec sec--flush-top">
         <div className="container">
           <div className="legal reveal">
             <p className="legal-meta">Hatályos: 2026. június 1. · Utolsó frissítés: 2026. június 1.</p>

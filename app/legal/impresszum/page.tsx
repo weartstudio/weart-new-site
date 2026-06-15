@@ -23,7 +23,7 @@ export default function ImpresszumPage() {
         </div>
       </header>
 
-      <section className="sec">
+      <section className="sec sec--flush-top">
         <div className="container">
           <div className="legal reveal">
             <p className="legal-meta">Utolsó frissítés: 2026. június 1.</p>

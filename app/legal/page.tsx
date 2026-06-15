@@ -23,7 +23,7 @@ export default function LegalPage() {
         </div>
       </header>
 
-      <section className="sec">
+      <section className="sec sec--flush-top">
         <div className="container">
           <div className="legal reveal">
             <h2>Impresszum</h2>

@@ -74,7 +74,7 @@ export default function KapcsolatPage() {
         </div>
       </header>
 
-      <section className="sec" id="form">
+      <section className="sec sec--flush-top" id="form">
         <div className="container">
           <div className="contact-grid">
 

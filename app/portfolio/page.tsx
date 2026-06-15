@@ -135,7 +135,7 @@ export default async function MunkainkPage() {
         </div>
       </header>
 
-      <section className="showcase">
+      <section className="sec sec--flush-top showcase">
         <div className="container">
 
           {rows.map((row, ri) => (
@@ -154,9 +154,11 @@ export default async function MunkainkPage() {
             <div>
               <h2>Tied lehet a <em>következő</em><br />referencia.</h2>
               <p>Ha érdekel, írj egy mondatot: mi a vállalkozásod, mi hiányzik a mostani oldaladból. Két munkanapon belül válaszolunk konkrét számmal.</p>
-              <Link href="/ajanlatkeres" className="btn btn-primary" style={{ marginTop: 28, display: 'inline-flex' }}>
-                Kezdjük el <span className="arrow">→</span>
-              </Link>
+              <div className="ctas">
+                <Link href="/ajanlatkeres" className="btn btn-primary">
+                  Kezdjük el <span className="arrow">→</span>
+                </Link>
+              </div>
             </div>
             <div className="contact-card">
               <div className="contact-card-head">

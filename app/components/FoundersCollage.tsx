@@ -8,6 +8,7 @@ import {
   selectFounder,
   type FounderId,
 } from '../lib/founder-nav';
+import { BALAZS_PHOTO } from '../lib/site-assets';
 
 type Id = FounderId;
 
@@ -27,7 +28,7 @@ const PEOPLE: Person[] = [
     name: 'Egyed Balázs',
     role: 'Fejlesztő',
     shortRole: 'Fejlesztő',
-    photo: '/balazs.black-white.jpg',
+    photo: BALAZS_PHOTO,
     bio: (
       <>
         <p>

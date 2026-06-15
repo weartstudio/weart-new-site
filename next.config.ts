@@ -22,6 +22,12 @@ function findProjectRoot(start: string): string {
 const nextConfig: NextConfig = {
   turbopack: { root: findProjectRoot(process.cwd()) },
   images: {
+    localPatterns: [
+      {
+        // public/ assets; search omitted → ?v= cache-bust query params allowed
+        pathname: '/**',
+      },
+    ],
     remotePatterns: [
       { protocol: 'https', hostname: 'dev.weart.hu' },
       { protocol: 'https', hostname: 'secure.gravatar.com' },

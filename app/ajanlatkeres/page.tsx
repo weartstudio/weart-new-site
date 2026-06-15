@@ -97,7 +97,7 @@ export default function AjanlatkeresPage() {
         </div>
       </header>
 
-      <section className="sec" id="form">
+      <section className="sec sec--flush-top" id="form">
         <div className="container">
           <div className="contact-grid">
 
@@ -241,7 +241,7 @@ export default function AjanlatkeresPage() {
               <div>
                 <div className="sec-tag">Mi történik most?</div>
                 <h2 className="sec-h">Nem tűnünk el<br/>az üzeneted után — <em>4 lépés, ennyi.</em></h2>
-                <p style={{ marginTop: 24, color: 'rgba(255,255,255,0.65)', fontSize: 17, maxWidth: 480, lineHeight: 1.6 }}>
+                <p className="why-lead">
                   Pontosan tudod, mikor mire számíts. Nincs sales-folyamat, nincs CRM-be tűnt csapatpostafiók — Fanni személyesen válaszol minden megkeresésre.
                 </p>
               </div>
