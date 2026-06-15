@@ -3,11 +3,33 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Nav() {
   const path = usePathname();
+  const [stuck, setStuck] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      const header = document.querySelector('.page-head, .hero, .a-head');
+      if (!header) {
+        setStuck(window.scrollY > 12);
+        return;
+      }
+      setStuck(header.getBoundingClientRect().bottom <= 0);
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [path]);
+
   return (
-    <nav className="nav">
+    <nav className={`nav${stuck ? ' nav--stuck' : ''}`}>
       <div className="container">
         <div className="nav-inner">
         <Link href="/" className="logo">
